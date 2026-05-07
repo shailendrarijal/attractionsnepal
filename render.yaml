@@ -1,0 +1,60 @@
+services:
+  # ─── Backend API ─────────────────────────────────────────────────────────────
+  - type: web
+    name: attractionsnepal-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run db:generate && npm run db:migrate
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false          # set in Render dashboard
+      - key: DIRECT_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: FRONTEND_URL
+        sync: false          # e.g. https://attractionsnepal.com
+
+  # ─── Frontend ─────────────────────────────────────────────────────────────────
+  - type: web
+    name: attractionsnepal-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # e.g. https://attractionsnepal-api.onrender.com/api
+      - key: VITE_GOOGLE_MAPS_KEY
+        sync: false
+      - key: VITE_GOOGLE_MAP_ID
+        sync: false
+      - key: VITE_GYG_PARTNER_ID
+        sync: false
+      - key: VITE_BOOKING_AFFILIATE_ID
+        sync: false
+      - key: VITE_SITE_URL
+        value: https://attractionsnepal.com

@@ -1,0 +1,221 @@
+import { useParams, Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import { usePlace } from '../hooks/usePlaces'
+import CategoryBadge from '../components/CategoryBadge'
+import MapView from '../components/MapView'
+import GetYourGuide from '../components/GetYourGuide'
+import BookingWidget from '../components/BookingWidget'
+import LoadingSpinner from '../components/LoadingSpinner'
+import PageSeo from '../components/PageSeo'
+
+const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
+
+const SECTION_ICONS = {
+  WHERE_TO_STAY:      '🏨',
+  WHERE_TO_EAT:       '🍜',
+  TOURS_EXPERIENCES:  '🎒',
+  TRAVEL_TIPS:        '💡',
+  NEARBY_PLACES:      '📍',
+}
+
+export default function PlacePage() {
+  const { slug } = useParams()
+  const { data: place, isLoading, error } = usePlace(slug)
+
+  if (isLoading) return <LoadingSpinner />
+
+  if (error || !place) {
+    return (
+      <div className="flex flex-col items-center justify-center py-32 text-center">
+        <p className="text-5xl mb-4">🏔️</p>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Place not found</h1>
+        <p className="text-gray-500 mb-6">The listing you're looking for doesn't exist or has been removed.</p>
+        <Link to="/" className="btn-primary">Back to Home</Link>
+      </div>
+    )
+  }
+
+  const mapPlaces = place.lat && place.lng ? [place] : []
+
+  return (
+    <>
+      <PageSeo
+        title={place.seoTitle ?? place.name}
+        description={place.seoDescription ?? place.summary}
+        image={place.heroImage}
+        canonicalPath={`/places/${place.slug}`}
+      />
+
+      {/* Hero */}
+      <div className="relative h-72 sm:h-96 lg:h-[480px] bg-gray-900 overflow-hidden">
+        <img
+          src={place.heroImage ?? PLACEHOLDER}
+          alt={place.name}
+          className="absolute inset-0 h-full w-full object-cover opacity-80"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+          <div className="mx-auto max-w-4xl">
+            <CategoryBadge category={place.category} size="lg" />
+            <h1 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              {place.name}
+            </h1>
+            <p className="mt-2 text-gray-300 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {place.district}, {place.province.replace('_', ' ')}
+              {place.elevation && ` · ${place.elevation.toLocaleString()}m`}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
+        {/* Quick facts */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+          {place.bestSeason && (
+            <div className="rounded-xl bg-green-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Best Season</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm">{place.bestSeason}</p>
+            </div>
+          )}
+          {place.entryFee && (
+            <div className="rounded-xl bg-yellow-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Entry Fee</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm">{place.entryFee}</p>
+            </div>
+          )}
+          {place.openingHours && (
+            <div className="rounded-xl bg-blue-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Hours</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm">{place.openingHours}</p>
+            </div>
+          )}
+          {place.trekDays && (
+            <div className="rounded-xl bg-purple-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Duration</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm">{place.trekDays} days</p>
+            </div>
+          )}
+          {place.trekDifficulty && (
+            <div className="rounded-xl bg-red-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Difficulty</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm capitalize">{place.trekDifficulty.toLowerCase()}</p>
+            </div>
+          )}
+          {place.trekMaxElevation && (
+            <div className="rounded-xl bg-sky-50 p-4 text-center">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Max Altitude</p>
+              <p className="mt-1 font-semibold text-gray-900 text-sm">{place.trekMaxElevation.toLocaleString()}m</p>
+            </div>
+          )}
+        </div>
+
+        {/* Trek highlights */}
+        {place.trekHighlights?.length > 0 && (
+          <div className="mb-10 p-5 rounded-2xl bg-emerald-50 border border-emerald-100">
+            <h2 className="font-display font-bold text-lg text-gray-900 mb-3">Trek Highlights</h2>
+            <ul className="space-y-1">
+              {place.trekHighlights.map((h, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                  <svg className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Main content */}
+        <div className="prose prose-base max-w-none mb-10">
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{place.story}</ReactMarkdown>
+        </div>
+
+        {/* Booking widget */}
+        <BookingWidget city={place.bookingCity} placeName={place.name} />
+
+        {/* Content sections */}
+        {place.sections?.map((section) => (
+          <div key={section.id} className="mb-8 p-6 rounded-2xl bg-gray-50 border border-gray-100">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-3">
+              {SECTION_ICONS[section.type] ?? '📌'} {section.title}
+            </h2>
+            <div className="prose prose-sm max-w-none">
+              <ReactMarkdown rehypePlugins={[rehypeRaw]}>{section.content}</ReactMarkdown>
+            </div>
+            {section.links && Array.isArray(section.links) && section.links.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {section.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel={link.type === 'affiliate' ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
+                    className="btn-secondary text-xs py-1.5"
+                  >
+                    {link.label} →
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* How to get there */}
+        {place.howToGetThere && (
+          <div className="mb-8 p-6 rounded-2xl bg-blue-50 border border-blue-100">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-3">🚌 How to Get There</h2>
+            <div className="prose prose-sm max-w-none">
+              <ReactMarkdown rehypePlugins={[rehypeRaw]}>{place.howToGetThere}</ReactMarkdown>
+            </div>
+          </div>
+        )}
+
+        {/* GetYourGuide */}
+        <GetYourGuide query={place.gygQuery} />
+
+        {/* Gallery */}
+        {place.images?.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-4">Gallery</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {place.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`${place.name} ${i + 1}`}
+                  className="rounded-xl aspect-square object-cover"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Map */}
+        {mapPlaces.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-4">📍 Location</h2>
+            <MapView places={mapPlaces} height="350px" />
+          </div>
+        )}
+
+        {/* Tags */}
+        {place.tags?.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {place.tags.map(({ tag }) => (
+              <span key={tag.id} className="badge bg-gray-100 text-gray-600">
+                #{tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
+  )
+}
