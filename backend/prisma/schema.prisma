@@ -103,6 +103,10 @@ model Place {
   trekDistance     Float?       // km total
   trekStartPoint   String?
   trekEndPoint     String?
+  trekStartLat     Float?       // geocoded start-point coordinates
+  trekStartLng     Float?
+  trekEndLat       Float?       // geocoded end-point coordinates
+  trekEndLng       Float?
   trekHighlights   String[]     // e.g. ["Thorong La Pass", "Annapurna Base Camp"]
   // ────────────────────────────────────────────────────────────────
 

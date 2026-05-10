@@ -2,17 +2,23 @@ import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 const CATEGORIES = [
-  { label: 'Temples', value: 'TEMPLE' },
-  { label: 'Monasteries', value: 'MONASTERY' },
-  { label: 'Stupas', value: 'STUPA' },
-  { label: 'Palaces', value: 'DURBAR_PALACE' },
-  { label: 'Treks', value: 'TREK_ROUTE' },
-  { label: 'National Parks', value: 'NATIONAL_PARK' },
-  { label: 'Viewpoints', value: 'HILL_VIEWPOINT' },
-  { label: 'Waterfalls', value: 'WATERFALL' },
-  { label: 'Lakes', value: 'LAKE' },
-  { label: 'Hot Springs', value: 'HOT_SPRING' },
-  { label: 'Adventure', value: 'ADVENTURE_SPORTS' },
+  { label: 'Temples',          value: 'TEMPLE' },
+  { label: 'Monasteries',      value: 'MONASTERY' },
+  { label: 'Stupas',           value: 'STUPA' },
+  { label: 'Palaces & Durbar', value: 'DURBAR_PALACE' },
+  { label: 'Museums & Sites',  value: 'ARCHAEOLOGICAL' },
+  { label: 'Villages & Towns', value: 'CULTURAL_VILLAGE' },
+  { label: 'Trekking Routes',  value: 'TREK_ROUTE' },
+  { label: 'National Parks',   value: 'NATIONAL_PARK' },
+  { label: 'Viewpoints',       value: 'HILL_VIEWPOINT' },
+  { label: 'Mountain Views',   value: 'MOUNTAIN_VIEW' },
+  { label: 'Waterfalls',       value: 'WATERFALL' },
+  { label: 'Lakes',            value: 'LAKE' },
+  { label: 'Rivers',           value: 'RIVER' },
+  { label: 'Hot Springs',      value: 'HOT_SPRING' },
+  { label: 'Caves',            value: 'CAVE' },
+  { label: 'Adventure Sports', value: 'ADVENTURE_SPORTS' },
+  { label: 'Amusement Parks',  value: 'AMUSEMENT_PARK' },
 ]
 
 function categorySlug(val) {
@@ -60,7 +66,7 @@ export default function Navbar() {
                 </svg>
               </button>
               {catOpen && (
-                <div className="absolute left-0 top-full mt-1 w-48 rounded-xl bg-white shadow-lg ring-1 ring-gray-100 py-1 z-50">
+                <div className="absolute left-0 top-full mt-1 w-56 rounded-xl bg-white shadow-lg ring-1 ring-gray-100 py-1 z-50 max-h-[80vh] overflow-y-auto">
                   {CATEGORIES.map((c) => (
                     <Link
                       key={c.value}

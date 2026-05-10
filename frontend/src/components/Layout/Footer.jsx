@@ -1,16 +1,23 @@
 import { Link } from 'react-router-dom'
 
 const categories = [
-  { label: 'Temples', slug: 'temple' },
-  { label: 'Monasteries', slug: 'monastery' },
-  { label: 'Stupas', slug: 'stupa' },
+  { label: 'Temples',          slug: 'temple' },
+  { label: 'Monasteries',      slug: 'monastery' },
+  { label: 'Stupas',           slug: 'stupa' },
   { label: 'Palaces & Durbar', slug: 'durbar-palace' },
-  { label: 'Trekking Routes', slug: 'trek-route' },
-  { label: 'National Parks', slug: 'national-park' },
-  { label: 'Viewpoints', slug: 'hill-viewpoint' },
-  { label: 'Waterfalls', slug: 'waterfall' },
-  { label: 'Lakes', slug: 'lake' },
-  { label: 'Hot Springs', slug: 'hot-spring' },
+  { label: 'Museums & Sites',  slug: 'archaeological' },
+  { label: 'Villages & Towns', slug: 'cultural-village' },
+  { label: 'Trekking Routes',  slug: 'trek-route' },
+  { label: 'National Parks',   slug: 'national-park' },
+  { label: 'Viewpoints',       slug: 'hill-viewpoint' },
+  { label: 'Mountain Views',   slug: 'mountain-view' },
+  { label: 'Waterfalls',       slug: 'waterfall' },
+  { label: 'Lakes',            slug: 'lake' },
+  { label: 'Rivers',           slug: 'river' },
+  { label: 'Hot Springs',      slug: 'hot-spring' },
+  { label: 'Caves',            slug: 'cave' },
+  { label: 'Adventure Sports', slug: 'adventure-sports' },
+  { label: 'Amusement Parks',  slug: 'amusement-park' },
 ]
 
 export default function Footer() {
@@ -29,11 +36,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Categories */}
+          {/* Categories col 1 */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Categories</h3>
             <ul className="space-y-2">
-              {categories.slice(0, 5).map((c) => (
+              {categories.slice(0, 9).map((c) => (
                 <li key={c.slug}>
                   <Link to={`/category/${c.slug}`} className="text-sm hover:text-white transition-colors">
                     {c.label}
@@ -43,10 +50,11 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Categories col 2 */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">More</h3>
             <ul className="space-y-2">
-              {categories.slice(5).map((c) => (
+              {categories.slice(9).map((c) => (
                 <li key={c.slug}>
                   <Link to={`/category/${c.slug}`} className="text-sm hover:text-white transition-colors">
                     {c.label}

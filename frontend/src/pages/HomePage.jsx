@@ -8,16 +8,23 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 
 const CATEGORIES = [
-  { label: 'Temples',      slug: 'temple',          icon: '🛕' },
-  { label: 'Trekking',     slug: 'trek-route',       icon: '🥾' },
-  { label: 'Monasteries',  slug: 'monastery',        icon: '🏯' },
-  { label: 'Stupas',       slug: 'stupa',            icon: '☸️' },
-  { label: 'National Parks',slug: 'national-park',   icon: '🌿' },
-  { label: 'Viewpoints',   slug: 'hill-viewpoint',   icon: '👁️' },
-  { label: 'Waterfalls',   slug: 'waterfall',        icon: '💦' },
-  { label: 'Hot Springs',  slug: 'hot-spring',       icon: '♨️' },
-  { label: 'Lakes',        slug: 'lake',             icon: '🏞️' },
-  { label: 'Adventure',    slug: 'adventure-sports', icon: '🪂' },
+  { label: 'Temples',          slug: 'temple',           icon: '🛕' },
+  { label: 'Monasteries',      slug: 'monastery',        icon: '🏯' },
+  { label: 'Stupas',           slug: 'stupa',            icon: '☸️' },
+  { label: 'Palaces',          slug: 'durbar-palace',    icon: '🏛️' },
+  { label: 'Museums & Sites',  slug: 'archaeological',   icon: '🏺' },
+  { label: 'Villages & Towns', slug: 'cultural-village', icon: '🏘️' },
+  { label: 'Trekking',         slug: 'trek-route',       icon: '🥾' },
+  { label: 'National Parks',   slug: 'national-park',    icon: '🌿' },
+  { label: 'Viewpoints',       slug: 'hill-viewpoint',   icon: '👁️' },
+  { label: 'Mountain Views',   slug: 'mountain-view',    icon: '🏔️' },
+  { label: 'Waterfalls',       slug: 'waterfall',        icon: '💦' },
+  { label: 'Lakes',            slug: 'lake',             icon: '🏖️' },
+  { label: 'Rivers',           slug: 'river',            icon: '🏞️' },
+  { label: 'Hot Springs',      slug: 'hot-spring',       icon: '♨️' },
+  { label: 'Caves',            slug: 'cave',             icon: '🪨' },
+  { label: 'Adventure',        slug: 'adventure-sports', icon: '🪂' },
+  { label: 'Amusement Parks',  slug: 'amusement-park',   icon: '🎡' },
 ]
 
 export default function HomePage() {
@@ -82,7 +89,7 @@ export default function HomePage() {
       <section className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Browse by Category</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}

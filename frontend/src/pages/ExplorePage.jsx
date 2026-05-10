@@ -9,18 +9,24 @@ import PageSeo from '../components/PageSeo'
 const PROVINCES = ['KOSHI','MADHESH','BAGMATI','GANDAKI','LUMBINI','KARNALI','SUDURPASHCHIM']
 
 const CATEGORIES = [
-  { value: '', label: 'All' },
-  { value: 'TEMPLE', label: 'Temples' },
-  { value: 'MONASTERY', label: 'Monasteries' },
-  { value: 'STUPA', label: 'Stupas' },
-  { value: 'DURBAR_PALACE', label: 'Palaces' },
-  { value: 'TREK_ROUTE', label: 'Treks' },
-  { value: 'NATIONAL_PARK', label: 'National Parks' },
-  { value: 'HILL_VIEWPOINT', label: 'Viewpoints' },
-  { value: 'WATERFALL', label: 'Waterfalls' },
-  { value: 'LAKE', label: 'Lakes' },
-  { value: 'HOT_SPRING', label: 'Hot Springs' },
-  { value: 'ADVENTURE_SPORTS', label: 'Adventure' },
+  { value: '',                 label: 'All Categories' },
+  { value: 'TEMPLE',           label: 'Temples' },
+  { value: 'MONASTERY',        label: 'Monasteries' },
+  { value: 'STUPA',            label: 'Stupas' },
+  { value: 'DURBAR_PALACE',    label: 'Palaces & Durbar' },
+  { value: 'ARCHAEOLOGICAL',   label: 'Museums & Sites' },
+  { value: 'CULTURAL_VILLAGE', label: 'Villages & Towns' },
+  { value: 'TREK_ROUTE',       label: 'Trekking Routes' },
+  { value: 'NATIONAL_PARK',    label: 'National Parks' },
+  { value: 'HILL_VIEWPOINT',   label: 'Viewpoints' },
+  { value: 'MOUNTAIN_VIEW',    label: 'Mountain Views' },
+  { value: 'WATERFALL',        label: 'Waterfalls' },
+  { value: 'LAKE',             label: 'Lakes' },
+  { value: 'RIVER',            label: 'Rivers' },
+  { value: 'HOT_SPRING',       label: 'Hot Springs' },
+  { value: 'CAVE',             label: 'Caves' },
+  { value: 'ADVENTURE_SPORTS', label: 'Adventure Sports' },
+  { value: 'AMUSEMENT_PARK',   label: 'Amusement Parks' },
 ]
 
 export default function ExplorePage() {
@@ -28,7 +34,7 @@ export default function ExplorePage() {
   const [view, setView] = useState('grid') // 'grid' | 'map'
 
   const [filters, setFilters] = useState({
-    search: searchParams.get('search') ?? '',
+    search:   searchParams.get('search')   ?? '',
     category: searchParams.get('category') ?? '',
     province: searchParams.get('province') ?? '',
   })
@@ -40,7 +46,7 @@ export default function ExplorePage() {
   }, [])
 
   const { data, isLoading } = usePlaces({
-    ...(applied.search && { search: applied.search }),
+    ...(applied.search   && { search:   applied.search }),
     ...(applied.category && { category: applied.category }),
     ...(applied.province && { province: applied.province }),
     limit: 100,
@@ -49,7 +55,7 @@ export default function ExplorePage() {
   function apply() {
     setApplied(filters)
     const p = {}
-    if (filters.search) p.search = filters.search
+    if (filters.search)   p.search   = filters.search
     if (filters.category) p.category = filters.category
     if (filters.province) p.province = filters.province
     setSearchParams(p)
@@ -91,7 +97,7 @@ export default function ExplorePage() {
           <select
             value={filters.category}
             onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value }))}
-            className="input sm:w-44"
+            className="input sm:w-52"
           >
             {CATEGORIES.map((c) => (
               <option key={c.value} value={c.value}>{c.label}</option>
@@ -104,7 +110,7 @@ export default function ExplorePage() {
           >
             <option value="">All Provinces</option>
             {PROVINCES.map((p) => (
-              <option key={p} value={p}>{p.replace('_', ' ')}</option>
+              <option key={p} value={p}>{p.replace(/_/g, ' ')}</option>
             ))}
           </select>
           <div className="flex gap-2">

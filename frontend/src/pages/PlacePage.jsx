@@ -4,6 +4,7 @@ import rehypeRaw from 'rehype-raw'
 import { usePlace } from '../hooks/usePlaces'
 import CategoryBadge from '../components/CategoryBadge'
 import MapView from '../components/MapView'
+import TrekRouteMap from '../components/TrekRouteMap'
 import GetYourGuide from '../components/GetYourGuide'
 import BookingWidget from '../components/BookingWidget'
 import LoadingSpinner from '../components/LoadingSpinner'
@@ -197,8 +198,16 @@ export default function PlacePage() {
           </div>
         )}
 
-        {/* Map */}
-        {mapPlaces.length > 0 && (
+        {/* Trek Route Map — shown for TREK_ROUTE places that have geocoded points */}
+        {place.category === 'TREK_ROUTE' && (place.trekStartLat || place.trekEndLat) && (
+          <div className="mb-10">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-4">🗺️ Trek Route</h2>
+            <TrekRouteMap place={place} height="400px" />
+          </div>
+        )}
+
+        {/* Location map — shown for all places with lat/lng; for trek routes only if no geocoded trek points */}
+        {mapPlaces.length > 0 && (place.category !== 'TREK_ROUTE' || (!place.trekStartLat && !place.trekEndLat)) && (
           <div className="mb-10">
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">📍 Location</h2>
             <MapView places={mapPlaces} height="350px" />
