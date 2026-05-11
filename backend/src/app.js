@@ -14,6 +14,7 @@ app.use(
       process.env.FRONTEND_URL || 'http://localhost:5173',
       'https://attractionsnepal.com',
       'https://www.attractionsnepal.com',
+      'https://attractionsnepalui.onrender.com/'
     ],
     credentials: true,
   })
