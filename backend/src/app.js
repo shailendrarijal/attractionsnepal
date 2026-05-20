@@ -8,17 +8,15 @@ import routes from './routes/index.js'
 const app = express()
 
 app.use(helmet())
-app.use(
-  cors({
-    origin: [
-      process.env.FRONTEND_URL || 'http://localhost:5173',
-      'https://attractionsnepal.com',
-      'https://www.attractionsnepal.com',
-      'https://attractionsnepalui.onrender.com/'
-    ],
-    credentials: true,
-  })
-)
+const allowedOrigins = [
+  ...(process.env.FRONTEND_URL || 'http://localhost:5173')
+    .split(',')
+    .map((s) => s.trim()),
+  'https://attractionsnepal.com',
+  'https://www.attractionsnepal.com',
+]
+
+app.use(cors({ origin: allowedOrigins, credentials: true }))
 
 // General API rate limit: 300 req / 15 min
 app.use(
