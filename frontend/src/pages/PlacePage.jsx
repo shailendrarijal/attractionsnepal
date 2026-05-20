@@ -263,7 +263,7 @@ export default function PlacePage() {
         {mapPlaces.length > 0 && (place.category !== 'TREK_ROUTE' || (!place.trekStartLat && !place.trekEndLat)) && (
           <div className="mb-10">
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">📍 Location</h2>
-            <MapView places={mapPlaces} height="350px" />
+            <MapView places={mapPlaces} height="350px" mode="place" />
           </div>
         )}
 
