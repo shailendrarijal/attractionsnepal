@@ -24,13 +24,12 @@ const queryClient = new QueryClient({
   },
 })
 
+const mapsKey = import.meta.env.VITE_GOOGLE_MAPS_KEY
+
 export default function App() {
-  return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY ?? ''}>
-          <BrowserRouter>
-            <Routes>
+  const inner = (
+    <BrowserRouter>
+      <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/explore" element={<ExplorePage />} />
@@ -45,7 +44,15 @@ export default function App() {
               <Route path="/admin/*" element={<AdminPage />} />
             </Routes>
           </BrowserRouter>
-        </APIProvider>
+  )
+
+  return (
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        {mapsKey
+          ? <APIProvider apiKey={mapsKey}>{inner}</APIProvider>
+          : inner
+        }
       </QueryClientProvider>
     </HelmetProvider>
   )
