@@ -34,6 +34,9 @@ export default function Footer() {
             <p className="text-sm leading-relaxed text-gray-400">
               Your complete guide to Nepal's temples, treks, natural wonders, and hidden gems.
             </p>
+            <p className="mt-4 text-xs text-gray-500">
+              This site contains affiliate links. We may earn a commission at no extra cost to you.
+            </p>
           </div>
 
           {/* Categories col 1 */}
@@ -64,28 +67,41 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Explore */}
+          {/* Explore + Legal */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Explore</h3>
             <ul className="space-y-2">
               <li><Link to="/explore" className="text-sm hover:text-white transition-colors">Map View</Link></li>
-              <li><Link to="/blog" className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
-              <li><Link to="/admin" className="text-sm hover:text-white transition-colors">Admin</Link></li>
+              <li><Link to="/blog"    className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
+              <li><Link to="/admin"   className="text-sm hover:text-white transition-colors">Admin</Link></li>
             </ul>
-            <div className="mt-6">
-              <p className="text-xs text-gray-500">
-                This site contains affiliate links. We may earn a commission at no extra cost to you.
-              </p>
-            </div>
+
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li><Link to="/privacy" className="text-sm hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms"   className="text-sm hover:text-white transition-colors">Terms &amp; Conditions</Link></li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Bottom bar */}
+        <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} AttractionsNepal. All rights reserved.
           </p>
           <p className="text-xs text-gray-500">
-            Built with ❤️ for Nepal
+            Information on this site is for general guidance only. Please verify details before travel.
+          </p>
+          <p className="text-xs text-gray-500">
+            Powered by{' '}
+            <a
+              href="https://nashtech.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Nashtech
+            </a>
           </p>
         </div>
       </div>

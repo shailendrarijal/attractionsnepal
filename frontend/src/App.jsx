@@ -11,6 +11,8 @@ import BlogListPage from './pages/BlogListPage'
 import BlogPage from './pages/BlogPage'
 import ExplorePage from './pages/ExplorePage'
 import NotFoundPage from './pages/NotFoundPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import AdminPage from './pages/admin/AdminPage'
 
 const queryClient = new QueryClient({
@@ -36,6 +38,8 @@ export default function App() {
                 <Route path="/category/:category" element={<CategoryPage />} />
                 <Route path="/blog" element={<BlogListPage />} />
                 <Route path="/blog/:slug" element={<BlogPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/terms"   element={<TermsPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />
