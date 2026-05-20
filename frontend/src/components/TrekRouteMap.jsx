@@ -63,6 +63,12 @@ function LabelledPin({ color, border, label }) {
   )
 }
 
+// Restrict the map to Nepal + immediate neighbours.
+const NEPAL_RESTRICTION = {
+  latLngBounds: { north: 31.0, south: 25.0, east: 90.0, west: 78.0 },
+  strictBounds: false,
+}
+
 export default function TrekRouteMap({
   place,
   height = '380px',
@@ -128,7 +134,9 @@ export default function TrekRouteMap({
           defaultCenter={center}
           defaultZoom={hasEnd && !isLoop ? 8 : 10}
           mapId={mapId}
-          gestureHandling="greedy"
+          gestureHandling="cooperative"
+          minZoom={6}
+          restriction={NEPAL_RESTRICTION}
           disableDefaultUI={false}
         >
           {/* Dashed route line */}

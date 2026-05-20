@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom'
 const DEFAULT_CENTER = { lat: 28.3949, lng: 84.124 } // Centre of Nepal
 const DEFAULT_ZOOM = 7
 
-export default function MapView({ places = [], height = '500px' }) {
+// Restrict the map to Nepal + immediate neighbours so users can't
+// accidentally scroll out to Australia or beyond.
+const NEPAL_RESTRICTION = {
+  latLngBounds: { north: 31.0, south: 25.0, east: 90.0, west: 78.0 },
+  strictBounds: false,
+}
+
+export default function MapView({ places = [], height = '500px', gestureHandling = 'cooperative' }) {
   const [selected, setSelected] = useState(null)
   const mapId = import.meta.env.VITE_GOOGLE_MAP_ID
 
@@ -17,7 +24,9 @@ export default function MapView({ places = [], height = '500px' }) {
         defaultCenter={DEFAULT_CENTER}
         defaultZoom={DEFAULT_ZOOM}
         mapId={mapId}
-        gestureHandling="greedy"
+        gestureHandling={gestureHandling}
+        minZoom={6}
+        restriction={NEPAL_RESTRICTION}
         disableDefaultUI={false}
       >
         {geoPlaces.map((place) => (
