@@ -96,6 +96,11 @@ model Place {
   openingHours String?
   howToGetThere String? @db.Text
 
+  // Contact info
+  website String?
+  phone   String?
+  email   String?
+
   // ── Trek-only fields (null for non-trek places) ──────────────────
   trekDays         Int?
   trekDifficulty   Difficulty?
