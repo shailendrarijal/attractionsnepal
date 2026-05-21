@@ -38,3 +38,6 @@ Thumbs.db
 
 # Generated PDFs (regenerate via node digitalProducts/generate-pdfs.js)
 backend/digitalProducts/pdf/
+
+# Generated sitemap (rebuilt on every deploy)
+frontend/public/sitemap.xml
