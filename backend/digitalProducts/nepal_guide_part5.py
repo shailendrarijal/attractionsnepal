@@ -6,23 +6,23 @@ from nepal_guide_part1 import *
 def build_arts():
     flows = chapter_header(
         "Chapter 9: Arts & Crafts",
-        "Thaṅkā to Pasminā — two millennia of Himalayan artistic tradition"
+        "Thangka to Pashmina — two millennia of Himalayan artistic tradition"
     )
 
-    flows += section_head("Traditional Arts of Nepāl")
+    flows += section_head("Traditional Arts of Nepal")
     arts = [
-        ("Thaṅkā Painting (थाङ्का)", "Thaṅkā (also Thangka) are Buddhist scroll paintings on cotton or silk canvas, depicting deities, mandalas, life stories of the Buddha, and cosmic diagrams. A single Thaṅkā may take three months to a year to complete. The finest are painted with mineral pigments ground from lapis lazuli, cinnabar, malachite, and gold. True Thaṅkā painters in the Śākyamuṇī tradition at Boudha and Pāṭan undergo years of training. A genuine Thaṅkā is both a sacred object and one of the most technically accomplished art forms in the world. Prices range from NPR 5,000 for simple teaching Thaṅkās to NPR 500,000+ for museum-quality work."),
+        ("Thangka Painting (थाङ्का)", "Thangka (also Thangka) are Buddhist scroll paintings on cotton or silk canvas, depicting deities, mandalas, life stories of the Buddha, and cosmic diagrams. A single Thangka may take three months to a year to complete. The finest are painted with mineral pigments ground from lapis lazuli, cinnabar, malachite, and gold. True Thangka painters in the Śākyamuṇī tradition at Boudha and Patan undergo years of training. A genuine Thangka is both a sacred object and one of the most technically accomplished art forms in the world. Prices range from NPR 5,000 for simple teaching Thangkas to NPR 500,000+ for museum-quality work."),
         ("Maṇḍala Painting (मण्डल)", "Sacred geometric diagrams representing the universe and the mind of the Buddha. Used in meditation, initiation rituals, and as objects of contemplation. Painted on paper or cloth with mineral pigments; the finest use gold and lapis outlines. Sand maṇḍalas — made from coloured sand grain by grain over days and then ritually destroyed — are created during major Buddhist ceremonies at monasteries including Boudhanātha and Kopān."),
-        ("Paṭa Painting (Newār)", "Traditional Newār paintings on cloth depicting mythological narratives — the Aṣṭa Mātr̥kā (eight mother goddesses), the Kumārī, Śiva-Pārvatī, and the stories of Viṣṇu's avatāras. Painted in flat, jewel-like colours on a red or black background. Paṭa painters (Citra Kāra artisans) in Pāṭan maintain the oldest continuous painting tradition in Nepāl."),
-        ("Bronze & Copper Casting", "Nepāl is the world centre for Buddhist and Hindu ritual metal objects. The <i>lost-wax (cire-perdue)</i> casting method — in which a wax model is encased in clay, the wax burnt out, and molten metal poured in — has been practised by the Tāmrakāra (copper-smith) artisans of Pāṭan since at least the 9th century. Nepālī bronze Buddhas, Bodhisattvas, and deity statues are collected by museums worldwide. The Pāṭan Museum houses the finest collection."),
+        ("Paṭa Painting (Newar)", "Traditional Newar paintings on cloth depicting mythological narratives — the Aṣṭa Mātr̥kā (eight mother goddesses), the Kumārī, Śiva-Pārvatī, and the stories of Viṣṇu's avatāras. Painted in flat, jewel-like colours on a red or black background. Paṭa painters (Citra Kāra artisans) in Patan maintain the oldest continuous painting tradition in Nepal."),
+        ("Bronze & Copper Casting", "Nepal is the world centre for Buddhist and Hindu ritual metal objects. The <i>lost-wax (cire-perdue)</i> casting method — in which a wax model is encased in clay, the wax burnt out, and molten metal poured in — has been practised by the Tāmrakāra (copper-smith) artisans of Patan since at least the 9th century. Nepalī bronze Buddhas, Bodhisattvas, and deity statues are collected by museums worldwide. The Patan Museum houses the finest collection."),
         ("Woodcarving (Kāṣṭhakalā)", "The elaborately carved wooden windows, struts, doors, and brackets of the valley's temples represent one of the great achievements of world art. The celebrated <b>Peacock Window</b> of Bhaktapur's Taumadhi Square — a 15th-century masterwork — depicts a peacock in an interlocking circular design of extraordinary finesse. Temple eave struts often depict erotic scenes — not pornographic but cosmically symbolic, believed to ward off the lightning goddess (associated with purity) who will not strike a temple displaying such imagery."),
-        ("Stone Carving (Śilpa Kalā)", "Nepāl's oldest art form — stone sculptures from the Licchavī period (5th–9th century CE) remain some of the finest religious sculpture anywhere. Seated Viṣṇu images, Nārāyaṇa reliefs, and dancing Śiva forms at Chaṅgu Nārāyaṇa and in Pāṭan's courtyards date from this era. Stone carving continues in Bhaktapur, where artisans chisel deity images sold as both sacred objects and décor."),
-        ("Pottery (Kumhāle Kalā)", "Bhaktapur and Thimi are the pottery capitals of Nepāl. Traditional wheel-thrown terracotta — water pots (ghaṭa), diyas (oil lamps), roof tiles, flower pots, and ritual vessels — is produced in open-air workshops that have operated continuously for centuries. Bhaktapur's Potters' Square (Kumhāle Cok) is a working pottery market where artisans fire kilns beside medieval temples. The unglazed terracotta of Nepāl is distinctively warm and earthy."),
-        ("Dhākā Weaving", "Dhākā is a hand-woven geometric-patterned cotton or silk fabric from Palpa (in western Nepāl) and Tehrathum (eastern hills). The technique requires extraordinary skill — patterns are created by the weaver's hands, not a loom mechanism. Dhākā is used for the Nepālī <i>ṭopī</i> (traditional cap), blouses, shawls, and scarves. Machine-made 'dhākā' is now common; hand-loomed Palpa dhākā commands a premium."),
-        ("Pasminā (Cashmere)", "Pasminā is the ultra-fine under-fleece of the Chyaṅgrā mountain goat (<i>Capra hircus laniger</i>), harvested from animals grazing above 4,000 m in the Himalayan and Tibetan plateau. Genuine Nepālī Pasminā has fibres 12–15 microns in diameter — thinner than a human hair — producing a warmth-to-weight ratio unmatched by any other natural fibre. A single hand-woven Pasminā shawl may require 4–6 hours of weaving. Beware: most 'pashmina' in tourist shops is polyester. Test: genuine Pasminā burns like hair (protein fibre) not plastic."),
-        ("Singing Bowls (Tilā Bājā)", "Metal bowls that produce sustained resonant tones when struck or rubbed with a wooden or leather mallet. Traditionally made from an alloy of five, seven, or nine metals (including copper, tin, zinc, and sometimes silver or gold). Used in Buddhist rituals, meditation, and sound healing. The finest antique bowls from Nepāl and Tibet are highly sought by collectors."),
-        ("Lokta Paper (Nepālī Kāgaja)", "Paper made from the bark of the Lokta bush (<i>Daphne bholua</i>), a shrub native to Nepāl's forest zone (1,500–4,000 m). Lokta paper is remarkably strong (it does not tear), insect-resistant, and has been used for official documents and sacred manuscripts for centuries. Sheets are dried in the sun on wooden frames in a process unchanged since the 12th century. Modern artisans dye and print Lokta to make notebooks, lampshades, gift wrap, and artisan stationery."),
-        ("Traditional Jewellery", "Nepālī jewellery traditions vary enormously by community. Newār goldsmiths in Pāṭan create intricate repoussé gold and silver work worn at festivals. Hill women wear heavy silver torque necklaces (<i>ṭika māl</i>), gold nose rings (<i>bulākī</i>), and coin belts. Mountain communities (Śerpā, Tibetan heritage) wear silver and turquoise gonkhar necklaces, coral earrings, and the distinctive <i>gau</i> — a silver reliquary box worn at the throat containing a folded sacred text."),
+        ("Stone Carving (Śilpa Kalā)", "Nepal's oldest art form — stone sculptures from the Licchavī period (5th–9th century CE) remain some of the finest religious sculpture anywhere. Seated Viṣṇu images, Narayan reliefs, and dancing Śiva forms at Chaṅgu Narayan and in Patan's courtyards date from this era. Stone carving continues in Bhaktapur, where artisans chisel deity images sold as both sacred objects and décor."),
+        ("Pottery (Kumhāle Kalā)", "Bhaktapur and Thimi are the pottery capitals of Nepal. Traditional wheel-thrown terracotta — water pots (ghaṭa), diyas (oil lamps), roof tiles, flower pots, and ritual vessels — is produced in open-air workshops that have operated continuously for centuries. Bhaktapur's Potters' Square (Kumhāle Cok) is a working pottery market where artisans fire kilns beside medieval temples. The unglazed terracotta of Nepal is distinctively warm and earthy."),
+        ("Dhākā Weaving", "Dhākā is a hand-woven geometric-patterned cotton or silk fabric from Palpa (in western Nepal) and Tehrathum (eastern hills). The technique requires extraordinary skill — patterns are created by the weaver's hands, not a loom mechanism. Dhākā is used for the Nepalī <i>ṭopī</i> (traditional cap), blouses, shawls, and scarves. Machine-made 'dhākā' is now common; hand-loomed Palpa dhākā commands a premium."),
+        ("Pashmina (Cashmere)", "Pashmina is the ultra-fine under-fleece of the Chyaṅgrā mountain goat (<i>Capra hircus laniger</i>), harvested from animals grazing above 4,000 m in the Himalayan and Tibetan plateau. Genuine Nepalī Pashmina has fibres 12–15 microns in diameter — thinner than a human hair — producing a warmth-to-weight ratio unmatched by any other natural fibre. A single hand-woven Pashmina shawl may require 4–6 hours of weaving. Beware: most 'pashmina' in tourist shops is polyester. Test: genuine Pashmina burns like hair (protein fibre) not plastic."),
+        ("Singing Bowls (Tilā Bājā)", "Metal bowls that produce sustained resonant tones when struck or rubbed with a wooden or leather mallet. Traditionally made from an alloy of five, seven, or nine metals (including copper, tin, zinc, and sometimes silver or gold). Used in Buddhist rituals, meditation, and sound healing. The finest antique bowls from Nepal and Tibet are highly sought by collectors."),
+        ("Lokta Paper (Nepalī Kāgaja)", "Paper made from the bark of the Lokta bush (<i>Daphne bholua</i>), a shrub native to Nepal's forest zone (1,500–4,000 m). Lokta paper is remarkably strong (it does not tear), insect-resistant, and has been used for official documents and sacred manuscripts for centuries. Sheets are dried in the sun on wooden frames in a process unchanged since the 12th century. Modern artisans dye and print Lokta to make notebooks, lampshades, gift wrap, and artisan stationery."),
+        ("Traditional Jewellery", "Nepalī jewellery traditions vary enormously by community. Newar goldsmiths in Patan create intricate repoussé gold and silver work worn at festivals. Hill women wear heavy silver torque necklaces (<i>ṭika māl</i>), gold nose rings (<i>bulākī</i>), and coin belts. Mountain communities (Sherpa, Tibetan heritage) wear silver and turquoise gonkhar necklaces, coral earrings, and the distinctive <i>gau</i> — a silver reliquary box worn at the throat containing a folded sacred text."),
     ]
     for name, desc in arts:
         flows += sub_head(name)
@@ -30,29 +30,29 @@ def build_arts():
         flows.append(Spacer(1, 3*mm))
 
     flows += top10_table("Top 10 Art Galleries & Shopping", [
-        ("Pāṭan Museum, Lalitpur",          "The finest museum in Nepāl. The collection of bronze deities, stone sculpture, and religious objects spans 2,000 years. The museum building itself — a restored 17th-century Malla palace — is a masterwork."),
-        ("Nepal Art Council Gallery, Kāṭhmāṇḍu","Premier national gallery at Babar Mahal. Solo and group shows by leading Nepālī contemporary and traditional artists."),
-        ("Siddhartha Art Gallery, Kāṭhmāṇḍu","Baber Mahal Revisited complex. Dedicated to contemporary Nepālī art; the most important gallery for modern Nepālī painting and sculpture."),
-        ("Thaṅkā Studios, Boudha",          "Dozens of Thaṅkā studios surround Boudhanātha Stūpa. Rinchen Art, Tashi Dorje, and others offer gallery-quality work. Artists welcome visitors to watch the painting process."),
-        ("Patan Silvercraft & Dhokra, Pāṭan","Traditional lost-wax bronze casting studios around Maṅgal Bāzār in Pāṭan. Watch artisans at work; buy directly from the makers."),
+        ("Patan Museum, Lalitpur",          "The finest museum in Nepal. The collection of bronze deities, stone sculpture, and religious objects spans 2,000 years. The museum building itself — a restored 17th-century Malla palace — is a masterwork."),
+        ("Nepal Art Council Gallery, Kathmandu","Premier national gallery at Babar Mahal. Solo and group shows by leading Nepalī contemporary and traditional artists."),
+        ("Siddhartha Art Gallery, Kathmandu","Baber Mahal Revisited complex. Dedicated to contemporary Nepalī art; the most important gallery for modern Nepalī painting and sculpture."),
+        ("Thangka Studios, Boudha",          "Dozens of Thangka studios surround Boudhanātha Stūpa. Rinchen Art, Tashi Dorje, and others offer gallery-quality work. Artists welcome visitors to watch the painting process."),
+        ("Patan Silvercraft & Dhokra, Patan","Traditional lost-wax bronze casting studios around Maṅgal Bāzār in Patan. Watch artisans at work; buy directly from the makers."),
         ("Potters' Square (Kumhāle Cok), Bhaktapur","Not a gallery but a working pottery market operating in an open courtyard surrounded by 15th-century temples. The most authentic craft experience in the valley."),
-        ("Lokta Paper Studios, Kāṭhmāṇḍu", "The Janakpur area of Kāṭhmāṇḍu and Bhaktapur have traditional Lokta paper workshops. Baber Mahal and Durbar Marg shops sell fine Lokta stationery."),
-        ("Dilli Bāzār & Asan, Kāṭhmāṇḍu",  "The old bazaars of central Kāṭhmāṇḍu — best for genuine Dhākā fabric, Newār jewellery, and everyday religious objects at local prices."),
-        ("Thamel Galleries, Kāṭhmāṇḍu",    "The tourist district has many galleries. Quality varies enormously — ask about provenance and take time to compare. Genuine antique export requires a permit."),
+        ("Lokta Paper Studios, Kathmandu", "The Janakpur area of Kathmandu and Bhaktapur have traditional Lokta paper workshops. Baber Mahal and Durbar Marg shops sell fine Lokta stationery."),
+        ("Dilli Bāzār & Asan, Kathmandu",  "The old bazaars of central Kathmandu — best for genuine Dhākā fabric, Newar jewellery, and everyday religious objects at local prices."),
+        ("Thamel Galleries, Kathmandu",    "The tourist district has many galleries. Quality varies enormously — ask about provenance and take time to compare. Genuine antique export requires a permit."),
         ("Bhaktapur Craft Shops",           "The entrance street of Bhaktapur has the highest concentration of genuine woodcarving, pottery, and Dhākā goods anywhere outside a museum. Artisan workshops welcome visitors."),
     ])
 
     flows += top10_table("Top 10 Souvenirs to Take Home", [
-        ("Pasminā shawl or scarf",     "Genuine hand-woven Pasminā. Test: burn a thread — pure Pasminā smells of hair, not plastic. Expect to pay NPR 3,000–15,000 for a genuine piece."),
-        ("Thaṅkā scroll painting",     "A teaching Thaṅkā (simpler, NPR 3,000–8,000) makes a meaningful gift. For fine art, visit the studios at Boudha and negotiate with the artist directly."),
+        ("Pashmina shawl or scarf",     "Genuine hand-woven Pashmina. Test: burn a thread — pure Pashmina smells of hair, not plastic. Expect to pay NPR 3,000–15,000 for a genuine piece."),
+        ("Thangka scroll painting",     "A teaching Thangka (simpler, NPR 3,000–8,000) makes a meaningful gift. For fine art, visit the studios at Boudha and negotiate with the artist directly."),
         ("Singing bowl",               "A good mid-sized hand-hammered bowl: NPR 1,500–8,000. Machine-made bowls are cheaper; the sound quality tells the difference. Strike it in the shop before buying."),
         ("Khukurī knife",              "The iconic curved knife of the Gurkha soldiers. Official military-issue khukurīs from Bhīmphedi craftsmen. Declare when flying internationally."),
-        ("Dhākā ṭopī (cap) or fabric", "The iconic Nepālī man's cap and hand-woven fabric. Genuine Palpa dhākā: look for the handmade label and slightly irregular pattern."),
-        ("Lokta paper products",       "Notebooks, journals, greeting cards, and lampshades in handmade Nepālī bark paper. Lightweight, beautiful, and genuinely unique."),
+        ("Dhākā ṭopī (cap) or fabric", "The iconic Nepalī man's cap and hand-woven fabric. Genuine Palpa dhākā: look for the handmade label and slightly irregular pattern."),
+        ("Lokta paper products",       "Notebooks, journals, greeting cards, and lampshades in handmade Nepalī bark paper. Lightweight, beautiful, and genuinely unique."),
         ("Hand-carved wooden mask",    "Deity masks and Lākhe demon masks from Bhaktapur woodcarving workshops. Functional ritual objects that make spectacular wall art."),
-        ("Bronze or copper deity statue","A Śākyamuṇī Buddha or Gaṇeśa from a Pāṭan foundry. Genuine lost-wax cast bronzes feel heavy and have slight surface texture; mould-cast fakes are lighter and smoother."),
+        ("Bronze or copper deity statue","A Śākyamuṇī Buddha or Gaṇeśa from a Patan foundry. Genuine lost-wax cast bronzes feel heavy and have slight surface texture; mould-cast fakes are lighter and smoother."),
         ("Tibetan jewellery",          "Coral, turquoise, and silver pieces from the mountain communities. The deep-red coral and sky-blue turquoise of genuine Tibetan work is distinctive."),
-        ("Himalayan herbs and spices", "Ṭimur (Sichuan pepper), Jimbu (Himalayan herb), organic Nepālī teas (Ilam orthodox tea from eastern Nepāl rivals Darjeeling), pure honey from Gurung cliff-beekeepers."),
+        ("Himalayan herbs and spices", "Ṭimur (Sichuan pepper), Jimbu (Himalayan herb), organic Nepalī teas (Ilam orthodox tea from eastern Nepal rivals Darjeeling), pure honey from Gurung cliff-beekeepers."),
     ])
     return flows
 
@@ -63,15 +63,15 @@ def build_practical():
     )
     flows += section_head("Visa")
     flows.append(body(
-        "Most nationalities can obtain a <b>Tourist Visa on Arrival</b> at Tribhuvana "
-        "International Airport (Kāṭhmāṇḍu) and at the Birgunj, Sunauli, Kakarbhiṭṭā, "
+        "Most nationalities can obtain a <b>Tourist Visa on Arrival</b> at Tribhuvan "
+        "International Airport (Kathmandu) and at the Birgunj, Sunauli, Kakarbhiṭṭā, "
         "Rasuwāgaḍhī, and Kodārī land border crossings. Fees: 15 days USD 30, 30 days "
         "USD 50, 90 days USD 125. E-visa available online before travel. Citizens of India "
         "do not require a visa."
     ))
     flows += section_head("Money")
     flows.append(body(
-        "Currency: <b>Nepālese Rupee (NPR)</b>. ATMs are widely available in Kāṭhmāṇḍu, "
+        "Currency: <b>Nepalese Rupee (NPR)</b>. ATMs are widely available in Kathmandu, "
         "Pokhara, Bhaktapur, and Lalitpur. Outside major towns, carry cash. Indian Rupee "
         "notes (50 and below) are accepted in some border areas. Credit cards accepted at "
         "larger hotels and restaurants in cities — not in trekking lodges. Bargaining is "
@@ -89,15 +89,15 @@ def build_practical():
         "Drink bottled or purified water only. "
         "Altitude sickness prevention: see Chapter 7. "
         "Travel insurance covering helicopter evacuation is strongly recommended for any trek above 3,000 m. "
-        "CIWEC Clinic in Kāṭhmāṇḍu is the recommended medical facility for foreigners."
+        "CIWEC Clinic in Kathmandu is the recommended medical facility for foreigners."
     ))
-    flows += section_head("Transport Within Nepāl")
+    flows += section_head("Transport Within Nepal")
     transport = [
-        "<b>Domestic flights</b>: Yeti Airlines, Buddha Air, and Saurya Airlines connect Kāṭhmāṇḍu to Pokhara, Bharatpur (Chitwan), Bhairahawa (Lumbinī), Bhadrapur (far east), Nepalgunj, and numerous mountain airstrips.",
-        "<b>Tourist buses</b>: AC tourist buses Kāṭhmāṇḍu–Pokhara (6–7 hrs, ~NPR 1,000–1,500). Night buses to Chitwan, Lumbinī, Janakpur.",
+        "<b>Domestic flights</b>: Yeti Airlines, Buddha Air, and Saurya Airlines connect Kathmandu to Pokhara, Bharatpur (Chitwan), Bhairahawa (Lumbini), Bhadrapur (far east), Nepalgunj, and numerous mountain airstrips.",
+        "<b>Tourist buses</b>: AC tourist buses Kathmandu–Pokhara (6–7 hrs, ~NPR 1,000–1,500). Night buses to Chitwan, Lumbini, Janakpur.",
         "<b>Local buses</b>: extensive network but crowded and slow. Cheap (NPR 30–200 for most routes).",
-        "<b>Taxis</b>: metered in Kāṭhmāṇḍu (insist on meter or agree fare before). Ride apps (Pathao, InDrive) work in the valley.",
-        "<b>Hiring a car/jeep</b>: best for Mustāṅ, Manāṅ approach roads, and remote areas. Local agencies in Kāṭhmāṇḍu and Pokhara.",
+        "<b>Taxis</b>: metered in Kathmandu (insist on meter or agree fare before). Ride apps (Pathao, InDrive) work in the valley.",
+        "<b>Hiring a car/jeep</b>: best for Mustang, Manang approach roads, and remote areas. Local agencies in Kathmandu and Pokhara.",
     ]
     flows += bullet_table(transport, cols=1)
     flows += section_head("Communication")
@@ -112,13 +112,13 @@ def build_practical():
 
 def build_phrases():
     flows = chapter_header(
-        "Chapter 11: 100 Essential Nepālī Phrases",
+        "Chapter 11: 100 Essential Nepalī Phrases",
         "Greetings · Courtesy · Numbers · Directions · Food · Transport · Emergency · Trekking"
     )
     flows.append(body(
-        "All Nepālī words below are given in <b>IAST transliteration</b>. Long vowels (ā, ī, ū) "
+        "All Nepalī words below are given in <b>IAST transliteration</b>. Long vowels (ā, ī, ū) "
         "are held about twice as long as short vowels. The phonetic guide uses simple English "
-        "approximations. Nepālī is written in Devanāgarī script — learning even five words "
+        "approximations. Nepalī is written in Devanāgarī script — learning even five words "
         "will be warmly received."
     ))
     flows.append(Spacer(1, 3*mm))
@@ -275,7 +275,7 @@ def build_phrases():
 
     flows.append(Spacer(1, 4*mm))
     flows.append(ColorRect(
-        "Bonus: The most useful single phrase in all of Nepāl — "
+        "Bonus: The most useful single phrase in all of Nepal — "
         "<b>\"Āunus, ciyā khānus\"</b> (Come, have some tea) — "
         "will be offered to you everywhere. The correct response is a smile and: "
         "<b>\"Dhanyavāda, khānchhū\"</b> (Thank you, I will have some).",
@@ -290,7 +290,7 @@ def on_page(canvas, doc):
     canvas.setFillColor(colors.HexColor("#888888"))
     W, H = A4
     # Footer
-    canvas.drawString(20*mm, 12*mm, "The Complete Guide to Nepāl  ·  AttractionsNepal.com")
+    canvas.drawString(20*mm, 12*mm, "The Complete Guide to Nepal  ·  AttractionsNepal.com")
     canvas.drawRightString(W - 20*mm, 12*mm, f"Page {doc.page}")
     canvas.line(20*mm, 15*mm, W - 20*mm, 15*mm)
     canvas.restoreState()
@@ -309,7 +309,7 @@ def main():
         pagesize=A4,
         leftMargin=20*mm, rightMargin=20*mm,
         topMargin=18*mm,  bottomMargin=22*mm,
-        title="The Complete Guide to Nepāl",
+        title="The Complete Guide to Nepal",
         author="AttractionsNepal.com",
     )
 
