@@ -9,6 +9,8 @@ import PlacePage from './pages/PlacePage'
 import CategoryPage from './pages/CategoryPage'
 import BlogListPage from './pages/BlogListPage'
 import BlogPage from './pages/BlogPage'
+import StoryListPage from './pages/StoryListPage'
+import StoryPage from './pages/StoryPage'
 import ExplorePage from './pages/ExplorePage'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
@@ -37,6 +39,8 @@ export default function App() {
                 <Route path="/category/:category" element={<CategoryPage />} />
                 <Route path="/blog" element={<BlogListPage />} />
                 <Route path="/blog/:slug" element={<BlogPage />} />
+                <Route path="/stories" element={<StoryListPage />} />
+                <Route path="/stories/:slug" element={<StoryPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms"   element={<TermsPage />} />
                 <Route path="*" element={<NotFoundPage />} />

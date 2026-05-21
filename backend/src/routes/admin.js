@@ -257,6 +257,123 @@ router.delete('/blogs/:id', async (req, res) => {
   }
 })
 
+// ─── Stories ─────────────────────────────────────────────────────────────────
+
+router.get('/stories', async (req, res) => {
+  try {
+    const { page = '1', limit = '50' } = req.query
+    const skip = (parseInt(page) - 1) * parseInt(limit)
+    const take = Math.min(parseInt(limit), 100)
+
+    const [stories, total] = await Promise.all([
+      prisma.story.findMany({
+        skip,
+        take,
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          category: true,
+          published: true,
+          publishedAt: true,
+          createdAt: true,
+        },
+      }),
+      prisma.story.count(),
+    ])
+
+    res.json({ stories, total })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch stories' })
+  }
+})
+
+router.post('/stories', async (req, res) => {
+  try {
+    const { title, tags, ...rest } = req.body
+    if (!title) return res.status(400).json({ error: 'title is required' })
+
+    const slug = makeSlug(title)
+    const story = await prisma.story.create({
+      data: {
+        title,
+        slug,
+        ...rest,
+        publishedAt: rest.published ? new Date() : null,
+        tags: tags?.length
+          ? { create: tags.map((tagId) => ({ tag: { connect: { id: tagId } } })) }
+          : undefined,
+      },
+      include: { tags: { include: { tag: true } } },
+    })
+
+    res.status(201).json(story)
+  } catch (err) {
+    if (err.code === 'P2002') {
+      return res.status(409).json({ error: 'Slug already exists' })
+    }
+    console.error(err)
+    res.status(500).json({ error: 'Failed to create story' })
+  }
+})
+
+router.get('/stories/:id', async (req, res) => {
+  try {
+    const story = await prisma.story.findUnique({
+      where: { id: req.params.id },
+      include: { tags: { include: { tag: true } } },
+    })
+    if (!story) return res.status(404).json({ error: 'Not found' })
+    res.json(story)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch story' })
+  }
+})
+
+router.put('/stories/:id', async (req, res) => {
+  try {
+    const { tags, ...rest } = req.body
+
+    if (rest.published && !rest.publishedAt) {
+      rest.publishedAt = new Date()
+    }
+
+    const story = await prisma.$transaction(async (tx) => {
+      if (tags !== undefined) {
+        await tx.storyTag.deleteMany({ where: { storyId: req.params.id } })
+      }
+      return tx.story.update({
+        where: { id: req.params.id },
+        data: {
+          ...rest,
+          tags: tags?.length
+            ? { create: tags.map((tagId) => ({ tag: { connect: { id: tagId } } })) }
+            : undefined,
+        },
+        include: { tags: { include: { tag: true } } },
+      })
+    })
+
+    res.json(story)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to update story' })
+  }
+})
+
+router.delete('/stories/:id', async (req, res) => {
+  try {
+    await prisma.story.delete({ where: { id: req.params.id } })
+    res.json({ ok: true })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to delete story' })
+  }
+})
+
 // ─── Tags ────────────────────────────────────────────────────────────────────
 
 router.post('/tags', async (req, res) => {

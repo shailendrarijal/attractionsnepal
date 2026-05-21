@@ -3,8 +3,10 @@ import { Routes, Route, Link, NavLink, useNavigate } from 'react-router-dom'
 import { login } from '../../lib/api'
 import AdminPlaces from './AdminPlaces'
 import AdminBlogs from './AdminBlogs'
+import AdminStories from './AdminStories'
 import AdminPlaceForm from './AdminPlaceForm'
 import AdminBlogForm from './AdminBlogForm'
+import AdminStoryForm from './AdminStoryForm'
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('')
@@ -107,6 +109,14 @@ function AdminLayout({ onLogout }) {
           >
             📝 Blog Posts
           </NavLink>
+          <NavLink
+            to="/admin/stories"
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${isActive ? 'bg-primary-700 text-white' : 'hover:bg-gray-800'}`
+            }
+          >
+            📖 Stories
+          </NavLink>
           <Link
             to="/"
             target="_blank"
@@ -135,6 +145,9 @@ function AdminLayout({ onLogout }) {
           <Route path="blogs" element={<AdminBlogs />} />
           <Route path="blogs/new" element={<AdminBlogForm />} />
           <Route path="blogs/:id/edit" element={<AdminBlogForm />} />
+          <Route path="stories" element={<AdminStories />} />
+          <Route path="stories/new" element={<AdminStoryForm />} />
+          <Route path="stories/:id/edit" element={<AdminStoryForm />} />
         </Routes>
       </main>
     </div>
@@ -161,6 +174,14 @@ function AdminDashboard() {
           <p className="text-4xl mb-3">📝</p>
           <h2 className="font-semibold text-gray-900">Write a Blog Post</h2>
           <p className="text-sm text-gray-500 mt-1">Publish a new travel article</p>
+        </Link>
+        <Link
+          to="/admin/stories/new"
+          className="card p-6 hover:shadow-md transition-shadow text-center"
+        >
+          <p className="text-4xl mb-3">📖</p>
+          <h2 className="font-semibold text-gray-900">Add a Story</h2>
+          <p className="text-sm text-gray-500 mt-1">Publish a myth, festival legend, or tradition</p>
         </Link>
       </div>
     </div>

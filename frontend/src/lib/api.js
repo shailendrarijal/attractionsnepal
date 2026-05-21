@@ -33,6 +33,9 @@ export const getBlog   = (slug)   => api.get(`/blogs/${slug}`).then((r) => r.dat
 
 export const getTags   = ()       => api.get('/tags').then((r) => r.data)
 
+export const getStories = (params) => api.get('/stories', { params }).then((r) => r.data)
+export const getStory   = (slug)   => api.get(`/stories/${slug}`).then((r) => r.data)
+
 // ── Auth ───────────────────────────────────────────────────────────────────
 
 export const login = (email, password) =>
@@ -54,6 +57,18 @@ export const adminDeleteBlog = (id) => api.delete(`/admin/blogs/${id}`).then((r)
 
 export const adminCreateTag  = (name) => api.post('/admin/tags', { name }).then((r) => r.data)
 export const adminDeleteTag  = (id)   => api.delete(`/admin/tags/${id}`).then((r) => r.data)
+
+export const adminGetStories   = (p)     => api.get('/admin/stories', { params: p }).then((r) => r.data)
+export const adminGetStory     = (id)    => api.get(`/admin/stories/${id}`).then((r) => r.data)
+export const adminCreateStory  = (d)     => api.post('/admin/stories', d).then((r) => r.data)
+export const adminUpdateStory  = (id, d) => api.put(`/admin/stories/${id}`, d).then((r) => r.data)
+export const adminDeleteStory  = (id)    => api.delete(`/admin/stories/${id}`).then((r) => r.data)
+
+export const uploadStoryImage  = (file) => {
+  const fd = new FormData()
+  fd.append('image', file)
+  return api.post('/upload/blog-image', fd).then((r) => r.data)
+}
 
 export const uploadPlaceImage  = (file) => {
   const fd = new FormData()

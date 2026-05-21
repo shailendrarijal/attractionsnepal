@@ -91,6 +91,15 @@ export default function Navbar() {
             </NavLink>
 
             <NavLink
+              to="/stories"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-colors ${isActive ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'}`
+              }
+            >
+              Stories
+            </NavLink>
+
+            <NavLink
               to="/blog"
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors ${isActive ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'}`
@@ -154,6 +163,9 @@ export default function Navbar() {
 
           <Link to="/explore" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Explore Map
+          </Link>
+          <Link to="/stories" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
+            Stories
           </Link>
           <Link to="/blog" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Blog

@@ -73,6 +73,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link to="/explore" className="text-sm hover:text-white transition-colors">Map View</Link></li>
               <li><Link to="/blog"    className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
+              <li><Link to="/stories" className="text-sm hover:text-white transition-colors">Stories</Link></li>
               <li><Link to="/admin"   className="text-sm hover:text-white transition-colors">Admin</Link></li>
             </ul>
 

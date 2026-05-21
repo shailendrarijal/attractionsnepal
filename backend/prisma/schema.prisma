@@ -199,8 +199,9 @@ model Tag {
   name String @unique
   slug String @unique
 
-  places PlaceTag[]
-  blogs  BlogTag[]
+  places  PlaceTag[]
+  blogs   BlogTag[]
+  stories StoryTag[]
 }
 
 model PlaceTag {
@@ -219,4 +220,54 @@ model BlogTag {
   tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([blogId, tagId])
+}
+
+// ─────────────────────────────────────────────
+// STORIES — mythological, cultural and spiritual
+// narratives distinct from travel blog posts
+// ─────────────────────────────────────────────
+
+enum StoryCategory {
+  MYTHOLOGY    // Creation myths, cosmic events
+  FESTIVAL     // Festival origins and significance
+  TRADITION    // Cultural customs and life rituals
+  SCRIPTURE    // Epic narratives (Ramayana, Mahabharata)
+  DEITY        // Stories of specific gods and goddesses
+  PILGRIMAGE   // Sacred sites and their spiritual stories
+  RITUAL       // Religious ceremonies and their meaning
+}
+
+model Story {
+  id       String        @id @default(cuid())
+  slug     String        @unique
+  title    String
+  excerpt  String        // 2–3 sentence teaser shown in cards
+  content  String        @db.Text  // Full story in Markdown
+
+  category StoryCategory
+
+  relatedPlaceSlugs String[]
+  heroImage         String?
+
+  seoTitle       String?
+  seoDescription String?
+
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  tags StoryTag[]
+
+  @@index([published])
+  @@index([category])
+}
+
+model StoryTag {
+  storyId String
+  tagId   String
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  tag     Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([storyId, tagId])
 }
