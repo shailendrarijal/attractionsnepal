@@ -81,3 +81,8 @@ export const uploadBlogImage   = (file) => {
   fd.append('image', file)
   return api.post('/upload/blog-image', fd).then((r) => r.data)
 }
+
+// ── Newsletter ─────────────────────────────────────────────────────────────
+
+export const subscribeNewsletter = (email) =>
+  api.post('/newsletter/subscribe', { email }).then((r) => r.data)

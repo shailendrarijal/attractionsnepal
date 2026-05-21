@@ -9,6 +9,8 @@ import GetYourGuide from '../components/GetYourGuide'
 import BookingWidget from '../components/BookingWidget'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
+import AdBanner from '../components/AdBanner'
+import JsonLd from '../components/JsonLd'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
@@ -39,6 +41,25 @@ export default function PlacePage() {
 
   const mapPlaces = place.lat && place.lng ? [place] : []
 
+  const stripUndefined = (obj) => JSON.parse(JSON.stringify(obj))
+
+  const placeJsonLd = stripUndefined({
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: place.name,
+    description: place.seoDescription ?? place.summary,
+    url: `https://attractionsnepal.com/places/${place.slug}`,
+    image: place.heroImage ?? undefined,
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: place.district,
+      addressCountry: 'NP',
+    },
+    geo: place.lat && place.lng
+      ? { '@type': 'GeoCoordinates', latitude: place.lat, longitude: place.lng }
+      : undefined,
+  })
+
   return (
     <>
       <PageSeo
@@ -47,6 +68,7 @@ export default function PlacePage() {
         image={place.heroImage}
         canonicalPath={`/places/${place.slug}`}
       />
+      <JsonLd data={placeJsonLd} />
 
       {/* Hero */}
       <div className="relative h-72 sm:h-96 lg:h-[480px] bg-gray-900 overflow-hidden">
@@ -137,33 +159,39 @@ export default function PlacePage() {
           <ReactMarkdown rehypePlugins={[rehypeRaw]}>{place.story}</ReactMarkdown>
         </div>
 
+        {/* Mid-page ad — after story, before sections */}
+        <AdBanner size="leaderboard" />
+
         {/* Booking widget */}
         <BookingWidget city={place.bookingCity} placeName={place.name} />
 
-        {/* Content sections */}
-        {place.sections?.map((section) => (
-          <div key={section.id} className="mb-8 p-6 rounded-2xl bg-gray-50 border border-gray-100">
-            <h2 className="font-display font-bold text-xl text-gray-900 mb-3">
-              {SECTION_ICONS[section.type] ?? '📌'} {section.title}
-            </h2>
-            <div className="prose prose-sm max-w-none">
-              <ReactMarkdown rehypePlugins={[rehypeRaw]}>{section.content}</ReactMarkdown>
-            </div>
-            {section.links && Array.isArray(section.links) && section.links.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {section.links.map((link, i) => (
-                  <a
-                    key={i}
-                    href={link.url}
-                    target="_blank"
-                    rel={link.type === 'affiliate' ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
-                    className="btn-secondary text-xs py-1.5"
-                  >
-                    {link.label} →
-                  </a>
-                ))}
+        {/* Content sections — ad injected after every 2nd section */}
+        {place.sections?.map((section, idx) => (
+          <div key={section.id}>
+            <div className="mb-8 p-6 rounded-2xl bg-gray-50 border border-gray-100">
+              <h2 className="font-display font-bold text-xl text-gray-900 mb-3">
+                {SECTION_ICONS[section.type] ?? '📌'} {section.title}
+              </h2>
+              <div className="prose prose-sm max-w-none">
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>{section.content}</ReactMarkdown>
               </div>
-            )}
+              {section.links && Array.isArray(section.links) && section.links.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {section.links.map((link, i) => (
+                    <a
+                      key={i}
+                      href={link.url}
+                      target="_blank"
+                      rel={link.type === 'affiliate' ? 'noopener noreferrer sponsored' : 'noopener noreferrer'}
+                      className="btn-secondary text-xs py-1.5"
+                    >
+                      {link.label} →
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+            {idx === 1 && <AdBanner size="rectangle" />}
           </div>
         ))}
 

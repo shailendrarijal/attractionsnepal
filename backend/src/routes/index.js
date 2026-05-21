@@ -6,6 +6,7 @@ import storiesRoutes from './stories.js'
 import tagsRoutes from './tags.js'
 import adminRoutes from './admin.js'
 import uploadRoutes from './upload.js'
+import newsletterRoutes from './newsletter.js'
 
 const router = Router()
 
@@ -16,5 +17,6 @@ router.use('/stories', storiesRoutes)
 router.use('/tags', tagsRoutes)
 router.use('/admin', adminRoutes)
 router.use('/upload', uploadRoutes)
+router.use('/newsletter', newsletterRoutes)
 
 export default router

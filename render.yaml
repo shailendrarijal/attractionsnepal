@@ -26,6 +26,10 @@ services:
         sync: false
       - key: FRONTEND_URL
         sync: false          # e.g. https://attractionsnepal.com
+      - key: SITE_URL
+        value: https://attractionsnepal.com
+      - key: RESEND_API_KEY
+        sync: false
 
   # ─── Frontend ─────────────────────────────────────────────────────────────────
   - type: web

@@ -4,6 +4,8 @@ import rehypeRaw from 'rehype-raw'
 import { useStory } from '../hooks/useStories'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
+import AdBanner from '../components/AdBanner'
+import JsonLd from '../components/JsonLd'
 
 const CATEGORY_LABELS = {
   MYTHOLOGY:  'Mythology',
@@ -49,6 +51,23 @@ export default function StoryPage() {
   const gradient = CATEGORY_GRADIENTS[story.category] ?? 'from-gray-700 to-gray-500'
   const label    = CATEGORY_LABELS[story.category]    ?? story.category
 
+  const stripUndefined = (obj) => JSON.parse(JSON.stringify(obj))
+
+  const storyJsonLd = stripUndefined({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: story.title,
+    description: story.seoDescription ?? story.excerpt,
+    url: `https://attractionsnepal.com/stories/${story.slug}`,
+    image: story.heroImage ?? undefined,
+    datePublished: story.publishedAt,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Attractions Nepal',
+      url: 'https://attractionsnepal.com',
+    },
+  })
+
   return (
     <>
       <PageSeo
@@ -57,6 +76,7 @@ export default function StoryPage() {
         image={story.heroImage}
         canonicalPath={`/stories/${story.slug}`}
       />
+      <JsonLd data={storyJsonLd} />
 
       {/* Hero */}
       <div className="relative h-64 sm:h-80 lg:h-[440px] overflow-hidden">
@@ -95,10 +115,16 @@ export default function StoryPage() {
           {story.excerpt}
         </p>
 
+        {/* Top ad */}
+        <AdBanner size="leaderboard" />
+
         {/* Body */}
         <div className="prose prose-base lg:prose-lg max-w-none">
           <ReactMarkdown rehypePlugins={[rehypeRaw]}>{story.content}</ReactMarkdown>
         </div>
+
+        {/* Mid ad */}
+        <AdBanner size="rectangle" />
 
         {/* Related Places */}
         {story.relatedPlaceSlugs?.length > 0 && (

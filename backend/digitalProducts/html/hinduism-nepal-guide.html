@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Hinduism in Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 11pt; color: #1a1a1a; background: white; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #7c1d1d 0%, #b91c1c 40%, #dc2626 70%, #f97316 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-img { width: 100%; height: 90mm; object-fit: cover; border-radius: 8px; margin-bottom: 20mm; opacity: 0.85; }
+  .cover-icon { font-size: 60pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 36pt; color: white; font-weight: 900; line-height: 1.2; margin-bottom: 6mm; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .cover .subtitle { font-size: 14pt; color: #fecaca; font-weight: 300; margin-bottom: 10mm; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; color: #fee2e2; background: rgba(0,0,0,0.2); padding: 4mm 8mm; border-radius: 20px; }
+  .cover-footer { position: absolute; bottom: 15mm; font-size: 10pt; color: #fca5a5; letter-spacing: 2px; text-transform: uppercase; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 18mm 22mm 18mm;
+    page-break-before: always;
+    position: relative;
+  }
+  .page::after {
+    content: "attractionsnepal.com";
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #6b7280;
+    border-top: 0.5pt solid #fecaca;
+    padding-top: 3mm;
+    letter-spacing: 1px;
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, #7c1d1d, #b91c1c);
+    color: white;
+    padding: 6mm 8mm;
+    border-radius: 6px;
+    margin-bottom: 6mm;
+    page-break-before: always;
+  }
+  .section-header:first-child { page-break-before: avoid; }
+  .section-header h2 { font-size: 20pt; font-weight: 700; }
+  .section-header p { font-size: 10pt; color: #fecaca; margin-top: 1mm; }
+
+  h3 { font-size: 14pt; color: #b91c1c; margin: 5mm 0 3mm; border-bottom: 1pt solid #fecaca; padding-bottom: 2mm; }
+  h4 { font-size: 12pt; color: #991b1b; margin: 4mm 0 2mm; }
+  p { line-height: 1.7; margin-bottom: 3mm; color: #374151; }
+  ul, ol { margin: 2mm 0 4mm 6mm; }
+  li { line-height: 1.7; margin-bottom: 1.5mm; color: #374151; }
+
+  .deity-card {
+    border: 1pt solid #fecaca;
+    border-left: 4pt solid #b91c1c;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+    background: #fff5f5;
+    page-break-inside: avoid;
+  }
+  .deity-card h4 { color: #991b1b; margin: 0 0 1.5mm; }
+  .deity-card .sanskrit { color: #b91c1c; font-style: italic; font-size: 9.5pt; margin-bottom: 1.5mm; }
+  .deity-card p { margin: 0; font-size: 10pt; line-height: 1.6; }
+
+  .concept-card {
+    background: #fff5f5;
+    border: 1pt solid #fecaca;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+    page-break-inside: avoid;
+  }
+  .concept-card h4 { color: #b91c1c; margin: 0 0 1.5mm; }
+  .concept-card p { margin: 0; font-size: 10pt; }
+
+  .sacred-site {
+    display: flex;
+    gap: 3mm;
+    margin-bottom: 4mm;
+    page-break-inside: avoid;
+  }
+  .site-num {
+    background: #b91c1c;
+    color: white;
+    min-width: 7mm;
+    height: 7mm;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8.5pt;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    flex-shrink: 0;
+    margin-top: 1mm;
+  }
+  .site-content h4 { margin: 0 0 1mm; font-size: 11pt; color: #991b1b; }
+  .site-content p { margin: 0; font-size: 10pt; color: #4b5563; line-height: 1.6; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 10pt; }
+  th { background: #b91c1c; color: white; padding: 2.5mm 4mm; text-align: left; font-family: 'Playfair Display', serif; }
+  td { padding: 2mm 4mm; border-bottom: 0.5pt solid #fecaca; vertical-align: top; }
+  tr:nth-child(even) td { background: #fff5f5; }
+  tr:nth-child(odd) td { background: white; }
+
+  .info-box {
+    background: #fefce8;
+    border: 1pt solid #fde68a;
+    border-left: 4pt solid #f59e0b;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .info-box h4 { color: #92400e; margin-top: 0; }
+
+  .trinity-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin: 4mm 0; }
+  .trinity-item { background: #fff5f5; border: 1.5pt solid #fecaca; border-radius: 8px; padding: 4mm; text-align: center; }
+  .trinity-item .deity-icon { font-size: 24pt; margin-bottom: 2mm; }
+  .trinity-item h4 { color: #b91c1c; margin: 0 0 1mm; font-size: 11pt; text-align: center; }
+  .trinity-item p { font-size: 9pt; margin: 0; text-align: center; color: #4b5563; }
+
+  .etiquette-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin: 3mm 0; }
+  .etq-do { background: #f0fdf4; border: 1pt solid #bbf7d0; border-radius: 6px; padding: 4mm; }
+  .etq-do h4 { color: #15803d; margin: 0 0 2mm; font-size: 11pt; }
+  .etq-dont { background: #fef2f2; border: 1pt solid #fecaca; border-radius: 6px; padding: 4mm; }
+  .etq-dont h4 { color: #dc2626; margin: 0 0 2mm; font-size: 11pt; }
+  .etq-do li, .etq-dont li { font-size: 9.5pt; margin-bottom: 1.5mm; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1200&q=80" alt="Hindu temple Nepal" onerror="this.style.display='none'">
+  <div class="cover-icon">🕉️</div>
+  <h1>Introduction to<br>Hinduism in Nepal</h1>
+  <p class="subtitle">The Living Hindu Civilisation</p>
+  <p class="tagline">Deities · Sacred Sites · Rituals · Festivals · Temple Etiquette</p>
+  <div class="cover-footer">attractionsnepal.com</div>
+</div>
+
+<!-- PAGE 1: HISTORY & THE TRINITY -->
+<div class="page">
+  <div class="section-header" style="page-break-before:avoid;">
+    <h2>Nepal: The World's Only Hindu Kingdom</h2>
+    <p>Historical context of Hinduism as Nepal's state religion</p>
+  </div>
+
+  <p>For most of its recorded history, Nepal was the world's only officially Hindu kingdom — a distinction that defined its laws, royal legitimacy, social structure, and cultural expression for centuries. The 2006 People's Movement (Jana Andolan II) ended the 240-year-old Shah monarchy and ushered in a federal democratic republic, and Nepal's 2015 Constitution formally declared the country a secular state. Yet the transformation on paper has not erased what millennia of Hindu civilisation have built: Nepal remains one of the most profoundly Hindu countries on earth in terms of daily practice, cultural expression, and social life.</p>
+
+  <p>Hinduism arrived in the Nepal Valley at least 2,000 years ago, brought by Licchavi rulers from the Gangetic plains who established the first great Nepali dynasty (c. 400–750 CE). The Malla kings (c. 1200–1768 CE) were ardent patrons of Hinduism, building the great temples of the Kathmandu Valley, establishing elaborate festival calendars, and integrating the Hindu caste system into Newari society alongside the existing Buddhist traditions. The Shah dynasty, which unified Nepal in 1768 under Prithvi Narayan Shah, maintained Hinduism as the state religion and enshrined it in the Muluki Ain (legal code) of 1854, which codified the caste hierarchy into law.</p>
+
+  <p>Today approximately 81% of Nepal's population identifies as Hindu — the highest proportion of any country in the world. But Nepali Hinduism is not monolithic. It incorporates elements of Tantric worship, Tibetan Buddhist influences, shamanic traditions, and ancestor veneration that give it a distinctly Nepali character quite different from the Hinduism of peninsular India. The living goddess Kumari — a pre-pubescent Newar girl worshipped as a manifestation of the divine — is perhaps the clearest symbol of this syncretism.</p>
+
+  <div class="section-header">
+    <h2>The Hindu Trinity: Brahma, Vishnu &amp; Shiva</h2>
+    <p>The three supreme manifestations of the divine</p>
+  </div>
+
+  <p>At the heart of Hindu theology is the Trimurti — the three aspects of the supreme divine principle (Brahman) that govern the cosmic cycle of creation, preservation, and dissolution:</p>
+
+  <div class="trinity-grid">
+    <div class="trinity-item">
+      <div class="deity-icon">🌸</div>
+      <h4>Brahma</h4>
+      <p>The Creator. Four-headed, four-armed, holding the Vedas, a water pot, a sceptre, and a lotus. Married to Saraswati (goddess of knowledge). Relatively few temples dedicated to Brahma exist — a myth explains he was cursed by Shiva to not be worshipped. The Swayambhunath area has a small Brahma shrine.</p>
+    </div>
+    <div class="trinity-item">
+      <div class="deity-icon">🔱</div>
+      <h4>Vishnu</h4>
+      <p>The Preserver. Blue-skinned, four-armed, holding a conch, discus (chakra), mace, and lotus. Reclines on the cosmic serpent Ananta in the primordial ocean. Has ten principal avatars (dashavatara) including Rama and Krishna. Pashupatinath is technically a form of Vishnu; Changu Narayan is Nepal's finest Vishnu temple.</p>
+    </div>
+    <div class="trinity-item">
+      <div class="deity-icon">☯️</div>
+      <h4>Shiva</h4>
+      <p>The Destroyer/Transformer. The most widely worshipped deity in Nepal. Depicted with a third eye, crescent moon in his matted hair, the Ganges flowing from his hair, a trident (trishul), a cobra, and ash-covered body. Worshipped in the form of the linga (phallus/cosmic pillar). Pashupatinath temple is his greatest Nepali shrine.</p>
+    </div>
+  </div>
+
+  <p>In Nepal, Shiva is by far the most widely worshipped of the three. The country has more Shiva temples than any other category, and the linga (a stylised column representing Shiva's cosmic energy) is the most common sacred object in Nepali temples. Nepal is sometimes called "Shiva's Country" — a land believed to be under the special protection of the Lord of the Universe.</p>
+
+  <div class="section-header">
+    <h2>Major Deities Worshipped in Nepal</h2>
+    <p>The divine family and their manifestations</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Pashupatinath — Lord of All Beings</h4>
+    <p class="sanskrit">Form of Shiva | Patron deity of Nepal</p>
+    <p>Pashupatinath ("Lord of Animals / Lord of All Beings") is Nepal's most important deity — the patron god of the entire nation. The Pashupatinath Temple in Kathmandu is his principal shrine and one of the most sacred Shiva temples in the world, drawing pilgrims from across the Hindu world. The main image is a four-faced (chaturthmukha) linga of black stone approximately 1 metre tall, with each face representing a different aspect of Shiva. Worship here is among the most ancient in Nepal, with archaeological evidence suggesting active ritual activity from at least the 5th century CE.</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Kumari — The Living Goddess</h4>
+    <p class="sanskrit">Pre-pubescent virgin girl, manifestation of Taleju / Durga</p>
+    <p>The Kumari is a uniquely Nepali institution: a pre-pubescent girl selected from the Shakya (goldsmith) caste of the Newar community through an elaborate ritual process to serve as a living manifestation of the goddess Taleju Bhawani (a form of Durga). She lives in the Kumari Chhen (Kumari House) adjacent to Kathmandu Durbar Square, emerging only for festivals and to bestow blessings on devotees from her window. When she reaches puberty, she is retired with a pension and a new Kumari is selected. The Kathmandu Royal Kumari is the most important, but smaller towns also have their own Kumaris.</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Ganesh — Remover of Obstacles</h4>
+    <p class="sanskrit">Elephant-headed son of Shiva and Parvati</p>
+    <p>Ganesh is the most universally beloved deity in Nepal — the elephant-headed god of beginnings, remover of obstacles, and patron of wisdom and learning. His image appears at the entrance of virtually every temple, home, and business in Nepal. No significant undertaking begins without first worshipping Ganesh. He is depicted with one or four arms (holding a broken tusk, a noose, a goad, and a modaka sweet), riding a mouse (representing the ego). The Surya Vinayak and Changunarayan area near Bhaktapur are important Ganesh pilgrimage sites.</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Lakshmi — Goddess of Wealth and Prosperity</h4>
+    <p class="sanskrit">Consort of Vishnu | Four-armed, seated on lotus</p>
+    <p>Lakshmi is worshipped throughout Nepal as the bringer of wealth, good fortune, and beauty. During Tihar (Deepawali), homes are thoroughly cleaned and lit with oil lamps to welcome Lakshmi's blessing on the night of Lakshmi Puja (the third day of the festival). She is depicted as a beautiful woman seated or standing on a lotus, with gold coins flowing from her hand. Every shopkeeper's till has a small image of Lakshmi, and the goddess is invoked before any business transaction of significance.</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Durga — The Fierce Mother Goddess</h4>
+    <p class="sanskrit">Mahishasuramardini — Slayer of the Buffalo Demon</p>
+    <p>Durga is the supreme manifestation of Shakti (divine feminine power) — the goddess who defeats evil when the male gods cannot. She is depicted riding a lion or tiger, with multiple arms bearing various weapons, in the act of killing the buffalo demon Mahishasura. Dashain, Nepal's greatest festival, celebrates her victory over evil. The Dakshinkali Temple southwest of Kathmandu and the Guhyeshwari Temple near Pashupatinath are important Durga/Shakti shrines. The Taleju Bhawani temples in all three Durbar Squares are also dedicated to a form of Durga.</p>
+  </div>
+
+  <div class="deity-card">
+    <h4>Hanuman — The Devoted Warrior</h4>
+    <p class="sanskrit">The divine monkey general of the Ramayana</p>
+    <p>Hanuman, the monkey god of devotion and strength, is one of the most popular deities in Nepal. His image — typically depicted as a warrior monkey holding a mountain, mace, or flag — stands guard at palace gates and temple entrances throughout the country. The famous Hanuman Dhoka (Hanuman Gate) in Kathmandu's Durbar Square, where a red-wrapped image of Hanuman has stood since 1672, gave the old royal palace complex its name. Hanuman represents total devotion to God, selfless service, and indomitable courage — qualities that make him a beloved protective figure.</p>
+  </div>
+</div>
+
+<!-- PAGE 2: SACRED TEXTS, FOUR AIMS, SACRED SITES -->
+<div class="page">
+  <div class="section-header">
+    <h2>Sacred Texts of Hinduism</h2>
+    <p>The scriptures that form the foundation of Hindu thought</p>
+  </div>
+
+  <table>
+    <tr><th>Text</th><th>Nature</th><th>Significance in Nepal</th></tr>
+    <tr><td><strong>The Vedas</strong> (Rigveda, Samaveda, Yajurveda, Atharvaveda)</td><td>Oldest Hindu scriptures; collection of hymns, rituals, and cosmic knowledge composed c. 1500–500 BCE</td><td>Recited by Brahmin priests at all major rituals and ceremonies throughout Nepal; the Rigveda is the world's oldest continuously recited religious text</td></tr>
+    <tr><td><strong>Upanishads</strong> (108 texts)</td><td>Philosophical commentaries exploring the nature of Brahman (ultimate reality), Atman (individual soul), and their identity</td><td>Form the philosophical basis of Vedanta — the dominant philosophical school of Nepali Hinduism; key to understanding the non-dualist tradition</td></tr>
+    <tr><td><strong>Bhagavad Gita</strong></td><td>Dialogue between Lord Krishna and warrior Arjuna on the battlefield of Kurukshetra; embedded in the Mahabharata; covers dharma, yoga, and liberation</td><td>The most widely read and studied Hindu scripture in Nepal; recited at funerals, shrines, and homes; copies available throughout Kathmandu</td></tr>
+    <tr><td><strong>Ramayana</strong></td><td>Epic story of Lord Rama's quest to rescue his wife Sita from the demon king Ravana; attributed to the sage Valmiki</td><td>Deeply embedded in Nepali culture; Janakpur is Sita's birthplace; the festival of Vivah Panchami celebrates Ram-Sita's wedding; Ram Navami is a major holiday</td></tr>
+    <tr><td><strong>Mahabharata</strong></td><td>The world's longest epic poem; story of the Kurukshetra War between the Pandava and Kaurava clans; contains the Bhagavad Gita</td><td>Stories from the Mahabharata are carved on the Krishna Mandir in Patan; Pandava connections are claimed by several sites in Nepal</td></tr>
+    <tr><td><strong>Puranas</strong> (18 major texts)</td><td>Collections of mythology, cosmology, genealogies of gods and kings, and religious instructions; the Shiva Purana, Vishnu Purana, and Devi Bhagavata are most important in Nepal</td><td>The mythological stories explaining Nepali sacred sites — Pashupatinath's origin, Gosaikunda's creation, Muktinath's significance — are found in the Puranas</td></tr>
+    <tr><td><strong>Tantras</strong></td><td>Esoteric ritual texts of Shakti and Shiva worship; emphasise direct experience of the divine through ritual, meditation, and energy practices</td><td>Particularly important in Nepal — the Kathmandu Valley has one of the world's richest living Tantric traditions; many major temples (Guhyeshwari, Dakshinkali) are Tantric shrines</td></tr>
+  </table>
+
+  <div class="section-header">
+    <h2>The Four Aims of Human Life</h2>
+    <p>Purushartha — the Hindu framework for a complete life</p>
+  </div>
+
+  <p>Hinduism offers a comprehensive framework for human life through the concept of the four Purusharthas (aims of human existence). Understanding these helps explain many aspects of Nepali Hindu social values and daily practice:</p>
+
+  <div class="concept-card">
+    <h4>1. Dharma — Righteous Duty</h4>
+    <p>Dharma is the principle of cosmic order, right conduct, and moral duty. It encompasses one's obligations as a member of society, a family member, and a being in the cosmos. In Nepal, dharma is inseparable from caste duty (svadharma) — the specific duties appropriate to one's birth, stage of life, and station. It is the foundation upon which the other three aims rest. When Nepalis say "dharmiko kaam" (righteous work), they mean action that maintains harmony with cosmic law.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>2. Artha — Wealth and Material Wellbeing</h4>
+    <p>Artha represents the legitimate pursuit of wealth, prosperity, and material security. Hinduism does not reject worldly prosperity — the worship of Lakshmi (goddess of wealth) and Ganesh (remover of obstacles to success) are central religious practices in Nepal. Business success is considered a divine blessing. However, artha must be pursued within the bounds of dharma — unrighteous wealth is forbidden. The Arthashastra of Chanakya is the classic text on this subject.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>3. Kama — Love, Pleasure, and Desire</h4>
+    <p>Kama encompasses all forms of desire, love, and sensory pleasure — including but not limited to sexual love. The erotic carvings (kama murals) on the struts of Nepali pagoda temples are expressions of this principle — pleasure as a legitimate aim of human life, integrated into the sacred rather than separated from it. The Kama Sutra of Vatsyayana is the most famous text on kama, but devotional love (bhakti) for a deity is also considered the highest form of kama in the bhakti tradition.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>4. Moksha — Liberation from the Cycle of Rebirth</h4>
+    <p>Moksha is the ultimate aim — liberation from the cycle of birth, death, and rebirth (samsara) through the realisation of one's identity with Brahman (ultimate reality). This is the goal of the renunciant (sannyasi), the yogi, and the deeply devout. The sadhus seen at Pashupatinath and other major temples have renounced worldly life entirely in pursuit of moksha. Dying in Pashupatinath's environs or in Varanasi (Kashi) is believed to grant automatic moksha — explaining why elderly and dying Hindus travel there.</p>
+  </div>
+
+  <div class="section-header">
+    <h2>Sacred Sites &amp; Hindu Life Rituals</h2>
+    <p>Where Nepali Hindus worship and how they mark life's journey</p>
+  </div>
+
+  <h3>Five Most Sacred Hindu Sites in Nepal</h3>
+
+  <div class="sacred-site">
+    <div class="site-num">1</div>
+    <div class="site-content">
+      <h4>Pashupatinath Temple, Kathmandu (1,337m)</h4>
+      <p>The holiest Hindu site in Nepal and one of the four most sacred Shiva temples in the world (alongside Kashi Vishwanath in Varanasi, Somnath in Gujarat, and Kedarnath in Uttarakhand). The complex spans both banks of the sacred Bagmati River, with the main temple on the west bank inaccessible to non-Hindus but the surrounding complex freely explorable. Active cremation ghats, hundreds of smaller shrines, and an extraordinary concentration of religious life make this one of the most profound sites in all of Asia.</p>
+    </div>
+  </div>
+
+  <div class="sacred-site">
+    <div class="site-num">2</div>
+    <div class="site-content">
+      <h4>Muktinath Temple, Mustang (3,760m)</h4>
+      <p>One of the 108 Divya Desam (sacred Vishnu temples) and considered one of the Mukti Kshetras (places of liberation). The natural eternal flames (gas jets from the rock) and sacred springs are considered miraculous manifestations of all five elements simultaneously — earth, water, fire, air, and sky. Pilgrims undergo ritual bathing under the 108 water spouts to achieve purification. Located in the dramatic high-altitude Mustang landscape, the journey here is itself considered a meritorious pilgrimage.</p>
+    </div>
+  </div>
+
+  <div class="sacred-site">
+    <div class="site-num">3</div>
+    <div class="site-content">
+      <h4>Manakamana Temple, Gorkha (1,302m)</h4>
+      <p>The "wish-fulfilling" goddess Bhagwati grants the desires of sincere devotees according to centuries of tradition. One of Nepal's most visited pilgrimage sites, accessible by cable car from the Trisuli valley. The temple complex sits on a high ridge above the confluence of the Trisuli and Marsyangdi rivers, with sweeping views of the Ganesh Himal range. Animal sacrifice is performed here as part of votive offerings, particularly of goats and chickens on festival days.</p>
+    </div>
+  </div>
+
+  <div class="sacred-site">
+    <div class="site-num">4</div>
+    <div class="site-content">
+      <h4>Devghat, Tanahu (Chitwan/Tanahu border, 300m)</h4>
+      <p>The confluence (triveni) of the Trishuli and Kaligandaki rivers, considered a sacred tirtha (crossing place between human and divine worlds). Devghat is one of Nepal's most important pilgrimage sites, particularly for elderly Hindus who come here to spend their final days and achieve moksha by dying at a tirtha. The hermit colony of sadhus and sages who live in ashrams along the river is one of the most authentic such communities in Nepal.</p>
+    </div>
+  </div>
+
+  <div class="sacred-site">
+    <div class="site-num">5</div>
+    <div class="site-content">
+      <h4>Gosaikunda Lake, Langtang (4,380m)</h4>
+      <p>According to Hindu mythology, Shiva struck his trident into the Himalayan rock to create this lake's spring after drinking the ocean's poison (halahala) to save the universe during the churning of the cosmic ocean. The turquoise lake at 4,380m is a powerful place of pilgrimage, especially during Janai Purnima (July–August full moon) when hundreds of thousands of pilgrims trek here to bathe and change their sacred thread (janai). Lord Shiva is believed to reside in the lake during the summer months.</p>
+    </div>
+  </div>
+
+  <h3>Hindu Life-Cycle Rituals (Samskaras)</h3>
+  <table>
+    <tr><th>Ritual</th><th>Timing</th><th>Significance</th></tr>
+    <tr><td><strong>Nwaran</strong> (Namakarana)</td><td>11th day after birth</td><td>Naming ceremony; the family priest casts the horoscope and determines the first letter of the name based on birth star (nakshatra)</td></tr>
+    <tr><td><strong>Pasni</strong> (Annaprashana)</td><td>5th–6th month</td><td>First rice feeding ceremony; the child's first solid food — rice pudding — is fed by the father or maternal uncle with great ceremony and celebration</td></tr>
+    <tr><td><strong>Chhewar</strong> (Chudakarana)</td><td>Boys: 1st–5th year; Girls: before first menstruation (Ihi ceremony for Newars)</td><td>First head-shaving (boys); for Newars the Ihi ceremony "marries" pre-pubescent girls to the bel fruit (symbol of Vishnu) ensuring they can never become widows</td></tr>
+    <tr><td><strong>Bratabandha</strong> (Upanayana)</td><td>Boys: 8–12 years (Brahmin/Chhetri)</td><td>Sacred thread ceremony — initiation into Vedic study and adult male religious duty. The boy receives the janai (sacred thread) worn for life.</td></tr>
+    <tr><td><strong>Bibaha</strong> (Vivaha)</td><td>Adulthood; auspicious dates determined by priest</td><td>Hindu wedding — a multi-day ceremony with Vedic fire rituals (saptapadi — seven steps around the sacred fire). One of the most elaborate ritual occasions in Nepali life.</td></tr>
+    <tr><td><strong>Shraddha</strong> (death rites)</td><td>Upon death; 13th day ceremony; annual thereafter</td><td>Cremation on the river bank (ideally at Pashupatinath's ghats); the son performs the rituals. The 13-day mourning period ends with a feast. Annual sraddha (pitri puja) honours ancestors.</td></tr>
+  </table>
+
+  <div class="section-header">
+    <h2>Temple Etiquette for Visitors</h2>
+    <p>How to visit Hindu temples respectfully and without causing offence</p>
+  </div>
+
+  <div class="etiquette-grid">
+    <div class="etq-do">
+      <h4>Always Do</h4>
+      <ul>
+        <li>Remove shoes before entering the temple complex (shoe racks are provided; NPR 10–20 fee common)</li>
+        <li>Dress modestly — shoulders and knees covered; scarves available for hire at major temples</li>
+        <li>Walk clockwise (pradakshina) around the main shrine</li>
+        <li>Keep voices low and behaviour respectful</li>
+        <li>Accept prasad (blessed food offered by the priest) with both hands or right hand</li>
+        <li>Ask permission before photographing rituals or worshippers</li>
+        <li>Make a small donation in the donation box if you have enjoyed the experience</li>
+        <li>Observe and follow the lead of worshippers for rituals you participate in</li>
+        <li>Keep the temple premises clean — do not bring outside food or drink</li>
+      </ul>
+    </div>
+    <div class="etq-dont">
+      <h4>Never Do</h4>
+      <ul>
+        <li>Enter the inner sanctum of a Hindu temple if you are not Hindu — many are strictly closed to non-Hindus (Pashupatinath main temple, Taleju Bhawani in Kathmandu)</li>
+        <li>Wear leather inside a temple (belt, shoes, bags) — leather from cows is particularly prohibited in Shiva and Vishnu temples</li>
+        <li>Touch the sacred images or linga unless specifically invited by a priest</li>
+        <li>Enter while menstruating (traditional restriction still observed at many temples)</li>
+        <li>Enter if you have recently been in contact with a corpse or have not bathed after a funeral</li>
+        <li>Photograph the main deity image without permission — some temples prohibit this entirely</li>
+        <li>Wear shoes or sandals — remove them completely at the entrance</li>
+        <li>Show disrespect to the cremation ghats at Pashupatinath — maintain solemn distance</li>
+        <li>Accept food or prasad with your left hand alone</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top: 4mm;">
+    <h4>Understanding the Tika and Prasad</h4>
+    <p>When a Hindu priest places a tika (red vermillion paste, sometimes mixed with rice grains) on your forehead, this is a blessing — accept it graciously with a slight bow. The tika applied at Dashain by elders is the most sacred: a mixture of red powder, curd, and rice that represents the goddess Durga's blessing. Prasad — blessed food that has been offered to the deity — is distributed to worshippers after puja. Common prasads include flower petals, fruits, sweets (laddu, pedha), and in some temples cooked rice. Always accept prasad with respect; it is considered the deity's grace made edible.</p>
+  </div>
+</div>
+
+</body>
+</html>

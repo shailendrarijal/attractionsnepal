@@ -35,3 +35,6 @@ Thumbs.db
 
 # Render
 .render-buildlogs
+
+# Generated PDFs (regenerate via node digitalProducts/generate-pdfs.js)
+backend/digitalProducts/pdf/

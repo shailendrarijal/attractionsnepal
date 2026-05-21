@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Guide for Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 11pt; color: #1a1a1a; background: white; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #7c2d12 0%, #c2410c 40%, #ea580c 70%, #fb923c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-img {
+    width: 100%;
+    height: 90mm;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20mm;
+    opacity: 0.85;
+  }
+  .cover-icon { font-size: 60pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 36pt; color: white; font-weight: 900; line-height: 1.2; margin-bottom: 6mm; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .cover .subtitle { font-size: 14pt; color: #fed7aa; font-weight: 300; margin-bottom: 10mm; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; color: #ffedd5; background: rgba(0,0,0,0.2); padding: 4mm 8mm; border-radius: 20px; }
+  .cover-footer { position: absolute; bottom: 15mm; font-size: 10pt; color: #fdba74; letter-spacing: 2px; text-transform: uppercase; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 18mm 22mm 18mm;
+    page-break-before: always;
+    position: relative;
+  }
+  .page::after {
+    content: "attractionsnepal.com";
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #6b7280;
+    border-top: 0.5pt solid #fed7aa;
+    padding-top: 3mm;
+    letter-spacing: 1px;
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, #7c2d12, #c2410c);
+    color: white;
+    padding: 6mm 8mm;
+    border-radius: 6px;
+    margin-bottom: 6mm;
+    page-break-before: always;
+  }
+  .section-header:first-child { page-break-before: avoid; }
+  .section-header h2 { font-size: 20pt; font-weight: 700; }
+  .section-header p { font-size: 10pt; color: #fed7aa; margin-top: 1mm; }
+
+  h3 { font-size: 14pt; color: #c2410c; margin: 5mm 0 3mm; border-bottom: 1pt solid #fed7aa; padding-bottom: 2mm; }
+  h4 { font-size: 12pt; color: #9a3412; margin: 4mm 0 2mm; }
+  p { line-height: 1.7; margin-bottom: 3mm; color: #374151; }
+  ul, ol { margin: 2mm 0 4mm 6mm; }
+  li { line-height: 1.7; margin-bottom: 1mm; color: #374151; }
+
+  .dish-card {
+    border: 1pt solid #fed7aa;
+    border-left: 4pt solid #c2410c;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 5mm;
+    background: #fff7ed;
+  }
+  .dish-card h3 { border: none; margin: 0 0 2mm; padding: 0; font-size: 13pt; }
+  .dish-card .nepali { color: #9a3412; font-style: italic; font-size: 10pt; margin-bottom: 2mm; }
+  .dish-card p { margin: 0; font-size: 10.5pt; }
+
+  .restaurant-card {
+    background: #fff7ed;
+    border: 1pt solid #fed7aa;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+  }
+  .restaurant-card h4 { color: #c2410c; margin: 0 0 1mm; }
+  .restaurant-card p { font-size: 10pt; margin: 0; color: #4b5563; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 10pt; }
+  th { background: #c2410c; color: white; padding: 2.5mm 4mm; text-align: left; font-family: 'Playfair Display', serif; }
+  td { padding: 2mm 4mm; border-bottom: 0.5pt solid #fed7aa; vertical-align: top; }
+  tr:nth-child(even) td { background: #fff7ed; }
+  tr:nth-child(odd) td { background: white; }
+
+  .info-box {
+    background: #fefce8;
+    border: 1pt solid #fde68a;
+    border-left: 4pt solid #f59e0b;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .info-box h4 { color: #92400e; margin-top: 0; }
+  .warning-box {
+    background: #fef2f2;
+    border: 1pt solid #fecaca;
+    border-left: 4pt solid #dc2626;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .warning-box h4 { color: #991b1b; margin-top: 0; }
+
+  .drink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0; }
+  .drink-item { background: #fff7ed; border: 1pt solid #fed7aa; border-radius: 6px; padding: 3mm 4mm; }
+  .drink-item h4 { font-size: 10.5pt; color: #c2410c; margin: 0 0 1mm; }
+  .drink-item p { font-size: 9.5pt; margin: 0; color: #4b5563; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&q=80" alt="Nepali food" onerror="this.style.display='none'">
+  <div class="cover-icon">🍱</div>
+  <h1>Food Guide<br>for Nepal</h1>
+  <p class="subtitle">Tastes, Traditions &amp; Table Etiquette</p>
+  <p class="tagline">Dal Bhat · Momo · Newari Feasts · Street Food · Drinks</p>
+  <div class="cover-footer">attractionsnepal.com</div>
+</div>
+
+<!-- PAGE 1: INTRODUCTION TO NEPALI CUISINE -->
+<div class="page">
+  <div class="section-header" style="page-break-before:avoid;">
+    <h2>Introduction to Nepali Cuisine</h2>
+    <p>A culinary landscape as diverse as the country's geography</p>
+  </div>
+
+  <p>Nepali cuisine is a rich tapestry woven from the country's extraordinary geographical and ethnic diversity. From the subtropical Terai plains in the south — where rice, lentils, and mustard oil form the backbone of daily cooking — to the high-altitude Himalayan communities of the north, where tsampa (roasted barley flour), yak butter tea, and dried meat sustain life through long winters, Nepal's food tells the story of its people and landscapes.</p>
+
+  <p>Nepal sits at a culinary crossroads between the Indian subcontinent and Tibet, absorbing influences from both while maintaining a distinct identity. The spice palette is gentler and more aromatic than the fiery curries of South India, with turmeric, cumin, coriander, fenugreek, and the uniquely Nepali timur pepper (a relative of Sichuan pepper) appearing in nearly every kitchen. Mustard oil is the cooking fat of choice in the hills and Terai, lending a pungent, earthy quality to fried dishes that is unmistakably Nepali.</p>
+
+  <p>Food in Nepal is deeply social. Meals are shared events, hospitality is expressed through generosity at the table, and refusing food offered by a host is considered discourteous. The phrase <em>"Bhojan khanus"</em> ("Please eat") is one of the most commonly heard invitations in Nepali homes, and the expression of concern — <em>"Khana khanubhayo?"</em> ("Have you eaten?") — serves as both a greeting and a measure of care.</p>
+
+  <h3>The Staple: Dal Bhat Power</h3>
+  <p>There is a saying in Nepal: <em>"Dal bhat power, 24 hour"</em> — and trekkers who have fuelled long mountain days on this humble combination know exactly why. Dal bhat (lentil soup and rice) is not merely a dish; it is the foundation of Nepali nutrition and culture. Eaten twice daily — once in the late morning and once in the evening — by the vast majority of Nepal's population, dal bhat provides complete protein, complex carbohydrates, and, when accompanied by the usual side dishes of tarkari (vegetable curry), achar (pickle), and papad, a remarkably balanced meal. Most restaurants in Nepal serve it as an all-you-can-eat proposition: finish your plate and the server immediately refills it, free of charge. For trekkers burning 3,000+ calories per day, this is an extraordinary value.</p>
+
+  <h3>Cooking Methods and Techniques</h3>
+  <ul>
+    <li><strong>Tarkari (braising/sautéing):</strong> The most common method for vegetables and meats, starting with a tempered spice base (tito in Nepali — the method of blooming whole spices in hot oil).</li>
+    <li><strong>Steaming:</strong> Momos (dumplings) and sel roti are steamed; bhuteko (stir-fried) variations also exist.</li>
+    <li><strong>Deep-frying:</strong> Bara (black lentil patties), pakoda, and various festival sweets are deep-fried.</li>
+    <li><strong>Fermenting:</strong> Gundruk (fermented leafy greens), sinki (fermented radish root), and various chutneys rely on fermentation.</li>
+    <li><strong>Slow-simmering:</strong> Lentil soups and meat stews are simmered for hours, developing deep, complex flavours.</li>
+  </ul>
+
+  <h3>Nepali Meal Times</h3>
+  <table>
+    <tr><th>Meal</th><th>Time</th><th>Typical Content</th></tr>
+    <tr><td>Bistari bihana (light breakfast)</td><td>6:00–8:00 AM</td><td>Chiya (tea), chiura (beaten rice), boiled eggs, or bread</td></tr>
+    <tr><td>Bihana khana (main breakfast/lunch)</td><td>9:00–11:00 AM</td><td>Full dal bhat with tarkari, achar, and papad</td></tr>
+    <tr><td>Afternoon snack</td><td>3:00–5:00 PM</td><td>Chiya and sel roti, or chura-dahi (beaten rice with yoghurt)</td></tr>
+    <tr><td>Bela khana (dinner)</td><td>6:00–8:00 PM</td><td>Full dal bhat again — identical to morning meal in most households</td></tr>
+  </table>
+</div>
+
+<!-- PAGE 2: MUST-TRY DISHES -->
+<div class="page">
+  <div class="section-header">
+    <h2>Must-Try Nepali Dishes</h2>
+    <p>Ten essential tastes to seek out during your Nepal journey</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>1. Dal Bhat</h3>
+    <p class="nepali">दाल भात — The National Dish</p>
+    <p>Lentil soup (dal) served over steamed rice (bhat), accompanied by tarkari (seasonal vegetable curry), achar (pickle — usually tomato, sesame, or fermented radish), and often a small portion of meat or egg. The dal varies by region and household — yellow masoor dal, green moong dal, black kalo dal, and soybean are all common. The key is the chauneko — whole spices (cumin seeds, dried chilli, asafoetida, fenugreek) tempered in mustard oil and poured sizzling over the lentils at serving time. Refills are always free. Price: NPR 200–600.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>2. Momo</h3>
+    <p class="nepali">मम — Nepal's Beloved Dumpling</p>
+    <p>Nepal's most beloved street food and restaurant staple: steamed or fried dumplings filled with spiced minced meat (buffalo, chicken, or pork) or vegetables. The dough is thin wheat flour, the filling seasoned with onion, ginger, garlic, coriander, and garam masala. Served with an intensely spiced tomato-sesame dipping sauce (achar) that ranges from mildly warm to blisteringly hot. Varieties include steam (phuleko momo), fried (kothey momo), soup momo (jhol momo), pan-fried (C-momo), and the increasingly popular tandoor momo. Price: NPR 150–350 for a plate of 8–10.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>3. Newari Feast (Samay Baji Set)</h3>
+    <p class="nepali">समय बाजी — Ritual Newari Platter</p>
+    <p>The Newari people of the Kathmandu Valley have one of South Asia's most sophisticated food cultures. A traditional samay baji platter comprises: chiura (beaten rice), baji (puffed rice), sapu mhicha (stuffed intestines), swan puka (lung-based dish), choila (spiced grilled buffalo meat), paun kwaa (black-eyed peas), aalu ko achar (potato pickle), egg, and dried fish. Accompanied by aila (Newari rice spirit) or rice beer. Eat with right hand only. Best experienced at a traditional Newari restaurant in Patan or Bhaktapur. Price: NPR 500–1,200.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>4. Thukpa</h3>
+    <p class="nepali">थुक्पा — Tibetan-Inspired Noodle Soup</p>
+    <p>A warming noodle soup that originated in Tibet but has become a staple across Nepal's mountain regions and cities. Thick wheat noodles swim in a rich broth flavoured with garlic, ginger, and chilli, loaded with vegetables (cabbage, carrot, spinach) and optionally meat. A spoonful of chilli oil and a squeeze of lemon juice finish it perfectly. On a cold trekking day above 4,000m, a bowl of thukpa is one of life's great pleasures. Thenthuk (hand-pulled noodles) and gyathuk (round noodles) are popular variations. Price: NPR 200–450.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>5. Sel Roti</h3>
+    <p class="nepali">सेल रोटी — Festival Ring Bread</p>
+    <p>A traditional ring-shaped, deep-fried bread made from a thick batter of ground rice, sugar, ghee, cardamom, and milk. Crispy on the outside, soft and slightly chewy within. Sel roti is made in vast quantities during Tihar and Dashain festivals but available year-round at street food stalls, especially in the morning. Eaten with dahi (yoghurt), tarkari, or pickle, it makes a satisfying breakfast. The technique of forming perfect circles in hot oil is a skill passed down through generations of Nepali women. Price: NPR 20–50 per piece.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>6. Yomari</h3>
+    <p class="nepali">योमरी — Newari Sweet Steamed Dumpling</p>
+    <p>A uniquely Newari delicacy traditionally made on Yomari Punhi (the full moon of December), though now available year-round. Yomari has a teardrop or cone-shaped rice flour shell filled with chaku (solidified sugarcane molasses) and ground sesame seeds, or occasionally khuwa (thickened milk) and nuts. The shell is made from a sticky rice flour dough that turns translucent when steamed. The taste is subtly sweet, nutty, and aromatic. Best experienced fresh from a Newari household or traditional restaurant in Bhaktapur or Patan's old quarter. Price: NPR 30–60 per piece.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>7. Chatamari</h3>
+    <p class="nepali">चतांमरी — Newari Rice Pizza</p>
+    <p>Often called the "Newari pizza," chatamari is a thin, crepe-like disc of ground rice flour cooked on a griddle and topped with minced meat (or vegetables), egg, and spices. Light, savoury, and slightly crispy at the edges, it makes an excellent snack or appetiser. The batter is made from soaked and ground rice mixed with water and salt, spread thin on a hot, oiled griddle. Toppings are added and the whole thing is covered briefly to cook through. Available at Newari restaurants throughout Kathmandu Valley. Price: NPR 120–300.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>8. Bara (Wo)</h3>
+    <p class="nepali">बरा / वो — Black Lentil Patty</p>
+    <p>A savoury patty made from ground black lentils (urad dal), soaked overnight and stone-ground to a thick batter, then deep-fried to a golden crust with a soft, custardy interior. Plain bara is delicious on its own; egg bara has an egg cracked on top and cooked into the surface; meat bara is topped with spiced ground buffalo. Commonly eaten as a breakfast or snack food in Newari communities. The crispy, protein-rich patty paired with tomato achar and fresh ginger is one of the Kathmandu Valley's great simple pleasures. Price: NPR 50–150.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>9. Aloo Tama</h3>
+    <p class="nepali">आलु तामा — Potato and Bamboo Shoot Curry</p>
+    <p>A distinctly Nepali curry that combines potato (aloo) with tama (fermented bamboo shoot), black-eyed peas, and sometimes kidney beans in a sour, tangy gravy. The fermented bamboo shoot gives the dish its characteristic slightly funky, sour depth that is unlike anything else. Seasoned with turmeric, cumin, chilli, and finished with fresh coriander. It is a deeply comforting dish, particularly enjoyed in the cold season, and is considered one of the most distinctly Nepali flavours — something you will not find outside Nepal or Nepali diaspora restaurants. Price: NPR 180–350.</p>
+  </div>
+
+  <div class="dish-card">
+    <h3>10. Gundruk</h3>
+    <p class="nepali">गुन्द्रुक — Fermented Leafy Greens</p>
+    <p>Nepal's most traditional preserved food: mustard, radish, or cauliflower leaves wilted, tightly packed, and fermented for 7–15 days to develop a sharp, sour, umami-rich flavour. Gundruk is then sun-dried and can be stored for months or years. Eaten as a side dish with dal bhat (gundruk ko jhol — gundruk soup), mixed into pickles (gundruk achar), or added to soups and curries. It is especially important in remote mountain communities where fresh vegetables are unavailable in winter. Deeply nourishing, high in lactic acid and probiotics, and an irreplaceable part of Nepali food identity. Price: NPR 50–200.</p>
+  </div>
+</div>
+
+<!-- PAGE 3: REGIONAL FOOD & RESTAURANTS -->
+<div class="page">
+  <div class="section-header">
+    <h2>Regional Food Variations</h2>
+    <p>How cuisine changes from the Terai to the mountains</p>
+  </div>
+
+  <h3>Kathmandu Valley (Newari Heartland)</h3>
+  <p>The Kathmandu Valley's dominant culinary tradition belongs to the Newari people, who have lived here for over 2,000 years. Newari cuisine is characterised by its use of buffalo meat (especially dried and smoked buffalo, called sukuti), an extraordinary variety of pickles (achars), fermented ingredients, and the ritual importance of food at festivals. Key dishes beyond those already described include: sukuti (dried buffalo jerky with spices), swan puka (stuffed lungs), sapu mhicha (stuffed small intestines), juju dhau (king curd — the famous thick, sweet yoghurt made in Bhaktapur), and kwati (a festival soup of nine sprouted beans eaten during Janai Purnima). The valley also reflects centuries of trade with Tibet, India, and China, resulting in a uniquely cosmopolitan food scene in Kathmandu city.</p>
+
+  <h3>Terai Region (Southern Plains)</h3>
+  <p>The Terai shares many food traditions with the neighbouring Indian states of Bihar and Uttar Pradesh. Rice cultivation dominates, and the cuisine relies heavily on rice, wheat (roti and paratha are common here rather than in the hills), mustard oil, and an elaborate spice palette including the Terai's characteristic heavy use of whole spices. The Maithili cuisine of Janakpur is particularly celebrated: fish from the Terai's rivers is smoked, dried, and curried; sweets like tilkut (sesame and jaggery sweet) and anarsa (rice flour and jaggery deep-fried sweet) are unique to the region. Tharu people of the western Terai have their own distinct food traditions including steamed rice dumplings and forest-gathered ingredients.</p>
+
+  <h3>Mountain Regions (Himalayan Belt)</h3>
+  <p>In the high Himalayas — Mustang, Manang, Solukhumbu, Humla — Tibetan food traditions dominate. The staple starch shifts from rice to tsampa (roasted barley flour), which is mixed with butter tea to form a thick dough called <em>paa</em>. Butter tea (<em>suja</em>) — tea brewed with salt and yak butter churned to a rich emulsion — is the default hot drink, consumed by the litre throughout the day. Thukpa noodle soups, <em>tingmo</em> (steamed bread), <em>sha phaley</em> (meat-filled fried bread), and yak meat in various preparations are the norm. Chhurpi (dried yak cheese) is the most common snack — an extremely hard, smoky cheese that must be sucked and chewed for hours.</p>
+
+  <h3>Where to Eat in Kathmandu</h3>
+
+  <h4>Thamel District</h4>
+  <div class="restaurant-card">
+    <h4>Momo Star</h4>
+    <p>One of Thamel's most popular momo restaurants — no frills, enormous portions, and consistently excellent buff momos. Order the jhol momo (soup momo) in the evening. Expect queues at peak times. Budget: NPR 150–300.</p>
+  </div>
+  <div class="restaurant-card">
+    <h4>OR2K</h4>
+    <p>A Thamel institution for vegetarian and Middle Eastern-influenced food, with cushion seating and a mellow vibe. Great for long evenings. Excellent falafel, hummus, and Israeli breakfast dishes alongside Nepali options. Budget: NPR 400–800.</p>
+  </div>
+  <div class="restaurant-card">
+    <h4>Fire and Ice Pizzeria</h4>
+    <p>Nepal's most famous pizza restaurant, beloved by returning trekkers craving Italian food. The pizzas are genuinely excellent — thin crust, quality ingredients. Long queues in peak season. Budget: NPR 600–1,200.</p>
+  </div>
+  <div class="restaurant-card">
+    <h4>Rosemary Restaurant</h4>
+    <p>One of the best all-rounders in Thamel: reliable Nepali set meals, continental options, and a pleasant garden seating area. Good for pre-trek carb-loading. Budget: NPR 350–700.</p>
+  </div>
+
+  <h4>Patan (Lalitpur)</h4>
+  <div class="restaurant-card">
+    <h4>Café du Temple (Patan Durbar Square)</h4>
+    <p>Outstanding rooftop views over Patan Durbar Square combined with excellent Nepali and continental food. The coconut prawn curry and Nepali thali are particularly good. A perfect lunch spot after exploring Patan's temples. Budget: NPR 500–1,000.</p>
+  </div>
+  <div class="restaurant-card">
+    <h4>Honacha</h4>
+    <p>The most authentic Newari dining experience in Patan — a local restaurant where you sit on mats at low tables and eat traditional Newari food including samay baji, choila, bara, and aila. No English menu; point at what others are eating. Budget: NPR 300–600.</p>
+  </div>
+
+  <h4>Bhaktapur</h4>
+  <div class="restaurant-card">
+    <h4>Cafe Nyatapola (Taumadhi Square)</h4>
+    <p>Set in a renovated traditional building overlooking the five-storey Nyatapola temple. Excellent juju dhau (Bhaktapur king curd), buff chilli, and Newari snacks. The view from the upper floor is spectacular. Budget: NPR 200–500.</p>
+  </div>
+  <div class="restaurant-card">
+    <h4>Marco Polo Restaurant</h4>
+    <p>A long-standing Bhaktapur favourite for tourists and locals alike. Good Newari set meals, decent continental options, and friendly service. The "Bhaktapur special thali" is a solid introduction to local food. Budget: NPR 400–800.</p>
+  </div>
+</div>
+
+<!-- PAGE 4: STREET FOOD, SAFETY & DRINKS -->
+<div class="page">
+  <div class="section-header">
+    <h2>Street Food Guide</h2>
+    <p>The best street eats and where to find them safely</p>
+  </div>
+
+  <p>Kathmandu and Pokhara have rich street food cultures, and eating from the right stalls is one of the great pleasures of visiting Nepal. The key is choosing busy stalls with high turnover — the food is freshest where the queue is longest. The following street foods are widely available and highly recommended:</p>
+
+  <table>
+    <tr><th>Street Food</th><th>What It Is</th><th>Where to Find</th><th>Price (NPR)</th></tr>
+    <tr><td>Pani puri / Gol gappa</td><td>Hollow crispy puffs filled with spiced water and chickpeas; an explosion of flavour in one bite</td><td>Street carts throughout Kathmandu; Ratna Park area especially good</td><td>20–60 for 6 pieces</td></tr>
+    <tr><td>Chatpate</td><td>Puffed rice tossed with vegetables, boiled egg, spices, and a splash of lemon. Nepal's most popular street snack.</td><td>Parks, street corners everywhere; Tundikhel area in Kathmandu</td><td>30–80</td></tr>
+    <tr><td>Kachila (Newari)</td><td>Raw spiced minced buffalo meat — a Newari delicacy eaten only when extremely fresh from a trusted stall</td><td>Newari neighbourhoods: Asan, Indra Chowk, Patan</td><td>100–200</td></tr>
+    <tr><td>Fried momo (kothey)</td><td>Pan-fried momos with crispy bottoms; more flavourful than plain steamed</td><td>Street carts near Indra Chowk, Baneshwor, Lagankhel</td><td>100–200 for 8</td></tr>
+    <tr><td>Samosa</td><td>Triangular fried pastry stuffed with spiced potato and peas; familiar South Asian staple</td><td>Everywhere; particularly good at Asan market area</td><td>30–60 each</td></tr>
+    <tr><td>Jeri (Jalebi)</td><td>Orange spiral deep-fried sweet made from fermented batter dipped in sugar syrup; best eaten hot and fresh</td><td>Morning sweet stalls, Asan, Indra Chowk</td><td>50–150 per 100g</td></tr>
+    <tr><td>Aloo sadeko</td><td>Boiled potato salad with green onion, sesame oil, chilli, lemon, and coriander. Simple, light, and addictive.</td><td>Tea stalls everywhere</td><td>50–100</td></tr>
+    <tr><td>Corn on the cob (makai)</td><td>Roasted corn rubbed with salt, chilli, and lemon. Perfect walking snack in winter.</td><td>Street carts near Boudhanath, Swayambhunath, tourist areas</td><td>30–60</td></tr>
+  </table>
+
+  <div class="section-header">
+    <h2>Food Safety Tips</h2>
+    <p>Stay healthy so you can keep eating</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>Water: The Most Important Safety Issue</h4>
+    <p>NEVER drink tap water anywhere in Nepal without purification. Municipal water supplies are contaminated with bacteria, viruses, and in some areas heavy metals. Always drink bottled water (ensure the seal is unbroken), or purify water yourself with a UV SteriPen, iodine tablets, or a quality filter such as a Sawyer Squeeze. This applies to ice cubes as well — avoid them unless you know they were made from purified water.</p>
+  </div>
+
+  <ul>
+    <li><strong>Eat hot food hot:</strong> Freshly cooked food from a busy kitchen is the safest. Avoid buffet food that has been sitting out.</li>
+    <li><strong>Choose restaurants with visible kitchens:</strong> Seeing the preparation reassures you about hygiene standards.</li>
+    <li><strong>Cooked over raw:</strong> Avoid raw salads and unpeeled fruit at restaurants of uncertain hygiene. Peel your own fruit or choose cooked options.</li>
+    <li><strong>Busy stalls are safer:</strong> High turnover means fresher ingredients and less time for bacterial growth.</li>
+    <li><strong>Probiotics before and during travel:</strong> Starting a probiotic supplement 1–2 weeks before arrival helps establish gut resilience against traveller's diarrhoea.</li>
+    <li><strong>Carry ORS sachets:</strong> Oral Rehydration Salts are the first treatment for any GI illness. Available at any pharmacy in Nepal for NPR 10–20 per sachet.</li>
+    <li><strong>Avoid meat at high altitude teahouses:</strong> Above 4,000m, the risk of improperly stored meat increases dramatically. Stick to vegetarian options (dal bhat, pasta, noodles, porridge) at high teahouses.</li>
+  </ul>
+
+  <div class="section-header">
+    <h2>Local Drinks of Nepal</h2>
+    <p>From morning tea to traditional spirits</p>
+  </div>
+
+  <div class="drink-grid">
+    <div class="drink-item">
+      <h4>Chiya (Milk Tea)</h4>
+      <p>Nepal's national drink — strong black tea simmered with whole milk, sugar, cardamom, ginger, and sometimes cinnamon. Richer and spicier than Indian chai. Drunk from small glasses, several times daily. Refuse only if you wish to offend your host. NPR 20–60 per glass.</p>
+    </div>
+    <div class="drink-item">
+      <h4>Tongba</h4>
+      <p>The traditional hot millet beer of the Rai and Limbu people of eastern Nepal. Fermented millet grains are packed into a wooden (or bamboo) cylinder called a tongba, hot water is poured over, and the liquid is sipped through a bamboo straw with a filter end. Refill with hot water repeatedly. Warming and mildly alcoholic. NPR 150–300.</p>
+    </div>
+    <div class="drink-item">
+      <h4>Raksi</h4>
+      <p>Traditional distilled Nepali spirit made from millet, rice, or wheat. Clear to slightly cloudy, with an earthy, slightly funky aroma. Drunk neat in small glasses, usually at festivals or special occasions. Strength varies enormously by batch — from 25–60% ABV. Aila is the Newari version, and tends to be stronger and more aromatic. NPR 50–150 per glass.</p>
+    </div>
+    <div class="drink-item">
+      <h4>Lassi</h4>
+      <p>Yoghurt-based drink blended with water and optionally sugar, salt, cardamom, or fruit. The sweet, thick lassi of Kathmandu is a cooling, nutritious snack. The famous Bhaktapur juju dhau (king curd) is too thick to drink but worth trying as a dessert. Available widely in Kathmandu Valley. NPR 80–200.</p>
+    </div>
+    <div class="drink-item">
+      <h4>Chang</h4>
+      <p>Traditional barley or millet beer fermented in homes throughout Nepal's hill and mountain communities. Cloudy, mildly effervescent, and tangy — somewhere between beer and kombucha in character. Offered to guests as a sign of welcome. Alcohol content is low (3–5%). Particularly common in Sherpa, Tamang, and Tibetan communities.</p>
+    </div>
+    <div class="drink-item">
+      <h4>Suja (Butter Tea)</h4>
+      <p>Tibetan-style tea brewed with salt, yak butter, and optionally milk, churned to a thick emulsion. An acquired taste for many Westerners — salty, fatty, and warming — but supremely practical at altitude, providing calories, warmth, and hydration simultaneously. Offered in every Tibetan and Sherpa household as the first act of hospitality. Never refuse the first cup.</p>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>Food Etiquette in Nepal</h2>
+    <p>Respect local customs and eat without offending</p>
+  </div>
+
+  <ul>
+    <li><strong>Right hand only:</strong> Always eat and pass food with your right hand. The left hand is considered unclean for food-related activities.</li>
+    <li><strong>Jutho (food pollution):</strong> Once you have taken a bite of food, the remaining portion is considered "jutho" (polluted by saliva) and should not be offered to others. Never bite from a shared piece of food; break off a portion first.</li>
+    <li><strong>Do not step over food:</strong> Stepping over food or cooking utensils is highly disrespectful. If food is on the floor, walk around it.</li>
+    <li><strong>Never touch food or a cooking pot with your feet.</strong></li>
+    <li><strong>Accept the first offering:</strong> When offered food or tea by a host, it is polite to accept even if only a small amount. Refusing the first offer of tea or food is impolite; you may decline refills more easily.</li>
+    <li><strong>Vegetarian respect:</strong> If eating with Hindu or Buddhist hosts, be sensitive about bringing meat products into their home without permission. Many devout households are entirely vegetarian.</li>
+    <li><strong>No beef:</strong> The cow is sacred in Nepal. Beef is not eaten by Hindu Nepalis and is not available in most restaurants outside of tourist areas. Do not request it in private homes.</li>
+    <li><strong>Wash hands before eating:</strong> Always wash hands before a meal. Most teahouses and restaurants have hand-washing facilities; carry hand sanitiser as backup.</li>
+    <li><strong>Say "Dherai mitho chha" (very delicious):</strong> Complimenting the food will delight your host and is always well received.</li>
+  </ul>
+
+  <h3>Vegetarian and Vegan Options</h3>
+  <p>Nepal is one of the most accommodating countries in Asia for vegetarians. The majority of the Hindu and Buddhist population observes regular vegetarian days (Ekadashi — the 11th day of each lunar fortnight — is typically meatless), and many families are entirely vegetarian. In the hills and mountains, the standard dal bhat is vegetarian by default. In restaurants, "veg" and "non-veg" options are clearly labelled. Vegans may find dairy harder to avoid — ghee, dahi, and milk are ubiquitous in Nepali cooking — but Buddhist communities (particularly in the mountains) often use less dairy and more plant-based ingredients.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 30 Places to Visit in Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 11pt; color: #1a1a1a; background: white; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #1e3a5f 0%, #1d4ed8 40%, #2563eb 70%, #3b82f6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-img { width: 100%; height: 90mm; object-fit: cover; border-radius: 8px; margin-bottom: 20mm; opacity: 0.85; }
+  .cover-icon { font-size: 60pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 36pt; color: white; font-weight: 900; line-height: 1.2; margin-bottom: 6mm; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .cover .subtitle { font-size: 14pt; color: #bfdbfe; font-weight: 300; margin-bottom: 10mm; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; color: #dbeafe; background: rgba(0,0,0,0.2); padding: 4mm 8mm; border-radius: 20px; }
+  .cover-footer { position: absolute; bottom: 15mm; font-size: 10pt; color: #93c5fd; letter-spacing: 2px; text-transform: uppercase; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 18mm 22mm 18mm;
+    page-break-before: always;
+    position: relative;
+  }
+  .page::after {
+    content: "attractionsnepal.com";
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #6b7280;
+    border-top: 0.5pt solid #bfdbfe;
+    padding-top: 3mm;
+    letter-spacing: 1px;
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, #1e3a5f, #1d4ed8);
+    color: white;
+    padding: 6mm 8mm;
+    border-radius: 6px;
+    margin-bottom: 6mm;
+    page-break-before: always;
+  }
+  .section-header:first-child { page-break-before: avoid; }
+  .section-header h2 { font-size: 20pt; font-weight: 700; }
+  .section-header p { font-size: 10pt; color: #bfdbfe; margin-top: 1mm; }
+
+  h3 { font-size: 13pt; color: #1d4ed8; margin: 5mm 0 2mm; }
+  h4 { font-size: 11pt; color: #1e40af; margin: 3mm 0 1mm; }
+  p { line-height: 1.7; margin-bottom: 3mm; color: #374151; }
+
+  .place-card {
+    border: 1pt solid #bfdbfe;
+    border-left: 4pt solid #1d4ed8;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 5mm;
+    background: #eff6ff;
+    page-break-inside: avoid;
+  }
+  .place-num {
+    display: inline-block;
+    background: #1d4ed8;
+    color: white;
+    width: 7mm;
+    height: 7mm;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 7mm;
+    font-size: 8.5pt;
+    font-weight: 700;
+    margin-right: 2mm;
+    vertical-align: middle;
+  }
+  .place-card h3 { display: inline; font-size: 13pt; vertical-align: middle; border: none; margin: 0; padding: 0; }
+  .place-meta { display: flex; gap: 4mm; margin: 2mm 0; flex-wrap: wrap; }
+  .meta-badge {
+    font-size: 8pt;
+    padding: 0.5mm 2.5mm;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .meta-badge.season { background: #dbeafe; color: #1e40af; }
+  .meta-badge.transport { background: #dcfce7; color: #166534; }
+  .meta-badge.tip { background: #fef9c3; color: #854d0e; }
+  .place-desc { font-size: 10pt; margin: 2mm 0 1mm; color: #374151; line-height: 1.6; }
+  .place-tip { font-size: 9.5pt; color: #92400e; background: #fefce8; border-left: 3pt solid #f59e0b; padding: 1.5mm 3mm; margin-top: 2mm; border-radius: 0 4px 4px 0; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { page-break-before: always; }
+    .place-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1200&q=80" alt="Nepal landscape" onerror="this.style.display='none'">
+  <div class="cover-icon">📍</div>
+  <h1>Top 30 Places<br>to Visit in Nepal</h1>
+  <p class="subtitle">The Ultimate Destination Guide</p>
+  <p class="tagline">Temples · Mountains · Lakes · Cities · Wildlife Parks</p>
+  <div class="cover-footer">attractionsnepal.com</div>
+</div>
+
+<!-- PAGE 1: PLACES 1–10 -->
+<div class="page">
+  <div class="section-header" style="page-break-before:avoid;">
+    <h2>Sacred Sites &amp; Kathmandu Valley</h2>
+    <p>Places 1–10: The essential cultural and spiritual heart of Nepal</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">1</span><h3>Pashupatinath Temple, Kathmandu</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Taxi/walk from Thamel (30 min)</span>
+    </div>
+    <p class="place-desc">The most sacred Hindu temple in Nepal and one of the most important Shiva shrines in the world, Pashupatinath sits on the banks of the Bagmati River in eastern Kathmandu. The main pagoda-style temple, with its golden roof and silver doors, dates to the 5th century AD and is off-limits to non-Hindus, but the surrounding complex of 518 smaller temples, shrines, ashrams, and cremation ghats can be freely explored. The ghats on the Bagmati are active cremation sites where Hindu funeral rites are performed openly — a profoundly moving and frank encounter with the cycle of life and death. Sadhus (holy men) dressed in saffron with painted faces are usually present near the main temple.</p>
+    <p class="place-tip">Tip: Visit at dawn for the most atmospheric experience, or in the late afternoon when cremations are often performed. Respect the grieving families and maintain a respectful distance at the ghats.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">2</span><h3>Boudhanath Stupa, Kathmandu</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–May</span>
+      <span class="meta-badge transport">Taxi from Thamel (20 min) or ring road bus</span>
+    </div>
+    <p class="place-desc">One of the largest Buddhist stupas in the world and a UNESCO World Heritage Site, Boudhanath is the spiritual heart of Nepal's Tibetan Buddhist community. The enormous white dome, topped with a gilded tower bearing the all-seeing eyes of Buddha, is surrounded by a ring of 147 niches containing prayer wheels and butter lamps. Circumambulating the stupa (clockwise) among thousands of Tibetan pilgrims, monks, and local Nepalis spinning prayer wheels and murmuring mantras is one of the most powerful spiritual experiences available to any visitor. The surrounding neighbourhood is full of monasteries, thangka painting workshops, meditation centres, and excellent Tibetan restaurants.</p>
+    <p class="place-tip">Tip: Visit in the early morning (5:30–7:00 AM) or evening (5:00–7:00 PM) when locals perform their circumambulation rituals in greatest numbers. The full moon day sees especially large gatherings.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">3</span><h3>Swayambhunath (Monkey Temple), Kathmandu</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Walk from Thamel (30 min) or taxi (10 min)</span>
+    </div>
+    <p class="place-desc">Perched on a hill west of Kathmandu, Swayambhunath is one of Nepal's oldest and most revered religious sites, with origins dating back over 2,500 years. The main stupa with its iconic all-seeing eyes surveys the entire Kathmandu Valley. The hilltop complex blends Hindu and Buddhist shrines, with monkeys (hence the nickname) roaming freely among the prayer flags, bells, and pilgrims. The 365-step climb to the top offers progressively expanding views of the valley, and the summit complex includes smaller stupas, a Harati temple, a Tibetan monastery, and numerous chaityas. At dusk, the gleaming stupa set against a backdrop of the Himalayan horizon is unforgettable.</p>
+    <p class="place-tip">Tip: Watch your belongings carefully — the resident monkeys are notorious thieves, particularly of sunglasses, cameras, and food. Hold onto bags tightly on the staircase approach.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">4</span><h3>Bhaktapur Durbar Square</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Apr</span>
+      <span class="meta-badge transport">Bus from Kathmandu (NPR 25, 1 hour) or taxi (NPR 600–800)</span>
+    </div>
+    <p class="place-desc">Bhaktapur — "City of Devotees" — is the best-preserved of the three medieval Newari cities in the Kathmandu Valley and arguably the most beautiful. The Durbar Square complex contains the 55-Window Palace, the Golden Gate (considered the finest example of repoussé art in Nepal), the Taleju Bhawani temple, and dozens of smaller shrines and courtyards. The adjacent Taumadhi Square holds the magnificent five-storey Nyatapola Temple, the tallest pagoda in Nepal. The entire old city of Bhaktapur is a living museum of Newari architecture, craft, and tradition — potters work clay in the traditional pottery square, women weave on hand looms, and festival life continues largely as it has for centuries.</p>
+    <p class="place-tip">Tip: Entry to Bhaktapur Durbar Square costs USD 15 for foreigners. The ticket covers multiple sites in the old city. Spend a full day here — rush through and you'll miss the detail.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">5</span><h3>Kathmandu Durbar Square (Hanuman Dhoka)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Walking distance from Thamel (15 min)</span>
+    </div>
+    <p class="place-desc">The historic heart of ancient Kathmandu, Hanuman Dhoka Durbar Square was the royal palace complex of the Malla kings and later the Shah dynasty. The square was significantly damaged in the 2015 earthquake but reconstruction is ongoing. Key attractions include the old Royal Palace (Hanuman Dhoka), the Kumari Chowk housing the living goddess Kumari, the Taleju Temple (open to non-Hindus only during Indra Jatra), and the Kasthamandap — the structure that gave Kathmandu its name. The square buzzes with activity: vendors, pilgrims, guides, students, and tourists all share the historic space. The area around Indra Chowk and Asan market adjacent to the square is excellent for local shopping.</p>
+    <p class="place-tip">Tip: A licensed local guide dramatically enhances the experience here — the history and iconography is complex. Hire one at the square entrance for NPR 500–1,500 for a 2-hour tour.</p>
+  </div>
+</div>
+
+<!-- PAGE 2: PLACES 6–15 -->
+<div class="page">
+  <div class="section-header">
+    <h2>Patan, Pokhara &amp; Mountain Gateways</h2>
+    <p>Places 6–15</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">6</span><h3>Patan Durbar Square (Lalitpur)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Apr</span>
+      <span class="meta-badge transport">Bus from Kathmandu (NPR 20) or taxi (NPR 300–400)</span>
+    </div>
+    <p class="place-desc">Patan is the city of fine arts — its Durbar Square houses the densest concentration of temples and pagodas in the Kathmandu Valley, and arguably in all of Nepal. The Krishna Mandir (1636), built entirely of stone in the Shikhara style, is a masterpiece. The Patan Museum within the old Royal Palace is the finest museum in Nepal, with superb displays of bronze statuary, religious art, and architectural history. Unlike Bhaktapur, Patan is a thriving city, and its old quarter around Kumbheshwar (a five-storey temple) and Mahaboudha is filled with metalworking workshops, galleries, and excellent restaurants. The UNESCO conservation efforts here are among the most successful in South Asia.</p>
+    <p class="place-tip">Tip: Visit the Patan Museum (NPR 500 entry) — it is genuinely world-class and puts everything you see in the square into context. Allow 2 hours for the museum alone.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">7</span><h3>Pokhara Lakeside</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–Apr</span>
+      <span class="meta-badge transport">Fly from Kathmandu (25 min) or tourist bus (6–7 hours)</span>
+    </div>
+    <p class="place-desc">Pokhara is Nepal's tourism capital and the most relaxed city in the country. The Lakeside (Baidam) area stretches along the eastern shore of Phewa Lake, lined with restaurants, cafés, bookshops, trekking gear outlets, and a broad promenade. The backdrop is extraordinary: on clear mornings, the Annapurna range — Machhapuchhre (Fish-tail), Annapurna I, II, III, IV, and Hiunchuli — rises directly above the lake. Pokhara serves as the gateway to the Annapurna region treks and offers a wide range of adventure activities: paragliding from Sarangkot hill, white-water rafting on the Seti and Kali Gandaki rivers, zip-lining, and mountain biking. The city also has excellent museums, caves (Mahendra Gufa), and waterfalls (Davis Falls / Patale Chhango).</p>
+    <p class="place-tip">Tip: Wake before dawn and take a boat out on Phewa Lake — the pre-sunrise reflection of the Annapurna range on the still lake is one of the most magical sights in Nepal. Boats cost NPR 500–800 per hour.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">8</span><h3>Phewa Lake, Pokhara</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Walk from Lakeside; boats from the main ghat</span>
+    </div>
+    <p class="place-desc">Phewa Lake is Nepal's second-largest lake and the centrepiece of Pokhara's tourism scene. The 4.43 square kilometre lake reflects the Annapurna massif on clear mornings, creating one of Nepal's most photographed vistas. At the lake's centre is the small island of Tal Barahi, home to an important Hindu temple of the same name. Wooden boats and pedal boats are available for hire, and kayaking is popular. The southern shore of the lake, across from the busy Lakeside strip, is tranquil and relatively undeveloped, with walking trails through forest to the World Peace Pagoda viewpoint above.</p>
+    <p class="place-tip">Tip: Hire a boat in the late afternoon, row across to the quiet south shore, and hike up to the World Peace Pagoda for sunset views over the lake and mountains. Budget 2–3 hours for this loop.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">9</span><h3>World Peace Pagoda, Pokhara</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Feb–Apr</span>
+      <span class="meta-badge transport">Boat across Phewa Lake + 45-min hike, or taxi + hike</span>
+    </div>
+    <p class="place-desc">Built by the Japanese Buddhist Nipponzan-Myohoji order in 1996, the gleaming white Shanti Stupa (World Peace Pagoda) sits on a hilltop south of Pokhara at 1,113m altitude. Four golden Buddha statues face the cardinal directions, and the panoramic view from the site encompasses the entire Annapurna range, Phewa Lake shimmering below, and the Pokhara valley spread out in all directions. The peaceful, well-maintained hilltop is a perfect place to sit quietly and absorb the scale of the Himalaya. The approach hike from the lakeshore through forest and past a small monastery takes approximately 45 minutes.</p>
+    <p class="place-tip">Tip: The pagoda is ideal for both sunrise and sunset. Sunrise reveals the best mountain views; sunset paints the lake golden. Check weather forecasts — clear mornings in October and November are the most reliable.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">10</span><h3>Annapurna Base Camp (4,130m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Start from Nayapul (bus from Pokhara)</span>
+    </div>
+    <p class="place-desc">The Annapurna Base Camp trek leads into one of the world's great mountain amphitheatres — the Annapurna Sanctuary — completely enclosed by a ring of peaks: Annapurna I (8,091m), Machhapuchhre (6,993m), Hiunchuli, Gangapurna, and Annapurna South. Standing at base camp surrounded by these walls of ice and rock, with the silence broken only by avalanches calving off the upper glaciers, is an experience of genuine awe. The 7–12 day trek passes through Gurung villages, rhododendron forests, and the famous hot springs at Jhinu Danda, making it one of Nepal's most varied and rewarding routes.</p>
+    <p class="place-tip">Tip: The Annapurna Sanctuary is a funnel-shaped valley prone to rapid weather changes and avalanche risk in winter. Never attempt the final approach to ABC in heavy snowfall. Always check conditions with local guides.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">11</span><h3>Everest Base Camp (5,364m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Fly Kathmandu–Lukla (35 min), then 8–10 days trekking</span>
+    </div>
+    <p class="place-desc">The world's most famous trek destination — reaching the base of the highest mountain on Earth. The 14-day round trip from Lukla passes through the Khumbu valley's Sherpa heartland, ancient monasteries at Tengboche, the bustling mountain town of Namche Bazaar, and the dramatic moraine of the Khumbu Glacier before arriving at the boulder-strewn base camp at 5,364m. In climbing season (April–May), Base Camp is a city of coloured tents. The Kala Patthar viewpoint (5,545m) above Gorak Shep provides the finest accessible view of Everest's summit pyramid. The journey combines world-class mountain scenery with deep engagement with Sherpa culture and Buddhist heritage.</p>
+    <p class="place-tip">Tip: The Everest region is now requiring all trekkers to hire a licensed guide (regulation since April 2023). Book through a registered agency to ensure your guide is certified and insured.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">12</span><h3>Chitwan National Park</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar (dry season)</span>
+      <span class="meta-badge transport">Tourist bus from Kathmandu or Pokhara (5–6 hours)</span>
+    </div>
+    <p class="place-desc">Nepal's oldest and most visited national park, Chitwan is a UNESCO World Heritage Site and one of the most successful wildlife conservation stories in Asia. The 932 square kilometres of subtropical jungle, grassland, and riverine forest protect one of the last viable populations of the one-horned rhinoceros (approximately 700 individuals), as well as Bengal tigers, gharial and mugger crocodiles, Gangetic dolphins, sloth bears, leopards, wild elephants, and over 600 bird species. Activities include elephant-back safaris (though critically now limited due to welfare concerns), jeep safaris, dugout canoe rides on the Rapti River, jungle walks with armed guides, and village cultural programmes. The gateway town of Sauraha has a wide range of accommodation from budget guesthouses to luxury lodges inside the park.</p>
+    <p class="place-tip">Tip: The best rhino sightings are from early morning jeep safaris (depart 6:00 AM) when the animals are active near water sources. Book a 2-night stay minimum to experience full dawn and dusk safaris.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">13</span><h3>Lumbini — Birthplace of the Buddha</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Fly to Bhairahawa (1 hour) + taxi; or tourist bus from Kathmandu (8 hours)</span>
+    </div>
+    <p class="place-desc">Lumbini, in Nepal's western Terai, is one of the most sacred sites in Buddhism — the birth site of Siddhartha Gautama (the Buddha) in 623 BC. The UNESCO World Heritage Site encompasses the sacred Maya Devi Temple (marking the exact birth spot), the Ashoka Pillar (erected by the Indian emperor Ashoka in 249 BC — the oldest dated monument in Nepal), the sacred pond where the Buddha's mother bathed before his birth, and an extraordinary monastic zone where over 30 countries have built Buddhist temples in their own national architectural styles — creating a global village of Buddhist traditions. The Mayadevi Temple contains the famous nativity sculpture and the marker stone indicating the precise birth spot. The atmosphere is serene, with monks and pilgrims from across the Buddhist world constantly present.</p>
+    <p class="place-tip">Tip: Rent a bicycle at the entrance to explore the sprawling monastic zone efficiently. The international monasteries from Myanmar, Tibet, Japan, Korea, Sri Lanka, and other nations are architecturally fascinating and all open to visitors.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">14</span><h3>Janakpur — City of Sita</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Fly from Kathmandu (30 min) or bus (6–7 hours)</span>
+    </div>
+    <p class="place-desc">Janakpur in the eastern Terai is one of Nepal's most important Hindu pilgrimage sites — the legendary birthplace of Sita, wife of Lord Rama, as described in the Ramayana. The magnificent Janaki Mandir (built 1911) is a grand, white Indo-Saracenic palace-temple dedicated to Sita, and draws hundreds of thousands of pilgrims annually, especially during Vivah Panchami (the celebration of Ram and Sita's marriage in November). The town retains a distinctly Maithili cultural identity, with women painting elaborate Mithila/Madhubani artworks on the walls of homes — an art form recognised by UNESCO. The town's numerous ponds (kund) are sacred bathing sites.</p>
+    <p class="place-tip">Tip: Visit during Vivah Panchami (November–December) for the spectacular Ram-Sita wedding festival when the town becomes a vast sea of devotees, lights, and celebration. Accommodation books out months in advance.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">15</span><h3>Muktinath Temple (3,760m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: May–Oct (accessible); Nov–Apr may have snow</span>
+      <span class="meta-badge transport">Fly to Jomsom from Pokhara (20 min) + jeep to Muktinath</span>
+    </div>
+    <p class="place-desc">Muktinath, set at 3,760m in the rain-shadow Mustang district, is one of the most sacred sites for both Hindus and Buddhists. For Hindus it is one of the 108 Divya Desam (Vishnu temples) and one of the Char Dham pilgrimage sites. For Buddhists it is an important Dakini temple associated with Vajrayana tradition. The complex includes the main Vishnu temple, a Buddhist gompa, 108 water spouts from which sacred spring water flows, and two eternal natural gas flames — considered miraculous manifestations of all five elements. The high-altitude desert landscape — eroded red cliffs, apple orchards, and ancient caravans — is unlike anything else in Nepal.</p>
+    <p class="place-tip">Tip: The 108 water spouts ritual requires pouring water from each one over your head while circling the complex — dress warmly, the water is cold even in summer. A jeep journey from Jomsom (15km of rough road) is the most common approach.</p>
+  </div>
+</div>
+
+<!-- PAGE 3: PLACES 16–30 -->
+<div class="page">
+  <div class="section-header">
+    <h2>Remote Gems &amp; Scenic Wonders</h2>
+    <p>Places 16–30: Off the beaten track and nature's finest</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">16</span><h3>Manakamana Temple</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Apr</span>
+      <span class="meta-badge transport">Bus from Kathmandu to Kurintar (2 hours) + cable car (10 min)</span>
+    </div>
+    <p class="place-desc">Perched at 1,302m above the Trisuli and Marsyangdi river confluence, Manakamana Temple is dedicated to Goddess Bhagwati (a form of Parvati/Durga) and is one of Nepal's most important Hindu pilgrimage sites. Devotees believe the goddess fulfils wishes, and the temple draws hundreds of thousands of pilgrims annually. The journey by cable car from Kurintar is itself memorable — the gondola rises steeply above the river gorge through dense forest. The temple complex has superb views of the Ganesh Himal range. Animal sacrifice is part of the ritual practice here; visitors should be prepared for this traditional aspect of Nepali Hinduism.</p>
+    <p class="place-tip">Tip: Weekends and festival days see very long queues for the cable car (1–2 hours wait). Visit on a weekday morning to avoid the crowds. The cable car runs 9:00 AM–5:00 PM.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">17</span><h3>Gosaikunda Lake (4,380m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Apr–Jun, Sep–Nov</span>
+      <span class="meta-badge transport">Bus from Kathmandu to Dhunche (4–5 hours) + 2-day trek</span>
+    </div>
+    <p class="place-desc">A sacred alpine lake set among the barren high ridges of Langtang National Park, Gosaikunda is revered in both Hinduism and Buddhism. According to Hindu mythology, Shiva created the lake to quench his thirst after drinking poison to save the universe. During the full moon of Shravan (July–August), hundreds of thousands of pilgrims make the arduous trek to bathe in the sacred waters during Janai Purnima. The lake's deep blue waters, surrounded by snow-dusted peaks and prayer flags, have an intense stillness. The trail passes through oak and rhododendron forests and the high ridge of Laurebina La (4,610m) before descending to the lake.</p>
+    <p class="place-tip">Tip: Do not attempt Gosaikunda in winter (December–February) — the trail above 3,500m is covered in deep snow and potentially fatal for unprepared trekkers. Always hire a guide for this route.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">18</span><h3>Rara Lake (3,962m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Apr–Jun, Sep–Nov</span>
+      <span class="meta-badge transport">Fly Kathmandu–Nepalgunj–Jumla, then 4–5 day trek</span>
+    </div>
+    <p class="place-desc">Nepal's largest lake at 10.8 square kilometres is arguably its most beautiful — a pristine expanse of luminous blue set in a bowl of pine and juniper forest in one of the most remote and least-visited corners of the country. Rara's colour shifts through the day from deep indigo to aquamarine to silver, and on calm days the surrounding forested hills reflect perfectly on its surface. The Rara National Park surrounding the lake protects red panda, musk deer, Himalayan black bear, and over 200 bird species. Because reaching Rara requires two domestic flight legs and several days of trekking, the entire experience is one of genuine remote wilderness — you will encounter very few other trekkers.</p>
+    <p class="place-tip">Tip: Budget for the remote area logistics — Jumla flights are frequently delayed or cancelled due to weather. Always have 2–3 buffer days. Bring all your own medications and snacks as supplies in Jumla are limited.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">19</span><h3>Bardia National Park</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Fly to Nepalgunj (1 hour) + 2 hour drive to Thakurdwara</span>
+    </div>
+    <p class="place-desc">Bardia is Nepal's largest national park (968 square kilometres) and the country's best-kept wildlife secret. Far less visited than Chitwan, Bardia offers a more authentic, less commercialised safari experience with significantly higher chances of Bengal tiger sightings. The park's population of around 125 tigers is among the most concentrated in South Asia. It also supports healthy numbers of one-horned rhinoceros, wild elephants, swamp deer (barasingha), mugger crocodiles, Gangetic dolphins in the Karnali River, and over 550 bird species. Jungle walks with armed naturalist guides are the most rewarding way to explore Bardia — slower and more intimate than jeep safaris.</p>
+    <p class="place-tip">Tip: Stay at least 3 nights to maximise tiger sighting chances. Early morning (6:00 AM) and late afternoon (3:00 PM) jeep safaris are best. The dry season (January–March) when vegetation is low and animals concentrate at water sources gives the best visibility.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">20</span><h3>Tansen (Palpa)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–May</span>
+      <span class="meta-badge transport">Bus from Pokhara (4–5 hours) or Kathmandu (8 hours)</span>
+    </div>
+    <p class="place-desc">Tansen is one of Nepal's most charming and overlooked hill towns, sitting at 1,375m in the Palpa district above the Kali Gandaki valley. The town preserves a remarkably intact Newari urban heritage — narrow cobbled lanes, traditional wooden-carved facades, and the imposing Tansen Durbar (palace, now used as government offices). Tansen is famous for its distinctive Dhaka fabric weaving and its unique Dhal (Newari musical ensemble). The surrounding countryside is excellent for day hikes to Palpa Bhagwati temple, Shreenagar hill viewpoint, and the dramatic Siddha Gufa cave. The town sees very few foreign tourists and offers a genuine window into traditional Nepali hill town life.</p>
+    <p class="place-tip">Tip: Visit the Amar Narayan Temple complex (17th century) in the early morning and the town's bustling local market in the late morning. Tansen's metalwork and Dhaka fabric shops are excellent for authentic, fairly-priced souvenirs.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">21</span><h3>Bandipur</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–May</span>
+      <span class="meta-badge transport">Bus from Kathmandu (4 hours) or Pokhara (2 hours) to Dumre, then taxi up (30 min)</span>
+    </div>
+    <p class="place-desc">Bandipur is a perfectly preserved hilltop Newari town at 1,030m, designated a heritage site and commercial vehicle-free zone. The flagstone-paved main street — Tundike — is lined with traditional Newari architecture in excellent condition: carved wooden windows, ornate doorways, and three-storey brick buildings housing family homes, teashops, and guesthouses. The town sits on a high ridge commanding panoramic views of the Annapurna and Ganesh Himal ranges — on clear mornings, the view from the Tundikhel (open ground) at the edge of town is extraordinary. Day hikes to Siddha Cave (one of South Asia's largest limestone caves), Khadga Devi temple, and the surrounding ridges are excellent.</p>
+    <p class="place-tip">Tip: Stay overnight to experience Bandipur at its most magical — in the evening, after tour groups leave, the town becomes a quiet, lamp-lit Newari village. The dawn mountain views from the Tundikhel before 7:00 AM are exceptional.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">22</span><h3>Nagarkot</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Dec, Feb–Mar</span>
+      <span class="meta-badge transport">Taxi from Kathmandu (1.5 hours, NPR 1,500–2,000)</span>
+    </div>
+    <p class="place-desc">Nagarkot at 2,175m east of Kathmandu is Nepal's most popular sunrise viewpoint — and justifiably so. On clear days, the panorama extends from the Langtang range in the west to the Everest group in the east, including Manaslu, Ganesh Himal, Dorje Lakpa, Langtang Lirung, Gauri Shankar, Numbur, Sagarmatha (Everest), Lhotse, and Makalu — a staggering sweep of the Himalayan horizon. The small hill station has numerous lodges and resorts, many with mountain-facing terraces. Day hikes from Nagarkot to Dhulikhel through forest and Thangmi villages are excellent.</p>
+    <p class="place-tip">Tip: Book accommodation with a mountain-facing room in advance, particularly for October and November. The best views are from lodges at the top of the hill. Set an alarm for sunrise (approximately 6:00–6:30 AM in autumn).</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">23</span><h3>Dhulikhel</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Mar</span>
+      <span class="meta-badge transport">Bus from Kathmandu (1.5 hours, NPR 40) or taxi</span>
+    </div>
+    <p class="place-desc">Dhulikhel is a charming hill town 30km east of Kathmandu on the Arniko Highway, combining an authentic Newari old quarter with superb views of the Himalaya from Langtang to Kanchenjunga. Less touristy than Nagarkot while offering equally impressive mountain panoramas, Dhulikhel's old town has several well-preserved traditional streets, the Harisiddhi and Bhagwati temples, and a pleasant hilltop viewpoint above town. The town serves as a starting point for day hikes to Namobuddha — a small Buddhist monastery complex 12km away that enshrines ancient relics and has a magical forested setting.</p>
+    <p class="place-tip">Tip: The Dhulikhel–Namobuddha–Panauti day hike is one of the finest near-Kathmandu walks, taking 6–7 hours through rice terraces, forest, and traditional villages. Hire a local guide for NPR 800–1,200.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">24</span><h3>Ilam &amp; Ilam Tea Gardens</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Mar–May (spring flush), Oct–Nov</span>
+      <span class="meta-badge transport">Fly to Bhadrapur (1 hour) + bus (3 hours); or long bus from Kathmandu (12+ hours)</span>
+    </div>
+    <p class="place-desc">Ilam in Nepal's far eastern hills is the heart of Nepal's tea industry — gently rolling green hills carpeted in terraced tea gardens, with the Kanchenjunga range visible to the north on clear days. The cool, mist-wreathed landscape is entirely unlike the rest of Nepal and more reminiscent of Darjeeling just across the border. Tea factory tours, tea garden walks, and tasting sessions are available at several estates. The town of Ilam itself is a pleasant Nepali hill town with excellent local restaurants serving fresh trout and the region's famous milk tea (the milk from Ilam's cows is particularly rich). Antu Danda viewpoint near Ilam offers extraordinary sunrise views of Kanchenjunga.</p>
+    <p class="place-tip">Tip: Visit during March–May for the first flush (spring harvest) when the garden scenery is at its greenest and the tea at its most delicate. Stay at one of the homestays within the tea gardens for the full immersion experience.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">25</span><h3>Phoksundo Lake, Dolpo (3,611m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: May–Oct</span>
+      <span class="meta-badge transport">Fly Kathmandu–Nepalgunj–Juphal, then 2–3 day trek</span>
+    </div>
+    <p class="place-desc">Phoksundo is Nepal's deepest lake (145m) and arguably its most spectacular — a vivid turquoise jewel set in the dramatic Shey-Phoksundo National Park in the Dolpo district of far-western Nepal. The lake's extraordinary colour comes from mineral-rich glacial water and its great depth. The surrounding landscape is stark and beautiful: ochre and crimson cliffs, ancient Bon-influenced villages, and the snow-dusted peaks of the Kanjiroba Himal reflected in the lake's surface. Ringmo village on the lake's shore is one of the most isolated Tibetan Buddhist communities in Nepal. Peter Matthiessen's book "The Snow Leopard" describes a journey through this region.</p>
+    <p class="place-tip">Tip: Dolpo is a restricted area — you need a special permit (USD 500 for Lower Dolpo, USD 700 for Upper Dolpo per 10 days) and must travel with a licensed guide. Book well in advance as permits are limited.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">26</span><h3>Jomsom &amp; the Kali Gandaki Gorge</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May; Jun–Sep for rain-shadow</span>
+      <span class="meta-badge transport">Fly Pokhara–Jomsom (25 min) or trek Annapurna Circuit</span>
+    </div>
+    <p class="place-desc">Jomsom is the administrative centre of Mustang district and the gateway to the Kali Gandaki gorge — the world's deepest river gorge, cutting between the 8,167m Dhaulagiri and the 8,091m Annapurna massif. The town itself sits in a dramatic wind-blasted valley where afternoon winds regularly exceed 40km/h (flights operate in the morning only for this reason). The fossilised ammonite shells (saligrams) found in the riverbed of the Kali Gandaki are considered sacred by Hindus and are widely sold in the valley. Jomsom serves as the base for excursions to Kagbeni, Marpha (famous for apple orchards and brandy), and the Upper Mustang region beyond.</p>
+    <p class="place-tip">Tip: Morning flights to and from Jomsom are frequently cancelled due to afternoon winds. ALWAYS book early morning flights and have buffer days in your itinerary. The road from Beni to Jomsom is now navigable by jeep in dry season.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">27</span><h3>Ghandruk Village</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Drive from Pokhara to Kimche + 2-hour trek, or full day trek from Nayapul</span>
+    </div>
+    <p class="place-desc">Ghandruk is one of Nepal's most beautifully situated and best-preserved Gurung villages, sitting at 1,940m with a dramatic direct view of Machhapuchhre (Fish-tail Peak) and Annapurna South. The stone-paved lanes between traditional Gurung stone houses, the Gurung Museum, and the warmth of the local community make Ghandruk one of the most authentic and accessible cultural experiences near Pokhara. It sits at the junction of multiple trekking routes — to Annapurna Base Camp, Poon Hill, and Khopra Ridge — making it an ideal hub for multi-day treks. The community-based homestay programme here is one of Nepal's most successful, offering immersive cultural experiences with local families.</p>
+    <p class="place-tip">Tip: The Gurung Museum (NPR 200 entry) has excellent displays on Gurung culture, history, and the Gurkha military tradition. The sunrise view of Machhapuchhre from Ghandruk's Chomrong Tea House viewpoint is one of Nepal's finest accessible mountain panoramas.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">28</span><h3>Poon Hill (3,210m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Drive from Pokhara to Nayapul (1 hour) + 2 days trekking</span>
+    </div>
+    <p class="place-desc">Poon Hill is Nepal's most popular short-trek destination — and the pre-dawn climb to its observation tower for sunrise over the Annapurna and Dhaulagiri ranges is the most iconic mountain sunrise experience in the country. The short 3–4 day Ghorepani Poon Hill circuit from Nayapul passes through magnificent rhododendron forest (spectacular in March–April bloom) and the Magar and Gurung villages of Tikhedhunga, Ulleri, Ghorepani, and Tadapani. The 360-degree panorama from Poon Hill at sunrise, with Dhaulagiri, the Annapurna massif, Machhapuchhre, and Lamjung Himal all glowing in the first light, ranks among the world's great natural spectacles.</p>
+    <p class="place-tip">Tip: The trail is busy but manageable outside of peak season (late October–November). Start the final climb to Poon Hill summit at 4:30–5:00 AM to secure a good spot before sunrise. The hill can accommodate hundreds of visitors simultaneously.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">29</span><h3>Namche Bazaar (3,440m)</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Oct–Nov, Mar–May</span>
+      <span class="meta-badge transport">Fly to Lukla + 2 days trekking (19km)</span>
+    </div>
+    <p class="place-desc">Namche Bazaar, the gateway town of the Khumbu and the economic heart of the Sherpa community, is built in a remarkable natural amphitheatre on the steep valley walls of the Dudh Koshi gorge. The town climbs in tiers of stone houses, lodges, bakeries, gear shops, and restaurants up three sides of a horseshoe-shaped depression at 3,440m. The Saturday market — when Tibetan traders and Sherpa merchants gather to trade goods — is a centuries-old tradition that continues today. Above town, the Sagarmatha National Park Visitor Centre offers excellent displays on Khumbu ecology and mountaineering history. The Namche Monastery and the views toward Everest and Ama Dablam from the ridge above town are exceptional.</p>
+    <p class="place-tip">Tip: Plan a full rest day in Namche for acclimatisation. Use the day to hike up to the Everest View Hotel (3,880m) for your first view of Everest, visit the Sherpa Museum, explore the bakeries, and stock up on any gear you may have forgotten.</p>
+  </div>
+
+  <div class="place-card">
+    <span class="place-num">30</span><h3>Patan Museum, Lalitpur</h3>
+    <div class="place-meta">
+      <span class="meta-badge season">Best: Year-round</span>
+      <span class="meta-badge transport">Taxi from Kathmandu (30 min) or bus</span>
+    </div>
+    <p class="place-desc">The Patan Museum, housed in the restored 17th-century Sundari Chowk wing of the Patan Royal Palace, is widely considered the finest museum in Nepal and one of the finest museums of Asian art and culture in the world. Its collection of Newar bronzes, gilded images, stone sculptures, and woodcarvings — spanning 2,000 years of artistic tradition — is displayed in beautifully restored palace rooms with exceptional interpretive texts explaining Hindu and Buddhist iconography. The architecture itself is remarkable: intricately carved wooden windows, gilded roofing, and traditional brick courtyards. A visit here transforms your understanding of everything you see in Nepal's temples and shrines.</p>
+    <p class="place-tip">Tip: Allow 2–3 hours for a thorough visit. The audio guide is excellent and free with entry. Photography is permitted in most galleries. The museum café in the adjacent courtyard serves excellent coffee and light meals.</p>
+  </div>
+
+</div>
+</body>
+</html>

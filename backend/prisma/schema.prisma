@@ -271,3 +271,14 @@ model StoryTag {
 
   @@id([storyId, tagId])
 }
+
+// ─────────────────────────────────────────────
+// NEWSLETTER — email subscriber list
+// ─────────────────────────────────────────────
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  confirmed Boolean  @default(false)
+}

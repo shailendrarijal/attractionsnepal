@@ -4,6 +4,8 @@ import rehypeRaw from 'rehype-raw'
 import { useBlog } from '../hooks/useBlogs'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
+import AdBanner from '../components/AdBanner'
+import JsonLd from '../components/JsonLd'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80'
 
@@ -27,6 +29,23 @@ export default function BlogPage() {
     ? new Date(blog.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
     : null
 
+  const stripUndefined = (obj) => JSON.parse(JSON.stringify(obj))
+
+  const blogJsonLd = stripUndefined({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.seoDescription ?? blog.excerpt,
+    url: `https://attractionsnepal.com/blog/${blog.slug}`,
+    image: blog.heroImage ?? undefined,
+    datePublished: blog.publishedAt,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Attractions Nepal',
+      url: 'https://attractionsnepal.com',
+    },
+  })
+
   return (
     <>
       <PageSeo
@@ -35,6 +54,7 @@ export default function BlogPage() {
         image={blog.heroImage}
         canonicalPath={`/blog/${blog.slug}`}
       />
+      <JsonLd data={blogJsonLd} />
 
       {/* Hero */}
       <div className="relative h-64 sm:h-80 lg:h-[420px] bg-gray-900 overflow-hidden">
@@ -69,9 +89,15 @@ export default function BlogPage() {
           {blog.excerpt}
         </p>
 
+        {/* Top ad — before content */}
+        <AdBanner size="leaderboard" />
+
         <div className="prose prose-base lg:prose-lg max-w-none">
           <ReactMarkdown rehypePlugins={[rehypeRaw]}>{blog.content}</ReactMarkdown>
         </div>
+
+        {/* Mid ad — after content */}
+        <AdBanner size="rectangle" />
 
         {/* Related places */}
         {blog.relatedPlaceSlugs?.length > 0 && (

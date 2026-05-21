@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Culture in Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 11pt; color: #1a1a1a; background: white; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #4c1d95 0%, #6d28d9 40%, #7c3aed 70%, #8b5cf6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-img { width: 100%; height: 90mm; object-fit: cover; border-radius: 8px; margin-bottom: 20mm; opacity: 0.85; }
+  .cover-icon { font-size: 60pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 36pt; color: white; font-weight: 900; line-height: 1.2; margin-bottom: 6mm; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .cover .subtitle { font-size: 14pt; color: #ddd6fe; font-weight: 300; margin-bottom: 10mm; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; color: #ede9fe; background: rgba(0,0,0,0.2); padding: 4mm 8mm; border-radius: 20px; }
+  .cover-footer { position: absolute; bottom: 15mm; font-size: 10pt; color: #c4b5fd; letter-spacing: 2px; text-transform: uppercase; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 18mm 22mm 18mm;
+    page-break-before: always;
+    position: relative;
+  }
+  .page::after {
+    content: "attractionsnepal.com";
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #6b7280;
+    border-top: 0.5pt solid #ddd6fe;
+    padding-top: 3mm;
+    letter-spacing: 1px;
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, #4c1d95, #6d28d9);
+    color: white;
+    padding: 6mm 8mm;
+    border-radius: 6px;
+    margin-bottom: 6mm;
+    page-break-before: always;
+  }
+  .section-header:first-child { page-break-before: avoid; }
+  .section-header h2 { font-size: 20pt; font-weight: 700; }
+  .section-header p { font-size: 10pt; color: #ddd6fe; margin-top: 1mm; }
+
+  h3 { font-size: 14pt; color: #6d28d9; margin: 5mm 0 3mm; border-bottom: 1pt solid #ddd6fe; padding-bottom: 2mm; }
+  h4 { font-size: 12pt; color: #5b21b6; margin: 4mm 0 2mm; }
+  p { line-height: 1.7; margin-bottom: 3mm; color: #374151; }
+  ul, ol { margin: 2mm 0 4mm 6mm; }
+  li { line-height: 1.7; margin-bottom: 1.5mm; color: #374151; }
+
+  .ethnic-card {
+    border: 1pt solid #ddd6fe;
+    border-left: 4pt solid #6d28d9;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+    background: #f5f3ff;
+    page-break-inside: avoid;
+  }
+  .ethnic-card h4 { color: #5b21b6; margin: 0 0 1.5mm; font-size: 11.5pt; }
+  .ethnic-card p { margin: 0; font-size: 10pt; line-height: 1.6; }
+
+  .festival-card {
+    border: 1pt solid #ddd6fe;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+    background: #f5f3ff;
+    page-break-inside: avoid;
+  }
+  .festival-card h4 { color: #6d28d9; margin: 0 0 1.5mm; }
+  .festival-card .timing { font-size: 9pt; color: #7c3aed; font-style: italic; margin-bottom: 1.5mm; }
+  .festival-card p { margin: 0; font-size: 10pt; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 10pt; }
+  th { background: #6d28d9; color: white; padding: 2.5mm 4mm; text-align: left; font-family: 'Playfair Display', serif; }
+  td { padding: 2mm 4mm; border-bottom: 0.5pt solid #ddd6fe; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f3ff; }
+  tr:nth-child(odd) td { background: white; }
+
+  .info-box {
+    background: #fefce8;
+    border: 1pt solid #fde68a;
+    border-left: 4pt solid #f59e0b;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .info-box h4 { color: #92400e; margin-top: 0; }
+
+  .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin: 3mm 0; }
+  .dos { background: #f0fdf4; border: 1pt solid #bbf7d0; border-radius: 6px; padding: 4mm; }
+  .dos h4 { color: #15803d; margin: 0 0 2mm; }
+  .donts { background: #fef2f2; border: 1pt solid #fecaca; border-radius: 6px; padding: 4mm; }
+  .donts h4 { color: #dc2626; margin: 0 0 2mm; }
+  .dos li, .donts li { font-size: 9.5pt; margin-bottom: 1.5mm; }
+
+  .phrase-table td:first-child { font-weight: 600; color: #5b21b6; }
+  .phrase-table td:nth-child(2) { font-style: italic; color: #6d28d9; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" alt="Nepal culture" onerror="this.style.display='none'">
+  <div class="cover-icon">🏛️</div>
+  <h1>Introduction to<br>Culture in Nepal</h1>
+  <p class="subtitle">Peoples, Traditions &amp; Living Heritage</p>
+  <p class="tagline">Ethnic Groups · Festivals · Architecture · Language · Etiquette</p>
+  <div class="cover-footer">attractionsnepal.com</div>
+</div>
+
+<!-- PAGE 1: ETHNIC GROUPS -->
+<div class="page">
+  <div class="section-header" style="page-break-before:avoid;">
+    <h2>Nepal's Diverse Ethnic Groups</h2>
+    <p>Over 125 caste and ethnic groups speaking 123 languages</p>
+  </div>
+
+  <p>Nepal is one of the world's most ethnically and linguistically diverse nations. The 2011 census identified 125 distinct caste and ethnic groups and 123 living languages within a country roughly the size of England. This extraordinary diversity reflects Nepal's position as a meeting point of Indo-Aryan cultures from the south and Tibeto-Burman cultures from the north, with centuries of migration, trade, and intermarriage producing a uniquely complex social mosaic. Understanding Nepal's ethnic landscape is essential to understanding its culture, religion, food, music, architecture, and social life.</p>
+
+  <div class="ethnic-card">
+    <h4>Brahmin &amp; Chhetri (Hill Aryan Groups) — approx. 29% of population</h4>
+    <p>The Bahun (Brahmin) and Chhetri communities are the largest ethnic groups in Nepal's hills, historically occupying the top two positions in the Hindu caste hierarchy. Brahmins are the traditional priestly and scholarly class; Chhetris are the warrior-administrative class. Both groups speak Nepali as their mother tongue and observe orthodox Hindu traditions. They dominate Nepal's civil service, military, and professional sectors. Their cuisine centres on dal bhat with vegetable curries; many devout households are vegetarian or avoid certain meats.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Newar — approx. 5% of population (dominant in Kathmandu Valley)</h4>
+    <p>The indigenous people of the Kathmandu Valley, the Newars created the civilisation that produced Nepal's most celebrated art, architecture, and urban culture. Newar society is internally stratified by caste but united by the Newari (Nepal Bhasa) language and a rich tradition of festivals, music, craft, and cuisine. The valley's pagoda-style temples, exquisite bronze statuary, and intricate woodcarving are entirely products of Newar artisanship. The Newars are traditionally merchants, craftspeople, and farmers.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Tamang — approx. 5.8% of population</h4>
+    <p>The Tamang are the most numerous Tibeto-Burman group in Nepal, concentrated in the hills surrounding the Kathmandu Valley and in Langtang, Sindhupalchok, and Dolakha districts. Their name possibly derives from "horse soldier" (ta = horse, mang = soldier), reflecting their historical military role. Tamang culture centres on Tibetan Buddhism, with large monasteries, lamas, and elaborate thangka painting traditions. Traditional Tamang music — the damphu frame drum and traditional songs — is extraordinarily beautiful.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Gurung — approx. 2.4% of population</h4>
+    <p>The Gurung people inhabit the middle hills of the Annapurna and Manaslu regions, particularly around Pokhara, Lamjung, and Kaski districts. Renowned as soldiers (many serve in the British and Indian Gurkha regiments), the Gurungs have maintained a strong warrior tradition alongside their agricultural and pastoral livelihoods. Gurung religious practice uniquely blends Tibetan Buddhism with pre-Buddhist Bon shamanism. Their traditional circular stone houses, the Rodhi (community gathering house for young people), and their distinctive festivals make Gurung culture one of the most vibrant in Nepal.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Magar — approx. 7.1% of population</h4>
+    <p>The Magar are Nepal's third-largest ethnic group by population, spread across the mid-hills of western and central Nepal. Like the Gurungs, many Magars have served in the Gurkha regiments for generations. Magar culture combines Tibetan Buddhist influence with strong animist traditions, and their traditional dances — particularly the Kaura and Maruni dances — are some of Nepal's finest. The Magar language (Tibeto-Burman family) has several dialects. Traditional Magar villages are characterised by their distinct architecture of stone and mud-plaster houses with slate roofs.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Rai &amp; Limbu (Kirat People) — approx. 2.8% and 1.5%</h4>
+    <p>The Rai and Limbu are the indigenous peoples of Nepal's eastern hills, collectively known as the Kirat, with a civilisation predating the arrival of Hindu and Buddhist traditions. Their own religion, Kirat Mundhum, centres on ancestor worship and oral traditions maintained by shamanic priests. Both groups are renowned as soldiers — the phrase "Ayo Gorkhali!" (Here come the Gurkhas!) originates from Kirat warriors. The eastern hills' distinctive culture includes the tongba (hot millet beer), unique festivals, and extraordinarily intricate traditional jewellery and clothing.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Sherpa — approx. 0.5% of population (influential far beyond their numbers)</h4>
+    <p>The Sherpa people of the Khumbu (Solukhumbu District) and other high-altitude areas of eastern Nepal are Tibetan Buddhist by religion and culture, having migrated from the Kham region of Tibet approximately 500 years ago. The name "Sherpa" means "people from the east" in Tibetan. Their extraordinary physiology — genetically adapted for high-altitude oxygen efficiency — has made them indispensable in Himalayan mountaineering since the first Everest expeditions in the 1920s. Today, Sherpa culture, with its gompas, mani walls, prayer flags, and vibrant festival traditions, is the most internationally recognised element of Nepali mountain culture.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Madhesi &amp; Tharu (Terai Communities)</h4>
+    <p>The Madhesi are the Indo-Aryan peoples of Nepal's southern Terai plains, closely related culturally and linguistically to the populations of Bihar and Uttar Pradesh in India. They speak Maithili, Bhojpuri, Awadhi, and other languages. The Tharu are the indigenous people of the Terai, believed to have lived in the malarial lowland forests for thousands of years and developed natural resistance to malaria. Their unique culture includes distinctive architecture (long communal houses), basket weaving, tattooing traditions, and harvest festivals. Tharu culture is most visible in Chitwan and Bardia districts.</p>
+  </div>
+</div>
+
+<!-- PAGE 2: FESTIVALS -->
+<div class="page">
+  <div class="section-header">
+    <h2>Major Festivals of Nepal</h2>
+    <p>A country that celebrates more festivals than any other</p>
+  </div>
+
+  <p>Nepal has more public holidays and festivals than virtually any other country on earth. The Newars of the Kathmandu Valley alone celebrate over 150 festivals annually, and across the country's diverse ethnic and religious communities, scarcely a week passes without some form of celebration. The following are the festivals most significant for visitors:</p>
+
+  <div class="festival-card">
+    <h4>Dashain (Vijaya Dashami)</h4>
+    <div class="timing">September–October (15 days; most important on the 10th day) | National holiday</div>
+    <p>Nepal's most important festival — a 15-day celebration honouring the goddess Durga's victory over the buffalo demon Mahishasura. Families travel from across Nepal and the world to their ancestral homes. The 10th day (Vijaya Dashami) involves elaborate rituals: elders place a tika (red paste) on younger family members' foreheads, give them jamara (sprouted barley seedlings), and offer blessings. Animal sacrifice (goat, buffalo) at Durga temples is central to the religious observance. Dashain brings Nepal to a standstill — offices close for 5–7 days, transport is overcrowded, and the atmosphere is one of joyful family reunion.</p>
+  </div>
+
+  <div class="festival-card">
+    <h4>Tihar (Deepawali / Festival of Lights)</h4>
+    <div class="timing">October–November (5 days) | National holiday</div>
+    <p>Nepal's second-greatest festival is a five-day celebration that honours crows, dogs, cows, oxen, and brothers in sequence — each day dedicated to a different being. The third day (Lakshmi Puja) is the most spectacular: oil lamps and fairy lights illuminate every home, business, and street, and Lakshmi (goddess of wealth) is invited into the home with lit pathways of marigold petals and rice flour rangoli patterns. Yama Panchak, the fifth day, involves sisters applying a special seven-colour tika to their brothers' foreheads in exchange for gifts. The festival transforms Kathmandu into a city of lights.</p>
+  </div>
+
+  <div class="festival-card">
+    <h4>Indra Jatra</h4>
+    <div class="timing">August–September (8 days) | Kathmandu Valley only</div>
+    <p>One of the Kathmandu Valley's most spectacular festivals, Indra Jatra celebrates the rain god Indra and the living goddess Kumari. The festival's highlight is the Kumari Jatra — the chariot procession of the living Kumari goddess through the streets of Kathmandu, drawn by hundreds of devotees while the head of state (formerly the king, now the President) receives her blessing. The erection of a 25-metre pine pole (yosin) in Basantapur marks the festival's start; Lakhe (demon) dances, Devi dance performances, and the display of giant bamboo poles draped with lights fill the evenings.</p>
+  </div>
+
+  <div class="festival-card">
+    <h4>Buddha Jayanti (Vesak)</h4>
+    <div class="timing">April–May (full moon of Baishakh) | National holiday</div>
+    <p>The celebration of the Buddha's birth, enlightenment, and death — all said to have occurred on the full moon day of the same month. Boudhanath Stupa in Kathmandu and Lumbini (the Buddha's birthplace) are the focal points, with massive gatherings of monks, pilgrims, and devotees from across the Buddhist world. Thousands of butter lamps are lit, monasteries hold special prayers and ceremonies, and the stupa at Boudhanath is newly whitewashed and decorated with coloured lights. A deeply moving experience in Nepal's most sacred Buddhist spaces.</p>
+  </div>
+
+  <div class="festival-card">
+    <h4>Lhosar (Tibetan New Year)</h4>
+    <div class="timing">February (date varies by ethnic group: Tamu Lhosar in January, Gyalpo Lhosar in February) | Major celebration</div>
+    <p>The Tibetan Buddhist New Year is celebrated by Sherpa, Tamang, Gurung, and other Tibeto-Burman communities with three days of festivities: elaborate monastery ceremonies, traditional costumes, masked (cham) dances at gompas, communal feasting, and fireworks. Thamel in Kathmandu hosts vibrant street celebrations for Lhosar, with processions of elaborately dressed community members. In Khumbu, Lhosar is one of the most important festivals of the Sherpa calendar.</p>
+  </div>
+
+  <div class="festival-card">
+    <h4>Holi (Festival of Colours)</h4>
+    <div class="timing">February–March (full moon of Falgun) | National holiday</div>
+    <p>The arrival of spring is celebrated with the throwing of coloured powder and water across Nepal, but most exuberantly in Kathmandu and the Terai. In the Kathmandu Valley, a ceremonial pole is erected in Basantapur (Luti Thwo) 8 days before Holi and brought down on the day. Tourists are enthusiastically included in the colour festivities — wear old clothes and protect cameras and phones. The Terai celebration (a day before the hills) involves intense, enthusiastic colour-throwing in every public space.</p>
+  </div>
+</div>
+
+<!-- PAGE 3: ARCHITECTURE, CLOTHING, LANGUAGE & ETIQUETTE -->
+<div class="page">
+  <div class="section-header">
+    <h2>Architecture, Clothing &amp; Language</h2>
+    <p>The physical and linguistic expressions of Nepali culture</p>
+  </div>
+
+  <h3>Traditional Architecture</h3>
+
+  <h4>Pagoda Style (Multi-tiered Temple)</h4>
+  <p>The pagoda architectural tradition originated in the Kathmandu Valley and spread from Nepal across Asia. The tiered temple form — with each level representing a different cosmic plane — is characterised by multiple sloping roofs of gilded or painted copper, intricate carved wooden struts (tunala) depicting erotic and mythological scenes (believed to repel lightning by embarrassing the thunder goddess), carved doorways and tympanums in gilded copper-repousse, and a high plinth of brick elevating the shrine above the secular world. The Nyatapola Temple in Bhaktapur (five storeys) and the Kasthamandap in Kathmandu are the finest examples.</p>
+
+  <h4>Shikhara Style (North Indian)</h4>
+  <p>The shikhara (meaning "mountain peak") style is characterised by a tall, tapering tower with curvilinear profile, borrowed from North Indian Hindu temple architecture. The Krishna Mandir in Patan Durbar Square (1636) is Nepal's finest example — built entirely of stone with 21 shikhara towers depicting scenes from the Mahabharata and Ramayana on its base friezes. This style is typically used for Vishnu temples.</p>
+
+  <h4>Stupa</h4>
+  <p>The Buddhist stupa is a hemispherical dome representing the Buddha's mind and the cosmos. The classic Nepali stupa form — exemplified by Boudhanath and Swayambhunath — features a whitewashed dome (anda) on a raised platform (harmika), topped by a square tower (harmika) bearing the all-seeing eyes of Buddha, a tapering spire of 13 rings representing the 13 stages to enlightenment, and a parasol (chhatra) at the apex. Prayer wheels are embedded in the base, and devotees circumambulate clockwise.</p>
+
+  <h3>Traditional Clothing</h3>
+
+  <div class="ethnic-card">
+    <h4>Daura-Suruwal (National Dress for Men)</h4>
+    <p>The daura-suruwal is Nepal's national dress for men — a double-breasted, wrap-front shirt (daura) with a high collar and no buttons (tied with strings), worn with fitted trousers (suruwal) that are loose at the hip and narrow at the ankle. Traditionally made in white cotton for everyday wear and in Dhaka fabric for formal occasions. Always paired with a topi (traditional cap) for official and formal settings. Wearing a topi in government offices is often expected of Nepali men.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Gunyu Cholo (Traditional Dress for Women)</h4>
+    <p>The gunyu cholo is the traditional dress of Nepali hill women — a wrapped skirt (gunyu) of heavy silk or cotton, secured with a wide sash, worn with a fitted blouse (cholo) with embroidered edges. The fabric is typically red and gold for married women and young girls, with specific colours and patterns indicating marital status, ethnic community, and occasion. Elaborate gold jewellery — necklaces (tilhari, pote), nose rings (bulaki), and earrings — completes the traditional ensemble.</p>
+  </div>
+
+  <div class="ethnic-card">
+    <h4>Dhaka Fabric</h4>
+    <p>Dhaka is Nepal's most distinctive handwoven fabric — produced on hand looms in Tansen (Palpa) and the eastern hills districts of Taplejung and Dhankuta. The geometric patterns are woven in cotton with supplementary weft threads creating raised designs in vivid colours. Each producing region has distinctive patterns. Dhaka is used for topis (caps), shawls, kurta suits, bags, and home furnishings. Authentic hand-woven Dhaka (distinguished from machine-made imitations by its slight irregularity and heavier hand) is among Nepal's finest artisanal products.</p>
+  </div>
+
+  <h3>Nepali Language Basics</h3>
+  <p>Nepali (also called Khas Kura or Gorkhali) is the official language of Nepal, spoken as a first language by approximately 45% of the population and understood by the vast majority as a lingua franca. It is an Indo-Aryan language related to Hindi, written in Devanagari script. Learning even a few words of Nepali is enormously appreciated by locals and will transform your experience.</p>
+
+  <table class="phrase-table">
+    <tr><th>English</th><th>Nepali</th><th>Pronunciation</th></tr>
+    <tr><td>Hello / Namaste (greeting)</td><td>नमस्ते</td><td>Na-mas-tay</td></tr>
+    <tr><td>Thank you</td><td>धन्यवाद</td><td>Dhan-ya-baad</td></tr>
+    <tr><td>How are you?</td><td>तपाईंलाई कस्तो छ?</td><td>Ta-paai-lai kas-to chha?</td></tr>
+    <tr><td>I am fine</td><td>म ठीक छु</td><td>Ma theek chhu</td></tr>
+    <tr><td>What is your name?</td><td>तपाईंको नाम के हो?</td><td>Ta-paai-ko naam ke ho?</td></tr>
+    <tr><td>My name is…</td><td>मेरो नाम … हो</td><td>Me-ro naam … ho</td></tr>
+    <tr><td>Yes</td><td>हो / छ</td><td>Ho / Chha</td></tr>
+    <tr><td>No</td><td>होइन / छैन</td><td>Ho-ina / Chhaina</td></tr>
+    <tr><td>Please</td><td>कृपया</td><td>Krip-a-ya</td></tr>
+    <tr><td>Excuse me / Sorry</td><td>माफ गर्नुहोस्</td><td>Maaf gar-nu-hos</td></tr>
+    <tr><td>How much?</td><td>कति पर्छ?</td><td>Ka-ti par-chha?</td></tr>
+    <tr><td>Too expensive</td><td>धेरै महँगो</td><td>Dhe-rai ma-han-go</td></tr>
+    <tr><td>Delicious!</td><td>धेरै मिठो!</td><td>Dhe-rai mi-tho!</td></tr>
+    <tr><td>Where is…?</td><td>… कहाँ छ?</td><td>… ka-haan chha?</td></tr>
+    <tr><td>I don't understand</td><td>मलाई थाहा छैन</td><td>Ma-lai thaa-ha chhaina</td></tr>
+    <tr><td>Water</td><td>पानी</td><td>Paa-ni</td></tr>
+    <tr><td>Food</td><td>खाना</td><td>Khaa-na</td></tr>
+    <tr><td>Beautiful</td><td>सुन्दर</td><td>Sun-dar</td></tr>
+    <tr><td>Slowly / Carefully</td><td>बिस्तारै</td><td>Bis-taa-rai</td></tr>
+    <tr><td>Goodbye</td><td>फेरि भेटौँला</td><td>Pher-i bhe-tau-laa</td></tr>
+  </table>
+
+  <div class="section-header">
+    <h2>Do's and Don'ts for Visitors</h2>
+    <p>Essential etiquette for respectful and rewarding travel in Nepal</p>
+  </div>
+
+  <div class="dos-donts">
+    <div class="dos">
+      <h4>DO</h4>
+      <ul>
+        <li>Greet people with "Namaste" and a slight bow, palms pressed together</li>
+        <li>Remove shoes before entering temples, monasteries, and private homes</li>
+        <li>Dress modestly when visiting religious sites (shoulders and knees covered)</li>
+        <li>Walk clockwise around stupas, mani walls, and chortens</li>
+        <li>Ask permission before photographing people, especially in religious contexts</li>
+        <li>Accept food and drink with your right hand or both hands</li>
+        <li>Bargain politely in markets — it is expected and enjoyable</li>
+        <li>Carry small denomination notes for teahouses and street purchases</li>
+        <li>Hire local guides — it supports the community and enriches your experience</li>
+        <li>Learn a few Nepali words — locals genuinely appreciate the effort</li>
+        <li>Show respect at cremation and funeral ceremonies by maintaining distance and silence</li>
+        <li>Keep your right hand outstretched when touching an elder's feet in greeting</li>
+      </ul>
+    </div>
+    <div class="donts">
+      <h4>DON'T</h4>
+      <ul>
+        <li>Enter a temple's inner sanctum if you are not of that faith (many Hindu temples are closed to non-Hindus)</li>
+        <li>Eat beef or bring beef products into Hindu households</li>
+        <li>Offer or accept things with your left hand alone</li>
+        <li>Point the soles of your feet at people, religious images, or the hearth</li>
+        <li>Touch someone on the head (it is considered sacred)</li>
+        <li>Step over food, cooking utensils, or a person sitting or lying down</li>
+        <li>Show public displays of affection — kissing in public is inappropriate</li>
+        <li>Wear revealing clothing in religious areas or rural villages</li>
+        <li>Photograph military installations, airports, or government buildings</li>
+        <li>Give money, sweets, or pens directly to children — it encourages begging</li>
+        <li>Throw rubbish on the trail — Nepal's mountain environment is fragile</li>
+        <li>Assume everyone speaks English — Nepali outside tourist areas is essential</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Family and Social Structure</h3>
+  <p>Nepali society is traditionally organised around the extended family (pariwar), with multiple generations living together in the same household or compound. The eldest male is typically the nominal head of household, and major decisions — marriage, property, and finances — are made collectively. Respect for elders is a central cultural value: touching the feet of elders as a greeting (called "pranam") is widely practised, and elders are served food and tea before younger family members. Marriage is traditionally arranged by families, though love marriages are increasingly common in urban areas. Sons are expected to remain with their parents and care for them in old age; daughters marry into their husband's family. This system creates deep family bonds but also significant pressure on individuals to conform to family expectations. Nepal's constitution (2015) guarantees equal rights regardless of gender, caste, and ethnicity, though social practices in rural areas continue to reflect more traditional hierarchies.</p>
+</div>
+
+</body>
+</html>

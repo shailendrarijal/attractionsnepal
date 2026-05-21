@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Nepal Trek Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; font-size: 11pt; color: #1a1a1a; background: white; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  /* Cover Page */
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: linear-gradient(160deg, #14532d 0%, #15803d 40%, #16a34a 70%, #22c55e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-img {
+    width: 100%;
+    height: 90mm;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20mm;
+    opacity: 0.85;
+  }
+  .cover-icon { font-size: 60pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 36pt; color: white; font-weight: 900; line-height: 1.2; margin-bottom: 6mm; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .cover .subtitle { font-size: 14pt; color: #bbf7d0; font-weight: 300; margin-bottom: 10mm; letter-spacing: 1px; }
+  .cover .tagline { font-size: 11pt; color: #dcfce7; background: rgba(0,0,0,0.2); padding: 4mm 8mm; border-radius: 20px; }
+  .cover-footer { position: absolute; bottom: 15mm; font-size: 10pt; color: #86efac; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* Page Layout */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 18mm 22mm 18mm;
+    page-break-before: always;
+    position: relative;
+  }
+  .page:first-of-type { page-break-before: avoid; }
+
+  /* Footer */
+  .page::after {
+    content: "attractionsnepal.com";
+    position: absolute;
+    bottom: 10mm;
+    left: 18mm;
+    right: 18mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #6b7280;
+    border-top: 0.5pt solid #d1fae5;
+    padding-top: 3mm;
+    letter-spacing: 1px;
+  }
+
+  /* Section Headings */
+  .section-header {
+    background: linear-gradient(135deg, #14532d, #15803d);
+    color: white;
+    padding: 6mm 8mm;
+    border-radius: 6px;
+    margin-bottom: 6mm;
+    page-break-before: always;
+  }
+  .section-header:first-child { page-break-before: avoid; }
+  .section-header h2 { font-size: 20pt; font-weight: 700; }
+  .section-header p { font-size: 10pt; color: #bbf7d0; margin-top: 1mm; }
+
+  h3 { font-size: 14pt; color: #15803d; margin: 5mm 0 3mm; border-bottom: 1pt solid #d1fae5; padding-bottom: 2mm; }
+  h4 { font-size: 12pt; color: #166534; margin: 4mm 0 2mm; }
+  p { line-height: 1.7; margin-bottom: 3mm; color: #374151; }
+  ul, ol { margin: 2mm 0 4mm 6mm; }
+  li { line-height: 1.7; margin-bottom: 1mm; color: #374151; }
+
+  /* Trek Cards */
+  .trek-card {
+    border: 1pt solid #d1fae5;
+    border-left: 4pt solid #15803d;
+    border-radius: 6px;
+    padding: 5mm 6mm;
+    margin-bottom: 6mm;
+    background: #f0fdf4;
+  }
+  .trek-card h3 { border: none; margin-top: 0; padding-bottom: 0; }
+  .trek-meta { display: flex; gap: 6mm; margin: 2mm 0 3mm; flex-wrap: wrap; }
+  .trek-badge {
+    background: #15803d;
+    color: white;
+    padding: 1mm 3mm;
+    border-radius: 12px;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  .trek-badge.hard { background: #991b1b; }
+  .trek-badge.extreme { background: #450a0a; }
+  .trek-badge.moderate { background: #92400e; }
+  .trek-badge.days { background: #1e40af; }
+
+  /* Gear Table */
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 10pt; }
+  th { background: #15803d; color: white; padding: 2.5mm 4mm; text-align: left; font-family: 'Playfair Display', serif; }
+  td { padding: 2mm 4mm; border-bottom: 0.5pt solid #d1fae5; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0fdf4; }
+  tr:nth-child(odd) td { background: white; }
+
+  /* Info Boxes */
+  .info-box {
+    background: #fefce8;
+    border: 1pt solid #fde68a;
+    border-left: 4pt solid #f59e0b;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .info-box h4 { color: #92400e; margin-top: 0; }
+  .warning-box {
+    background: #fef2f2;
+    border: 1pt solid #fecaca;
+    border-left: 4pt solid #dc2626;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+  }
+  .warning-box h4 { color: #991b1b; margin-top: 0; }
+
+  /* Permit table */
+  .permit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0; }
+  .permit-item { background: #f0fdf4; border: 1pt solid #bbf7d0; border-radius: 6px; padding: 3mm 4mm; }
+  .permit-item h4 { font-size: 10pt; color: #15803d; margin: 0 0 1mm; }
+  .permit-item p { font-size: 9pt; margin: 0; color: #4b5563; }
+
+  /* Day itinerary */
+  .day-row { display: flex; margin-bottom: 3mm; }
+  .day-num { background: #15803d; color: white; width: 14mm; min-width: 14mm; height: 14mm; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 9pt; margin-right: 4mm; flex-shrink: 0; font-family: 'Playfair Display', serif; }
+  .day-content h4 { margin: 0 0 1mm; font-size: 10.5pt; color: #166534; }
+  .day-content p { font-size: 9.5pt; margin: 0; color: #4b5563; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { page-break-before: always; }
+    .section-header { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&q=80" alt="Nepal mountains" onerror="this.style.display='none'">
+  <div class="cover-icon">⛰️</div>
+  <h1>Complete Nepal<br>Trek Guide</h1>
+  <p class="subtitle">The Definitive Trekker's Companion</p>
+  <p class="tagline">10 Epic Routes · Gear Lists · Altitude Safety · Permits · Itineraries</p>
+  <div class="cover-footer">attractionsnepal.com</div>
+</div>
+
+<!-- PAGE 1: INTRODUCTION -->
+<div class="page">
+  <div class="section-header" style="page-break-before:avoid;">
+    <h2>Introduction to Trekking in Nepal</h2>
+    <p>Everything you need to know before you lace up your boots</p>
+  </div>
+
+  <p>Nepal is home to eight of the world's fourteen peaks above 8,000 metres, and the trekking routes that wind through its valleys, ridges, and high passes represent some of the most rewarding wilderness journeys on earth. Whether you dream of standing at Everest Base Camp at 5,364m, circling the Annapurna massif through ancient trading villages, or walking quietly through the rhododendron forests of the Langtang Valley, Nepal delivers an unmatched combination of natural grandeur, cultural richness, and raw adventure.</p>
+
+  <p>Trekking in Nepal is accessible to anyone in reasonable health. Routes range from gentle valley walks completed in four or five days to multi-week expeditions crossing remote high-altitude passes that demand prior mountain experience. The country's network of tea-houses (locally called <em>bhatti</em> or <em>lodge</em>) means you can travel with a light pack, sleeping and eating at family-run guesthouses every evening — a uniquely Nepali form of trekking that lets you engage with local communities throughout your journey.</p>
+
+  <h3>Why Trek in Nepal?</h3>
+  <ul>
+    <li><strong>Scale:</strong> No other country on earth concentrates so many high peaks within such a small area. On a single trek you may pass beneath five or six distinct peaks above 7,000m.</li>
+    <li><strong>Culture:</strong> Trekking routes pass through living villages of Sherpa, Tamang, Gurung, Magar, and Thakali communities, each with distinct languages, temples, and traditions.</li>
+    <li><strong>Infrastructure:</strong> The tea-house network on popular routes is well-developed. Hot meals, warm beds, and phone charging are available even at altitudes above 5,000m on the EBC trail.</li>
+    <li><strong>Value:</strong> Nepal remains one of the most affordable adventure destinations in the world. A full Everest Base Camp trek including flights, permits, accommodation, and food can cost as little as USD 1,200 if done independently.</li>
+    <li><strong>Wilderness:</strong> Remote routes such as Kanchenjunga and the Dolpo region offer genuine wilderness experiences with few other trekkers and minimal infrastructure.</li>
+  </ul>
+
+  <h3>Best Seasons for Trekking</h3>
+  <table>
+    <tr><th>Season</th><th>Months</th><th>Conditions</th><th>Verdict</th></tr>
+    <tr><td>Autumn</td><td>October–November</td><td>Clear skies, stable weather, excellent visibility. Trails busy on popular routes.</td><td>Best overall</td></tr>
+    <tr><td>Spring</td><td>March–May</td><td>Rhododendrons in bloom, warm, some pre-monsoon haze in April–May.</td><td>Excellent</td></tr>
+    <tr><td>Winter</td><td>December–February</td><td>Cold at altitude, high passes may close with snow. Low-altitude routes perfectly fine.</td><td>Good for lower routes</td></tr>
+    <tr><td>Monsoon</td><td>June–September</td><td>Heavy rain, leeches, landslides on trails. Rain shadow areas (Mustang, Dolpo) ideal.</td><td>Rain shadow only</td></tr>
+  </table>
+
+  <h3>Essential Permits for Nepal Trekking</h3>
+  <p>All foreign trekkers require permits to enter Nepal's trekking regions. The exact permits depend on where you trek.</p>
+
+  <div class="permit-grid">
+    <div class="permit-item">
+      <h4>TIMS Card</h4>
+      <p>Trekkers' Information Management System. Required for most routes. USD 20 (individual) or USD 10 (group). Obtain in Kathmandu at the Nepal Tourism Board or Pokhara.</p>
+    </div>
+    <div class="permit-item">
+      <h4>ACAP Permit</h4>
+      <p>Annapurna Conservation Area Project. USD 30 per person. Required for all Annapurna region treks including ABC, Annapurna Circuit, Poon Hill.</p>
+    </div>
+    <div class="permit-item">
+      <h4>SNPP / Sagarmatha NP</h4>
+      <p>Sagarmatha National Park entry for Everest region. NPR 3,000 (approx. USD 22). Paid at Monjo checkpoint on the trail.</p>
+    </div>
+    <div class="permit-item">
+      <h4>Restricted Area Permits</h4>
+      <p>Manaslu, Upper Mustang, Dolpo, Kanchenjunga, and other restricted zones require special permits costing USD 70–500 depending on route and season. Must be obtained with a licensed guide.</p>
+    </div>
+    <div class="permit-item">
+      <h4>Langtang NP</h4>
+      <p>Langtang National Park entry permit. NPR 3,000. Covers Langtang Valley, Gosaikunda, and Helambu routes.</p>
+    </div>
+    <div class="permit-item">
+      <h4>Gaurishankar CAP</h4>
+      <p>Gaurishankar Conservation Area Permit. NPR 3,000. Required for Rolwaling Valley treks near the Tibetan border.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>Tip: Get Permits in Kathmandu or Pokhara</h4>
+    <p>The Nepal Tourism Board office in Kathmandu (Pradarshani Marg, next to BICC) is the most convenient one-stop location for TIMS cards and most conservation area permits. Bring 2 passport photos and a photocopy of your passport. Some permits can now be obtained online at <strong>online.ntb.gov.np</strong> before you arrive.</p>
+  </div>
+
+  <h3>Do I Need a Guide or Porter?</h3>
+  <p>Since April 2023, the Government of Nepal requires all foreign trekkers to be accompanied by a licensed guide on most popular routes, including EBC, Annapurna Circuit, Manaslu, and others. This rule was introduced partly for safety reasons following a number of solo trekker deaths. You may still trek independently on some lower-altitude routes, but check current regulations with the Nepal Tourism Board before departure. Even where not legally required, hiring a local guide enriches the experience enormously and provides vital support at altitude. Porters typically carry up to 25kg and are paid approximately NPR 700–1,000 per day plus food and accommodation.</p>
+</div>
+
+<!-- PAGE 2: TOP 10 TREK ROUTES -->
+<div class="page">
+  <div class="section-header">
+    <h2>Top 10 Trek Routes in Nepal</h2>
+    <p>From classic classics to remote wilderness — routes for every ambition</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>1. Everest Base Camp Trek (EBC)</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">14 days</span>
+      <span class="trek-badge hard">Hard</span>
+      <span class="trek-badge">Max: 5,364m</span>
+      <span class="trek-badge" style="background:#6b21a8;">Most Popular</span>
+    </div>
+    <p><strong>Starting point:</strong> Lukla (fly from Kathmandu, 35 min) | <strong>Region:</strong> Khumbu, Solukhumbu District</p>
+    <p>The Everest Base Camp Trek is the most famous trekking route in the world, and rightly so. From the moment you land at Tenzing-Hillary Airport in Lukla — itself an adventure — you follow the Dudh Koshi River through rhododendron and pine forests, past Sherpa villages, Buddhist monasteries, and enormous mani stone walls. The trail passes through Namche Bazaar (3,440m), the bustling trading hub of the Khumbu, before climbing to Tengboche Monastery (3,860m), whose setting beneath Ama Dablam is one of the most photographed views in Nepal.</p>
+    <p>The final approach to Base Camp traverses the boulder-strewn Khumbu Glacier moraine, with the Khumbu Icefall visible above. Even in the trekking season, Base Camp is a city of tents belonging to climbing expeditions. The Kala Patthar viewpoint (5,545m) above Gorak Shep offers the best accessible view of Everest's summit pyramid.</p>
+    <p><strong>Highlights:</strong> Namche Bazaar, Tengboche Monastery, Ama Dablam views, Khumbu Glacier, Kala Patthar sunrise, Sherpa culture, Sagarmatha National Park wildlife (Himalayan tahr, snow leopard tracks).</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>2. Annapurna Circuit Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">15–20 days</span>
+      <span class="trek-badge moderate">Moderate–Hard</span>
+      <span class="trek-badge">Max: 5,416m (Thorong La)</span>
+    </div>
+    <p><strong>Starting point:</strong> Besisahar (bus from Kathmandu or Pokhara) | <strong>Region:</strong> Annapurna, Manang, Mustang</p>
+    <p>Widely regarded as one of the greatest long-distance treks in the world, the Annapurna Circuit encircles the entire Annapurna Massif, crossing the Thorong La Pass at 5,416m. The route transitions through an extraordinary range of landscapes and climate zones: subtropical lowlands give way to temperate forests, then alpine meadows, and finally the arid Tibetan-influenced plateau of the Mustang region north of the main Himalayan range. The cultural diversity is equally striking — you walk through Gurung, Manangi, and Thakali villages, each with distinct customs and architecture.</p>
+    <p><strong>Highlights:</strong> Thorong La Pass crossing, Muktinath Temple, Kagbeni medieval village, Pisang monastery, Manang acclimatisation day, Marpha apple orchards, Tatopani hot springs, Poon Hill sunrise (optional detour).</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>3. Annapurna Base Camp Trek (ABC)</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">7–12 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 4,130m</span>
+    </div>
+    <p><strong>Starting point:</strong> Nayapul or Phedi (from Pokhara) | <strong>Region:</strong> Annapurna Sanctuary</p>
+    <p>The Annapurna Base Camp trek leads into the heart of the Annapurna Sanctuary, a high glacial amphitheatre completely enclosed by a ring of peaks exceeding 6,000–8,000m. Annapurna I (8,091m), Machhapuchhre (6,993m — the fish-tail peak), Hiunchuli, and Gangapurna all loom overhead. The approach through Modi Khola gorge is spectacular, with rhododendron forests, Gurung villages, and hot springs at Jhinu Danda along the way. ABC makes a superb introduction to Himalayan trekking without requiring the endurance of the full Circuit.</p>
+    <p><strong>Highlights:</strong> Annapurna Sanctuary amphitheatre, Machhapuchhre Base Camp, Ghorepani and Poon Hill sunrise (usually included), Gurung villages of Ghandruk and Chhomrong, Modi Khola gorge, rhododendron forests in bloom (March–April).</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>4. Langtang Valley Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">7–10 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 4,984m (Tsergo Ri optional)</span>
+    </div>
+    <p><strong>Starting point:</strong> Syabrubesi (bus from Kathmandu, 7–8 hours) | <strong>Region:</strong> Langtang National Park</p>
+    <p>The Langtang Valley is often called "the valley of glaciers," and it earns that name. Located just 50km north of Kathmandu, the valley was devastated by the 2015 earthquake and subsequent landslide that buried the village of Langtang, but it has rebuilt with extraordinary resilience. The rebuilt villages are welcoming, and the scenery — with Langtang Lirung (7,227m), Dorje Lakpa, and Naya Kanga framing the valley — is breathtaking. The trail passes through dense forest full of red pandas, then enters high alpine terrain with yak pastures and traditional Tamang and Tibetan-influenced communities.</p>
+    <p><strong>Highlights:</strong> Kyanjin Gompa monastery, Kyanjin Ri viewpoint (4,773m), Tsergo Ri (4,984m), yak cheese factory at Kyanjin, traditional Tamang villages, red panda habitat, views of Langtang Lirung and Dorje Lakpa.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>5. Manaslu Circuit Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">14–16 days</span>
+      <span class="trek-badge hard">Hard</span>
+      <span class="trek-badge">Max: 5,160m (Larkya La)</span>
+      <span class="trek-badge" style="background:#6b21a8;">Restricted Area</span>
+    </div>
+    <p><strong>Starting point:</strong> Soti Khola (bus from Kathmandu) | <strong>Region:</strong> Gorkha, Manaslu Conservation Area</p>
+    <p>The Manaslu Circuit is widely considered the last great circuit trek of Nepal — equally spectacular to the Annapurna Circuit but with far fewer trekkers. The route circles the world's eighth-highest mountain, Manaslu (8,163m), crossing the Larkya La pass at 5,160m. The trail follows the Budhi Gandaki River through dramatic gorges, past remote Tibetan Buddhist villages, and over high alpine terrain before descending to the Annapurna region. Because it's a restricted area, trekkers must travel with a licensed guide and obtain a special permit.</p>
+    <p><strong>Highlights:</strong> Larkya La pass crossing, views of Manaslu summit, Tibetan Buddhist gompa at Samagaon, Birendra Lake, Pungen Glacier, Tsum Valley extension (optional), genuine remoteness and authentic culture.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>6. Upper Mustang Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">10–12 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 3,840m (Lo Manthang)</span>
+      <span class="trek-badge" style="background:#6b21a8;">Restricted Area</span>
+    </div>
+    <p><strong>Starting point:</strong> Jomsom (fly from Pokhara) | <strong>Region:</strong> Mustang, former Kingdom of Lo</p>
+    <p>Upper Mustang is the former forbidden Kingdom of Lo, which only opened to trekkers in 1992. It remains one of the most culturally intact Tibetan Buddhist kingdoms in the world. The landscape is unlike anything else in Nepal — stark, eroded cliffs of ochre and crimson, ancient cave monasteries carved into cliff faces, and the medieval walled capital of Lo Manthang with its palace, monasteries, and traditional architecture. Because it lies north of the main Himalayan range, Upper Mustang is in a rain shadow and trekking is excellent even during the monsoon (June–September).</p>
+    <p><strong>Highlights:</strong> Lo Manthang walled city, Thubchen Gompa 15th-century frescoes, Chhoser cave monastery, Ghar Gompa, ancient sky caves, Chosar and Dhee villages, extraordinary eroded landscape, yak caravans, Tibetan Buddhist festivals.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>7. Kanchenjunga Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">18–20 days</span>
+      <span class="trek-badge extreme">Extreme</span>
+      <span class="trek-badge">Max: 5,143m (North Base Camp)</span>
+      <span class="trek-badge" style="background:#6b21a8;">Restricted Area</span>
+    </div>
+    <p><strong>Starting point:</strong> Taplejung (fly from Kathmandu) | <strong>Region:</strong> Far Eastern Nepal, Taplejung District</p>
+    <p>The Kanchenjunga trek is one of the most remote and demanding treks in Nepal, reaching the base camps of the world's third-highest mountain (8,586m). Most itineraries visit both the North Base Camp (Pangpema, 5,143m) and South Base Camp (Oktang, 4,730m), requiring a long and strenuous traverse. The reward is complete wilderness: few other trekkers, pristine forests, blooming rhododendrons of extraordinary size, and unobstructed views of the Kanchenjunga massif's enormous east face. The trail passes through Rai and Limbu communities of the eastern hills before entering high alpine terrain.</p>
+    <p><strong>Highlights:</strong> Pangpema North Base Camp panorama, Oktang South Base Camp glacier views, Ghunsa Tibetan village, Lhonak valley, Kambachen glaciers, pristine rhododendron and oak forests, Rai and Limbu culture, genuine remoteness.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>8. Rara Lake Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">10–12 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 3,962m (Rara Lake)</span>
+    </div>
+    <p><strong>Starting point:</strong> Jumla (fly from Nepalgunj) | <strong>Region:</strong> Mugu District, Mid-Western Nepal</p>
+    <p>Rara Lake, at 3,962m altitude and covering 10.8 square kilometres, is Nepal's largest lake — a jewel of cerulean blue set in a bowl of pine and juniper forest in one of the least-visited corners of the country. The trek from Jumla passes through Kalikot and Mugu districts, remote hill villages where electricity and mobile phone coverage are still rare. The lake's colour changes throughout the day from deep blue to aquamarine, and in clear weather the surrounding peaks reflect perfectly on its surface. Wildlife around Rara includes Himalayan black bear, red panda, musk deer, and numerous bird species.</p>
+    <p><strong>Highlights:</strong> Rara Lake itself — Nepal's largest and most beautiful lake, ancient Sinja Valley (former medieval capital), Chere Chaur meadows, pristine conifer forests, extraordinary birdlife, genuine off-the-beaten-path experience, Mugu people's traditional lifestyle.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>9. Khopra Danda Ridge Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">8–10 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 4,900m (Khopra Ridge)</span>
+    </div>
+    <p><strong>Starting point:</strong> Nayapul (from Pokhara) | <strong>Region:</strong> Annapurna Conservation Area, Myagdi</p>
+    <p>Khopra Danda (also called Khopra Ridge) is a superb alternative to the Poon Hill trek that sees far fewer trekkers while offering equally spectacular — and in many ways superior — views. The trail climbs through rhododendron forests to the high ridge of Khopra Danda, where a community-run lodge sits at nearly 3,700m with unobstructed views of Dhaulagiri (8,167m), Annapurna South, Annapurna I, Nilgiri, and Tukuche Peak. An extension to Khair Lake (4,500m), a sacred Hindu lake set among high alpine terrain, makes for an excellent day hike from the ridge.</p>
+    <p><strong>Highlights:</strong> Khopra Ridge 360° mountain panorama, Khair Lake sacred site, Swanta village traditional architecture, superb Dhaulagiri and Annapurna views, rhododendron forests in bloom, far fewer crowds than Poon Hill, excellent local community lodges.</p>
+  </div>
+
+  <div class="trek-card">
+    <h3>10. Gosaikunda Trek</h3>
+    <div class="trek-meta">
+      <span class="trek-badge days">4–5 days</span>
+      <span class="trek-badge moderate">Moderate</span>
+      <span class="trek-badge">Max: 4,380m (Gosaikunda Lake)</span>
+    </div>
+    <p><strong>Starting point:</strong> Dhunche or Sundarijal (bus from Kathmandu) | <strong>Region:</strong> Langtang National Park</p>
+    <p>Gosaikunda is one of Nepal's most sacred Hindu and Buddhist lakes, set at 4,380m in the Langtang National Park. According to Hindu mythology, Lord Shiva struck his trident into the Himalayan rock to create the lake's spring after drinking poison to save the universe. During the full moon of Shravan (July–August), hundreds of thousands of Hindu pilgrims make the journey to Gosaikunda for the Janai Purnima festival. The trek from Dhunche passes through magnificent forest and high ridges before reaching the sacred lake, and can be extended over the Laurebina Pass (4,610m) to connect with the Helambu circuit.</p>
+    <p><strong>Highlights:</strong> Sacred Gosaikunda Lake and Hindu mythology, Laurebina Yak viewpoint, Helambu extension via Laurebina Pass, Tamang and Sherpa villages, rhododendron forests, Langtang National Park wildlife, Ganesh Himal and Langtang range views.</p>
+  </div>
+</div>
+
+<!-- PAGE 3: GEAR CHECKLIST -->
+<div class="page">
+  <div class="section-header">
+    <h2>Essential Gear Checklist</h2>
+    <p>What to pack for a successful trek in Nepal</p>
+  </div>
+
+  <p>Packing correctly for a Nepal trek is critical. Too little and you risk cold, injury, or discomfort; too much and you'll struggle on steep ascents. The following checklist covers everything you need for a moderate to hard trek such as EBC or Annapurna Circuit. For lower-altitude routes, you can omit the extreme cold-weather items.</p>
+
+  <h3>Clothing</h3>
+  <table>
+    <tr><th>Item</th><th>Quantity</th><th>Notes</th></tr>
+    <tr><td>Moisture-wicking base layer (top & bottom)</td><td>2 sets</td><td>Merino wool preferred for odour resistance</td></tr>
+    <tr><td>Trekking pants (zip-off convertible)</td><td>2 pairs</td><td>Quick-dry fabric essential</td></tr>
+    <tr><td>Fleece mid-layer jacket</td><td>1</td><td>200-weight minimum</td></tr>
+    <tr><td>Insulated down jacket</td><td>1</td><td>800-fill or better; critical above 4,000m</td></tr>
+    <tr><td>Waterproof hard-shell jacket</td><td>1</td><td>Gore-Tex or equivalent; must be breathable</td></tr>
+    <tr><td>Waterproof trousers</td><td>1</td><td>Lightweight, packable</td></tr>
+    <tr><td>Thermal/wool socks</td><td>4–6 pairs</td><td>Merino wool highly recommended</td></tr>
+    <tr><td>Liner gloves</td><td>1 pair</td><td>Thin fleece or wool</td></tr>
+    <tr><td>Insulated gloves or mittens</td><td>1 pair</td><td>Waterproof outer shell ideal</td></tr>
+    <tr><td>Warm hat / beanie</td><td>1–2</td><td>Wool or fleece</td></tr>
+    <tr><td>Sun hat / baseball cap</td><td>1</td><td>UV protection critical at altitude</td></tr>
+    <tr><td>Buff / neck gaiter</td><td>1</td><td>Multi-purpose for sun and cold</td></tr>
+    <tr><td>Trekking shirt (light)</td><td>2–3</td><td>Quick-dry synthetic or merino</td></tr>
+    <tr><td>Camp/evening warm layer</td><td>1</td><td>For cold teahouse evenings</td></tr>
+    <tr><td>Thermal underwear</td><td>1 set</td><td>For sleeping and cold nights</td></tr>
+  </table>
+
+  <h3>Footwear</h3>
+  <table>
+    <tr><th>Item</th><th>Notes</th></tr>
+    <tr><td>Trekking boots (high-ankle, waterproof)</td><td>Most important investment. Break them in 6+ weeks before the trek. Vibram sole strongly preferred.</td></tr>
+    <tr><td>Camp sandals / flip-flops</td><td>Essential for teahouse use; saves your boot soles and lets feet breathe in the evening.</td></tr>
+    <tr><td>Gaiters</td><td>For snowy passes and muddy monsoon trails. Lightweight low gaiters suffice for most routes.</td></tr>
+    <tr><td>Insole / arch support</td><td>Custom insoles prevent knee and ankle pain on long descents.</td></tr>
+  </table>
+
+  <h3>Equipment & Accessories</h3>
+  <table>
+    <tr><th>Item</th><th>Notes</th></tr>
+    <tr><td>Trekking poles (pair)</td><td>Invaluable on steep descents; significantly reduce knee impact. Carbon or aluminium.</td></tr>
+    <tr><td>Trekking backpack (35–50L)</td><td>Fits carry essentials for a day-pack if using a porter for main bag.</td></tr>
+    <tr><td>Duffel bag (60–80L)</td><td>For porter to carry; most teahouse porters prefer duffel to framed pack.</td></tr>
+    <tr><td>Sleeping bag (rated -10°C to -15°C)</td><td>Teahouses provide blankets but a good sleeping bag is essential for comfort above 3,500m.</td></tr>
+    <tr><td>Sleeping bag liner</td><td>Adds 5–7°C warmth; hygienic in teahouse bedding.</td></tr>
+    <tr><td>Headlamp + spare batteries</td><td>Power cuts common; LED headlamp with 200+ lumens recommended.</td></tr>
+    <tr><td>Water bottles (2 × 1L)</td><td>Wide-mouth Nalgene or similar; insulating sleeve helps prevent freezing at altitude.</td></tr>
+    <tr><td>Water purification (SteriPen or tablets)</td><td>Treat all stream and tap water. Reduces plastic waste from bottled water.</td></tr>
+    <tr><td>Trekking map (printed)</td><td>National Geographic or Himalayan MapHouse 1:50,000 series. Don't rely solely on phone GPS.</td></tr>
+    <tr><td>Compass</td><td>Backup navigation; lightweight insurance.</td></tr>
+    <tr><td>Sunglasses (CE4 / Category 4)</td><td>UV radiation at altitude is intense. Category 4 glacier glasses are essential above 4,500m.</td></tr>
+    <tr><td>Sunscreen (SPF 50+)</td><td>Apply frequently; altitude amplifies UV intensity by 4–6% per 1,000m.</td></tr>
+    <tr><td>Lip balm with UV protection</td><td>Cracked lips are painful and universal among trekkers.</td></tr>
+    <tr><td>Trekking towel (microfibre)</td><td>Quick-dry; teahouses rarely provide them.</td></tr>
+    <tr><td>Portable battery bank</td><td>10,000–20,000mAh; charging is expensive (NPR 200–500) at high altitude teahouses.</td></tr>
+  </table>
+
+  <h3>First Aid &amp; Health</h3>
+  <table>
+    <tr><th>Item</th><th>Purpose</th></tr>
+    <tr><td>Diamox (Acetazolamide)</td><td>Altitude sickness prevention and treatment. 125–250mg twice daily. Consult a doctor first.</td></tr>
+    <tr><td>Ibuprofen / Paracetamol</td><td>Pain relief, headache management (common at altitude).</td></tr>
+    <tr><td>Imodium (Loperamide)</td><td>Traveller's diarrhoea is common. Carry 10–20 tablets.</td></tr>
+    <tr><td>Oral Rehydration Salts (ORS)</td><td>Essential for dehydration from diarrhoea or altitude. Carry 10+ sachets.</td></tr>
+    <tr><td>Antihistamine (Cetirizine)</td><td>Altitude sometimes triggers allergic reactions; useful for dust and pollen.</td></tr>
+    <tr><td>Blister pads (Compeed)</td><td>Prevent and treat blisters before they become debilitating.</td></tr>
+    <tr><td>Elastic bandage / KT tape</td><td>Ankle support; knee taping on descents.</td></tr>
+    <tr><td>Antiseptic wipes &amp; cream</td><td>Cuts and grazes become infected quickly in mountain environments.</td></tr>
+    <tr><td>Medical / evacuation insurance documents</td><td>Rescue helicopter costs NPR 500,000–1,000,000+. Always carry proof of insurance.</td></tr>
+  </table>
+</div>
+
+<!-- PAGE 4: ALTITUDE SICKNESS -->
+<div class="page">
+  <div class="section-header">
+    <h2>Altitude Sickness: Prevention &amp; Treatment</h2>
+    <p>The most critical safety knowledge for every high-altitude trekker</p>
+  </div>
+
+  <p>Acute Mountain Sickness (AMS) is the most common medical emergency on Nepal's trekking routes, and it is entirely preventable with proper acclimatisation. Every year, trekkers are evacuated — and some die — because they push too high too fast. Understanding altitude illness is not optional; it is fundamental knowledge for anyone venturing above 3,000m.</p>
+
+  <h3>What is Altitude Sickness?</h3>
+  <p>As you ascend, atmospheric pressure decreases and the partial pressure of oxygen drops. At 5,000m, each breath delivers roughly half the oxygen available at sea level. Your body responds by breathing faster, producing more red blood cells, and increasing heart rate. When ascent is too rapid, this physiological adjustment cannot keep pace and altitude illness results. There are three distinct syndromes:</p>
+
+  <div class="trek-card" style="border-left-color: #f59e0b; background: #fffbeb;">
+    <h3 style="color: #92400e;">AMS – Acute Mountain Sickness</h3>
+    <p><strong>Onset:</strong> Typically 6–12 hours after arriving at new altitude<br>
+    <strong>Symptoms:</strong> Headache (the cardinal symptom), nausea, fatigue, dizziness, loss of appetite, poor sleep, mild shortness of breath at rest<br>
+    <strong>Treatment:</strong> Stop ascending. Rest at current altitude. Drink 3–4 litres of water per day. Take Ibuprofen or Paracetamol for headache. Take Diamox 125–250mg twice daily. If symptoms do not improve within 24 hours, descend at least 500m immediately.</p>
+  </div>
+
+  <div class="trek-card" style="border-left-color: #dc2626; background: #fef2f2;">
+    <h3 style="color: #991b1b;">HACE – High Altitude Cerebral Edema (Life-threatening)</h3>
+    <p><strong>Onset:</strong> Usually 1–2 days after severe or unresolved AMS<br>
+    <strong>Symptoms:</strong> Severe persistent headache, loss of coordination (ataxia — test by walking heel-to-toe in a straight line), confusion, drowsiness, inability to walk, loss of consciousness<br>
+    <strong>Treatment:</strong> THIS IS A MEDICAL EMERGENCY. Descend immediately — even 300–500m can be lifesaving. Give Dexamethasone 8mg immediately, then 4mg every 6 hours. Use a Gamow bag if available. Evacuate to lower altitude as fast as possible by any means.</p>
+  </div>
+
+  <div class="trek-card" style="border-left-color: #dc2626; background: #fef2f2;">
+    <h3 style="color: #991b1b;">HAPE – High Altitude Pulmonary Edema (Life-threatening)</h3>
+    <p><strong>Onset:</strong> Usually 2–4 days after rapid ascent above 2,500m<br>
+    <strong>Symptoms:</strong> Extreme fatigue, dry cough progressing to frothy or pink sputum, severe breathlessness at rest, cyanosis (blue lips/fingertips), crackling sounds when breathing<br>
+    <strong>Treatment:</strong> THIS IS A MEDICAL EMERGENCY. Descend immediately — minimum 1,000m. Give Nifedipine 30mg extended release (or 10mg immediate release, repeat in 1 hour). Administer supplemental oxygen if available. Evacuate to hospital immediately. HAPE kills faster than HACE.</p>
+  </div>
+
+  <h3>The Golden Rules of Acclimatisation</h3>
+  <ol>
+    <li><strong>Climb high, sleep low:</strong> Day hikes to higher altitude before sleeping lower are the best acclimatisation strategy. On the EBC trail, the Namche–Everest View Hotel day hike exemplifies this perfectly.</li>
+    <li><strong>Never ascend more than 300–500m of sleeping altitude per day above 3,000m:</strong> From Namche (3,440m), your next sleeping altitude should not exceed 3,800–3,900m.</li>
+    <li><strong>Take rest days:</strong> Plan at least one acclimatisation rest day for every 1,000m gained above 3,000m. Namche Bazaar and Dingboche are the standard rest-day stops on EBC.</li>
+    <li><strong>Stay hydrated:</strong> Drink 3–4 litres of water daily. Dehydration dramatically worsens AMS symptoms.</li>
+    <li><strong>Avoid alcohol and sedatives at altitude:</strong> Both suppress respiration and worsen acclimatisation.</li>
+    <li><strong>Go slowly:</strong> "Pole, pole" (Swahili for "slowly, slowly") applies equally in Nepal. Your pace should allow normal conversation.</li>
+    <li><strong>Never ignore symptoms:</strong> AMS headache + vomiting = stop. AMS + any ataxia or confusion = HACE. DESCEND NOW.</li>
+    <li><strong>Trust the lake-test:</strong> Spit-test for ataxia — can you walk heel-to-toe along a straight line? If not, descend immediately.</li>
+  </ol>
+
+  <div class="info-box">
+    <h4>Diamox (Acetazolamide) — Should You Take It?</h4>
+    <p>Diamox is a carbonic anhydrase inhibitor that stimulates deeper breathing and accelerates acclimatisation. A standard preventive dose is 125mg (half a tablet) twice daily, starting 24 hours before ascending above 2,500m. Side effects include tingling in fingers and toes (very common, harmless), increased urination, and occasionally blurred vision. Diamox does NOT mask symptoms of serious altitude illness — it genuinely accelerates acclimatisation. Do NOT use if allergic to sulphonamide drugs. Consult a travel medicine doctor before your trek.</p>
+  </div>
+
+  <h3>Altitude Safety on Popular Routes</h3>
+  <table>
+    <tr><th>Route</th><th>Key Altitude Points</th><th>Recommended Acclimatisation</th></tr>
+    <tr><td>EBC</td><td>Namche 3,440m → Dingboche 4,410m → EBC 5,364m</td><td>1 rest day Namche; 1 rest day Dingboche</td></tr>
+    <tr><td>Annapurna Circuit</td><td>Manang 3,500m → Thorong La 5,416m</td><td>1–2 rest days Manang; day hike to Ice Lake 4,600m</td></tr>
+    <tr><td>Manaslu Circuit</td><td>Samagaon 3,530m → Larkya La 5,160m</td><td>1 rest day Samagaon; day hike to Birendra Lake</td></tr>
+    <tr><td>Langtang</td><td>Kyanjin Gompa 3,870m; Tsergo Ri 4,984m</td><td>1 rest day at Kyanjin; day hike to Tsergo Ri</td></tr>
+    <tr><td>Gosaikunda</td><td>Gosaikunda Lake 4,380m</td><td>Ascend slowly from Sing Gompa 3,330m</td></tr>
+  </table>
+</div>
+
+<!-- PAGE 5: BEST TEAHOUSES & SAMPLE ITINERARY -->
+<div class="page">
+  <div class="section-header">
+    <h2>Best Teahouses &amp; Sample EBC Itinerary</h2>
+    <p>Where to stay and a day-by-day plan for the world's most iconic trek</p>
+  </div>
+
+  <h3>Understanding the Tea-House System</h3>
+  <p>Nepal's tea-house network is one of the wonders of adventure travel. Family-run guesthouses dot the main trekking routes, offering a simple bed, hot meals, and the warmth of Sherpa, Tamang, and Gurung hospitality. Rooms cost NPR 200–500 (USD 1.50–4) per person on most routes, with the convention being that accommodation is offered cheaply in exchange for eating all meals at the lodge. Meals cost NPR 400–800 (USD 3–6) each. Budget approximately USD 20–30 per day for accommodation, meals, and incidental expenses. The following teahouses consistently receive high praise:</p>
+
+  <table>
+    <tr><th>Location</th><th>Recommended Lodge</th><th>Notes</th></tr>
+    <tr><td>Namche Bazaar</td><td>Hotel Sherpa Land; Café Panorama</td><td>Hot showers, WiFi, good bakeries for rest day</td></tr>
+    <tr><td>Tengboche</td><td>Tengboche Monastery Guesthouse</td><td>Wake to monastery bells; extraordinary dawn light</td></tr>
+    <tr><td>Dingboche</td><td>Himalayan Eco Resort; Peaceful Lodge</td><td>Excellent acclimatisation base; warm dining rooms</td></tr>
+    <tr><td>Lobuche</td><td>Eco Lodge Lobuche; Mount Everest Lodge</td><td>Simple but adequate; very cold nights</td></tr>
+    <tr><td>Gorak Shep</td><td>Everest Base Camp Lodge; Snow Land Lodge</td><td>Basic at this altitude; heating a luxury</td></tr>
+    <tr><td>Ghorepani (ABC)</td><td>Beautiful Guesthouse; Fishtail Lodge</td><td>Best Poon Hill sunrise views</td></tr>
+    <tr><td>Chhomrong (ABC)</td><td>Himalayan Guesthouse; Chhomrong Cottage</td><td>Excellent dal bhat; warm family atmosphere</td></tr>
+    <tr><td>Manang (Circuit)</td><td>Yak Hotel; Middle Hill Lodge</td><td>Great for rest day exploration; good food</td></tr>
+    <tr><td>Kagbeni (Circuit)</td><td>Red House Lodge</td><td>Medieval village; excellent food for the area</td></tr>
+    <tr><td>Kyanjin Gompa (Langtang)</td><td>Yak Cheese Lodge; Kyanjin Guest House</td><td>Try the famous local yak cheese here</td></tr>
+  </table>
+
+  <h3>Sample 14-Day EBC Day-by-Day Itinerary</h3>
+
+  <div class="day-row">
+    <div class="day-num">D1</div>
+    <div class="day-content">
+      <h4>Kathmandu → Lukla (fly) → Phakding (2,610m)</h4>
+      <p>Early morning 35-minute flight to Tenzing-Hillary Airport, Lukla. Trek downhill along the Dudh Koshi River to Phakding. Easy 3-hour walk — settle in, acclimatise gently. Distance: 8km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D2</div>
+    <div class="day-content">
+      <h4>Phakding → Namche Bazaar (3,440m)</h4>
+      <p>Cross several suspension bridges over the Dudh Koshi gorge. The final 600m climb to Namche is steep and demanding. First views of Everest summit above the Lhotse-Nuptse wall. Distance: 11km, +700m ascent.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D3</div>
+    <div class="day-content">
+      <h4>Namche Bazaar — Acclimatisation Day</h4>
+      <p>Rest day in Namche. Morning hike to Everest View Hotel (3,880m) for your first full view of Everest. Afternoon: explore Sherpa Museum, Namche market (Saturday is market day). Excellent bakeries and coffee shops.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D4</div>
+    <div class="day-content">
+      <h4>Namche → Tengboche (3,860m)</h4>
+      <p>Beautiful walk through rhododendron and juniper forest on the Khumbu valley high route. Tengboche Monastery — the largest in the Khumbu — sits in an extraordinary position beneath Ama Dablam. Distance: 10km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D5</div>
+    <div class="day-content">
+      <h4>Tengboche → Dingboche (4,410m)</h4>
+      <p>Descend to Pangboche, visit the oldest monastery in the Khumbu (Pangboche Gompa), then climb through open valley to Dingboche with classic Ama Dablam views. Distance: 10km, +550m.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D6</div>
+    <div class="day-content">
+      <h4>Dingboche — Acclimatisation Day</h4>
+      <p>Day hike to Nagarjun Hill (5,100m) for views of Makalu, Lhotse, Nuptse, and Cho Oyu. Or hike to Chhukhung Ri (5,550m) for ambitious acclimatisers. Return to Dingboche to sleep.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D7</div>
+    <div class="day-content">
+      <h4>Dingboche → Lobuche (4,940m)</h4>
+      <p>Cross the Khumbu Glacier lateral moraine. Pass the Thukla memorial cairns honouring climbers lost on Everest. Lobuche is cold and barren — a true high-altitude outpost. Distance: 8km, +530m.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D8</div>
+    <div class="day-content">
+      <h4>Lobuche → Gorak Shep (5,164m) → Everest Base Camp (5,364m)</h4>
+      <p>Trek to Gorak Shep (last teahouse), drop packs, then make the 3-hour return hike across the Khumbu moraine to Base Camp. An unforgettable experience. Return to Gorak Shep for the night. Total: 14km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D9</div>
+    <div class="day-content">
+      <h4>Gorak Shep → Kala Patthar (5,545m) → Pheriche (4,240m)</h4>
+      <p>Pre-dawn start for Kala Patthar summit — the best viewpoint of Everest accessible without technical climbing. Sunrise over the South Col is magnificent. Descend all the way to Pheriche for better sleep altitude. Distance: 16km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D10</div>
+    <div class="day-content">
+      <h4>Pheriche → Namche Bazaar (3,440m)</h4>
+      <p>Long descent day following the Imja Khola and Dudh Koshi valleys. Knees will feel the 1,200m descent. Namche feels like a luxury town after high camps. Distance: 20km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D11</div>
+    <div class="day-content">
+      <h4>Namche Bazaar → Lukla (2,860m)</h4>
+      <p>Final long descent day on familiar trail. Celebrate at the many teahouses and cafés in Lukla with fellow trekkers. Optional: Hot shower, pizza, apple pie at the famous Café de Mountain. Distance: 19km.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D12</div>
+    <div class="day-content">
+      <h4>Lukla → Kathmandu (fly) — Buffer Day</h4>
+      <p>Flights from Lukla are weather-dependent and frequently delayed or cancelled. Always build 1–2 buffer days into your itinerary. If flight is cancelled, spend time exploring Lukla market.</p>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">D13–14</div>
+    <div class="day-content">
+      <h4>Buffer / Kathmandu Celebration</h4>
+      <p>Kathmandu: post-trek celebration dinner in Thamel, shopping for souvenirs and certificates, visit Garden of Dreams or Boudhanath Stupa. Many trekkers treat themselves to a Thamel restaurant for their first real meal off the mountain.</p>
+    </div>
+  </div>
+
+  <div class="warning-box" style="margin-top: 5mm;">
+    <h4>Important: Always Buy Helicopter Evacuation Insurance</h4>
+    <p>Nepal's mountain rescue relies on helicopters. A single rescue flight from Everest Base Camp to Kathmandu costs USD 4,000–8,000. Comprehensive trekking insurance with helicopter evacuation coverage is mandatory — not optional. Companies like World Nomads, True Traveller, and Battleface offer suitable policies. Carry your insurance details and emergency contact numbers on the trail at all times.</p>
+  </div>
+</div>
+
+</body>
+</html>

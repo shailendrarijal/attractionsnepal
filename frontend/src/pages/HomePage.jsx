@@ -6,6 +6,8 @@ import PlaceCard from '../components/PlaceCard'
 import BlogCard from '../components/BlogCard'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
+import JsonLd from '../components/JsonLd'
+import NewsletterSignup from '../components/NewsletterSignup'
 
 const CATEGORIES = [
   { label: 'Temples',          slug: 'temple',           icon: '🛕' },
@@ -39,12 +41,26 @@ export default function HomePage() {
     if (search.trim()) navigate(`/explore?search=${encodeURIComponent(search.trim())}`)
   }
 
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Attractions Nepal',
+    url: 'https://attractionsnepal.com',
+    description: "Discover Nepal's best places, myths, festivals, and travel guides",
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://attractionsnepal.com/explore?search={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
   return (
     <>
       <PageSeo
         description="Discover Nepal's top temples, trekking routes, monasteries, national parks, and natural wonders. Plan your perfect Nepal trip."
         canonicalPath="/"
       />
+      <JsonLd data={websiteJsonLd} />
 
       {/* Hero */}
       <section className="hero-gradient text-white">
@@ -151,6 +167,9 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      {/* Newsletter signup */}
+      <NewsletterSignup />
 
       {/* CTA banner */}
       <section className="bg-primary-800 text-white py-16">
