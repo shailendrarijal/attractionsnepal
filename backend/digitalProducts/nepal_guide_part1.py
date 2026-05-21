@@ -74,6 +74,9 @@ def make_styles():
     S["phrase_en"] = ParagraphStyle("phrase_en", fontName="NotoSerif-Bold",  fontSize=9,  textColor=DARK,   leading=12)
     S["phrase_np"] = ParagraphStyle("phrase_np", fontName="NotoSerif-Italic",fontSize=9,  textColor=BLUE,   leading=12)
     S["phrase_ph"] = ParagraphStyle("phrase_ph", fontName="NotoSerif",       fontSize=8.5,textColor=colors.HexColor("#555"), leading=12)
+    # Sub-heading bar style with dark text — used for entries inside chapters (seasons, festivals, dances, etc.)
+    S["h3_bar"]    = ParagraphStyle("h3_bar",    fontName="NotoSerif-Bold",   fontSize=11.5, textColor=DARK,
+                                    leading=16, spaceAfter=0, spaceBefore=0)
     return S
 
 ST = make_styles()

@@ -17,8 +17,8 @@ def build_geography():
         ("Himal — the High Himalaya", "Elevation: 3,000–8,849 m", "Snow-capped peaks, glaciers, and alpine pastures above the tree line. Inhabited by Sherpa, Tibetan, Mustānge, and other Tibeto-Burman peoples. The source of Nepal's great river systems and home to the world's highest trekking routes."),
     ]
     for name, elev, desc in zones:
-        flows.append(ColorRect(f"<b>{name}</b>  <i>({elev})</i>", ST["h3"],
-                               bg=LGREY, border_color=GOLD, pad_h=10, pad_v=5))
+        flows.append(ColorRect(f"<b>{name}</b>  <i>({elev})</i>", ST["h3_bar"],
+                               bg=colors.HexColor("#E0D6C0"), border_color=GOLD, pad_h=10, pad_v=5))
         flows.append(body(desc))
         flows.append(Spacer(1, 3*mm))
 
@@ -82,7 +82,7 @@ def build_geography():
     ]
     for name, months, desc in seasons:
         flows.append(ColorRect(f"<b>{name}</b>   <i>{months}</i>",
-                               ST["h3"], bg=LGREY, border_color=GOLD, pad_h=10, pad_v=5))
+                               ST["h3_bar"], bg=colors.HexColor("#E0D6C0"), border_color=GOLD, pad_h=10, pad_v=5))
         flows.append(body(desc))
         flows.append(Spacer(1, 3*mm))
     return flows
@@ -115,7 +115,7 @@ def build_culture():
     flows.append(Spacer(1, 2*mm))
     flows.append(ColorRect(
         '"Atithi Devo Bhava" — अतिथि देवो भव',
-        ST["h3"], bg=colors.HexColor("#FFF8F0"), border_color=GOLD, pad_h=12, pad_v=8
+        ST["h3_bar"], bg=colors.HexColor("#E8D8B8"), border_color=GOLD, pad_h=12, pad_v=8
     ))
     flows.append(Paragraph(
         "The guest is God — a principle from the Taittirīya Upaniṣad that shapes how Nepalī "
@@ -169,7 +169,7 @@ def build_culture():
     ]
     for name, timing, desc in festivals:
         flows.append(ColorRect(f"<b>{name}</b>   <i>{timing}</i>",
-                               ST["h3"], bg=LGREY, border_color=RED, pad_h=10, pad_v=4))
+                               ST["h3_bar"], bg=colors.HexColor("#E8D0CA"), border_color=RED, pad_h=10, pad_v=4))
         flows.append(body(desc))
         flows.append(Spacer(1, 3*mm))
 
@@ -200,7 +200,7 @@ def build_culture():
     ]
     for name, where, desc in jatras:
         flows.append(ColorRect(f"<b>{name}</b>   <i>{where}</i>",
-                               ST["h3"], bg=colors.HexColor("#EEF2F8"), border_color=BLUE, pad_h=10, pad_v=4))
+                               ST["h3_bar"], bg=colors.HexColor("#C8D8EA"), border_color=BLUE, pad_h=10, pad_v=4))
         flows.append(body(desc))
         flows.append(Spacer(1, 3*mm))
 
@@ -296,7 +296,7 @@ def build_culture():
     ]
     for name, where, desc in dances:
         flows.append(ColorRect(f"<b>{name}</b>   <i>{where}</i>",
-                               ST["h3"], bg=LGREY, border_color=GOLD, pad_h=10, pad_v=4))
+                               ST["h3_bar"], bg=colors.HexColor("#D4DECA"), border_color=GOLD, pad_h=10, pad_v=4))
         flows.append(body(desc))
         flows.append(Spacer(1, 3*mm))
 

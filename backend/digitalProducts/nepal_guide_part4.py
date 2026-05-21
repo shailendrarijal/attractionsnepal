@@ -60,7 +60,7 @@ def build_food():
     ]
     for name, region, desc in foods:
         flows.append(ColorRect(f"<b>{name}</b>   <i>{region}</i>",
-                               ST["h3"], bg=LGREY, border_color=GOLD, pad_h=10, pad_v=4))
+                               ST["h3_bar"], bg=colors.HexColor("#E0D6C0"), border_color=GOLD, pad_h=10, pad_v=4))
         flows.append(body(desc))
         flows.append(Spacer(1, 2*mm))
 
