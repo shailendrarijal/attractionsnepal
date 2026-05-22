@@ -110,7 +110,7 @@ def build_trekking():
         ("Śiśira / Winter  (Dec–Feb)", "COLD BUT POSSIBLE",
          "High passes (above 4,500 m) may be snowed in. Lower-altitude treks (Helambu, lower Langtang, Ghandruk loop) work well. Fewer trekkers — better for photography and solitude."),
     ]
-    rows = [[Paragraph(c, ST["bold"]) for c in ["Season", "Rating", "Notes"]]]
+    rows = [[Paragraph(c, ST["bold_white"]) for c in ["Season", "Rating", "Notes"]]]
     for s, r, n in seasons_t:
         rows.append([Paragraph(s, ST["bodyL"]), Paragraph(r, ST["bold"]), Paragraph(n, ST["bodyL"])])
     t = Table(rows, colWidths=[48*mm, 25*mm, 97*mm])

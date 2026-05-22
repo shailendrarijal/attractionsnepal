@@ -46,7 +46,7 @@ def build_geography():
         ("Manaslu",     "8,163 m",  "'Mountain of the Spirit'; Gorkha district"),
         ("Annapurna I", "8,091 m",  "Lowest of the eight-thousanders; most dangerous by fatality ratio"),
     ]
-    rows = [[Paragraph(c, ST["bold"]) for c in ["Peak","Height","Notes"]]]
+    rows = [[Paragraph(c, ST["bold_white"]) for c in ["Peak","Height","Notes"]]]
     for p, h, n in peaks:
         rows.append([Paragraph(p, ST["phrase_np"]), Paragraph(h, ST["bodyL"]), Paragraph(n, ST["bodyL"])])
     t = Table(rows, colWidths=[45*mm, 25*mm, 100*mm])
@@ -229,7 +229,7 @@ def build_culture():
         ("Constitution Day",          "Āśvina 3 (Sep 19/20)",   "Promulgation of 2015 constitution"),
         ("Republic Day",              "Jyaiṣṭha 15 (May/Jun)",  "Abolition of monarchy in 2008"),
     ]
-    rows = [[Paragraph(c, ST["bold"]) for c in ["Holiday", "Date (approx.)", "Significance"]]]
+    rows = [[Paragraph(c, ST["bold_white"]) for c in ["Holiday", "Date (approx.)", "Significance"]]]
     for h, d, s in holidays:
         rows.append([Paragraph(h,ST["bodyL"]), Paragraph(d,ST["bodyL"]), Paragraph(s,ST["bodyL"])])
     t = Table(rows, colWidths=[55*mm, 35*mm, 80*mm])

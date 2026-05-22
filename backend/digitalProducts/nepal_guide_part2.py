@@ -66,7 +66,7 @@ def build_iast():
     flows.append(Spacer(1, 3*mm))
     # Critical distinction table
     crit = [
-        [Paragraph("IAST Spelling", ST["bold"]), Paragraph("Pronunciation", ST["bold"]), Paragraph("Meaning", ST["bold"])],
+        [Paragraph("IAST Spelling", ST["bold_white"]), Paragraph("Pronunciation", ST["bold_white"]), Paragraph("Meaning", ST["bold_white"])],
         [Paragraph("Kālī", ST["phrase_np"]),  Paragraph("Kaa-lee (long ā)", ST["bodyL"]), Paragraph("The Goddess of Time and Transformation — Śiva's consort, revered destroyer of evil", ST["bodyL"])],
         [Paragraph("kali", ST["phrase_np"]),  Paragraph("kuh-li (short a)", ST["bodyL"]), Paragraph("The demon of discord; also Kali Yuga, the current dark age", ST["bodyL"])],
         [Paragraph("Rāma", ST["phrase_np"]),  Paragraph("Raa-ma (long ā)", ST["bodyL"]), Paragraph("The divine hero-king, seventh avatar of Viṣṇu", ST["bodyL"])],
@@ -101,7 +101,7 @@ def build_iast():
         ["ṃ","anusvāra","nasal, like 'ng'","Saṃskṛta"],
         ["ḥ","visarga","light 'h' breath after vowel","Namaḥ"],
     ]
-    vrows = [[Paragraph(c, ST["bold"]) for c in ["IAST","Name","Pronunciation","Example"]]]
+    vrows = [[Paragraph(c, ST["bold_white"]) for c in ["IAST","Name","Pronunciation","Example"]]]
     for row in vowels:
         vrows.append([Paragraph(row[0], ST["phrase_np"]),
                       Paragraph(row[1], ST["bodyL"]),
@@ -133,7 +133,7 @@ def build_iast():
         ["c / ch","c = 'ch' as in church\nch = aspirated 'ch'","Caitra, Chatāmārī"],
         ["ph","p + puff of air (NOT 'f')", "Phewa Lake = P-hewa, not Fewa"],
     ]
-    crows = [[Paragraph(c, ST["bold"]) for c in ["Character","Pronunciation","Nepal Example"]]]
+    crows = [[Paragraph(c, ST["bold_white"]) for c in ["Character","Pronunciation","Nepal Example"]]]
     for row in cons:
         crows.append([Paragraph(row[0],ST["phrase_np"]),
                       Paragraph(row[1].replace("\n","<br/>"),ST["bodyL"]),

@@ -77,6 +77,9 @@ def make_styles():
     # Sub-heading bar style with dark text — used for entries inside chapters (seasons, festivals, dances, etc.)
     S["h3_bar"]    = ParagraphStyle("h3_bar",    fontName="NotoSerif-Bold",   fontSize=11.5, textColor=DARK,
                                     leading=16, spaceAfter=0, spaceBefore=0)
+    # White-text bold for use in table header cells (TableStyle TEXTCOLOR is ignored for Paragraphs)
+    S["bold_white"]= ParagraphStyle("bold_white",fontName="NotoSerif-Bold",   fontSize=10, textColor=WHITE,
+                                    leading=14, spaceAfter=0, spaceBefore=0)
     return S
 
 ST = make_styles()
@@ -168,9 +171,9 @@ def bullet_table(items, cols=2):
 
 def top10_table(title, rows_data):
     """Render a numbered top-10 table with description column."""
-    header = [Paragraph("#", ST["bold"]),
-              Paragraph("Name", ST["bold"]),
-              Paragraph("Notes", ST["bold"])]
+    header = [Paragraph("#", ST["bold_white"]),
+              Paragraph("Name", ST["bold_white"]),
+              Paragraph("Notes", ST["bold_white"])]
     rows = [header]
     for i, (name, notes) in enumerate(rows_data, 1):
         rows.append([
@@ -193,9 +196,9 @@ def top10_table(title, rows_data):
 
 def phrase_table(phrases):
     """Render phrases: [(English, IAST Nepali, Phonetic)]"""
-    rows = [[Paragraph("English", ST["bold"]),
-             Paragraph("Nepālī (IAST)", ST["bold"]),
-             Paragraph("Phonetic Guide", ST["bold"])]]
+    rows = [[Paragraph("English", ST["bold_white"]),
+             Paragraph("Nepālī (IAST)", ST["bold_white"]),
+             Paragraph("Phonetic Guide", ST["bold_white"])]]
     for en, np_iast, ph in phrases:
         rows.append([Paragraph(en, ST["phrase_en"]),
                      Paragraph(np_iast, ST["phrase_np"]),
