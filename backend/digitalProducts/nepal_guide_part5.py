@@ -381,14 +381,16 @@ def main():
     from nepal_guide_part3 import build_geography, build_culture
     from nepal_guide_part4 import build_food, build_trekking, build_places
 
-    # Pre-convert cover image to RGB (avoids RGBA alpha issues in ReportLab)
+    # Convert cover image to RGB JPEG (avoids RGBA/PNG alpha issues in ReportLab)
     from PIL import Image as _PIL
-    _cover_src = IMG_DIR / "cover.jpg"
+    _cover_src = COVER_SRC
     _cover_dst = IMG_DIR / "cover_rgb.jpg"
-    if _cover_src.exists() and not _cover_dst.exists():
+    if _cover_src.exists():
         _img = _PIL.open(str(_cover_src)).convert("RGB")
         _img.save(str(_cover_dst), "JPEG", quality=92)
-        print("  Converted cover.jpg → cover_rgb.jpg")
+        print(f"  Converted {_cover_src.name} → cover_rgb.jpg")
+    else:
+        print(f"  WARNING: cover source not found at {_cover_src}")
 
     doc = SimpleDocTemplate(
         str(OUT_PATH),

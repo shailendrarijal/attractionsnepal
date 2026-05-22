@@ -4,30 +4,8 @@
 from nepal_guide_part1 import *
 
 def build_cover():
-    path = IMG_DIR / "cover.jpg"
-    flows = []
-    # Full-bleed blue banner at top
-    flows.append(ColorRect("", ParagraphStyle("x"), bg=BLUE, pad_v=24))
-    if path.exists():
-        flows.append(Image(str(path), width=170*mm, height=88*mm))
-    # Dark banner: subtitle line — gold text on dark bg = good contrast
-    flows.append(ColorRect("THE COMPLETE GUIDE TO",      ST["coverSub"], bg=DARK, pad_h=20, pad_v=6))
-    # Deep-red banner for main title — white on deep red = excellent contrast
-    flows.append(ColorRect("Nepal",                       ST["coverTitle"], bg=RED,  pad_h=20, pad_v=10))
-    # Dark banner: topics line
-    flows.append(ColorRect(
-        "Culture · History · Trekking · Sacred Places · Food · Arts",
-        ST["coverSub"], bg=DARK, pad_h=20, pad_v=6))
-    # Slightly lighter dark band for metadata
-    dark2 = colors.HexColor("#2D2D44")
-    flows.append(ColorRect(
-        "With IAST Transliteration Guide  ·  100 Essential Phrases",
-        ST["coverMeta"], bg=dark2, pad_h=20, pad_v=5))
-    flows.append(ColorRect(
-        "© AttractionsNepal.com — First Edition 2025",
-        ST["coverMeta"], bg=dark2, pad_h=20, pad_v=6))
-    flows.append(PageBreak())
-    return flows
+    # Cover is drawn entirely by the on_first_page canvas callback in part5.
+    return [PageBreak()]
 
 def build_toc():
     flows = [

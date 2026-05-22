@@ -114,7 +114,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-1.5 transition-colors shadow-sm"
             >
-              📖 Get the Guide
+              📖 Get the Travel Guide
             </a>
           </div>
 
@@ -186,7 +186,7 @@ export default function Navbar() {
             className="flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-3 transition-colors"
             onClick={() => setMobileOpen(false)}
           >
-            📖 Get the Nepal Travel Guide PDF →
+            📖 Get the Travel Guide →
           </a>
           <div className="pt-1 border-t border-gray-100">
             <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 py-2">Categories</p>

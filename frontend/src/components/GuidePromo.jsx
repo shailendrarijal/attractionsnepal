@@ -13,7 +13,7 @@ export default function GuidePromo({ variant = 'banner' }) {
       <div className="my-10 rounded-2xl overflow-hidden border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 flex flex-col sm:flex-row gap-0">
         <div className="sm:w-36 shrink-0 bg-amber-100 flex items-center justify-center p-4">
           <img
-            src="/guide-cover.jpg"
+            src="/cover_image.png"
             alt="Nepal Travel Guide cover"
             className="w-24 sm:w-full rounded-lg shadow-md object-cover"
           />
@@ -46,7 +46,7 @@ export default function GuidePromo({ variant = 'banner' }) {
           {/* Cover image */}
           <div className="lg:w-72 shrink-0 bg-amber-900 flex items-center justify-center p-8 lg:p-10">
             <img
-              src="/guide-cover.jpg"
+              src="/cover_image.png"
               alt="Nepal Travel Guide cover"
               className="rounded-xl shadow-2xl w-48 lg:w-full object-cover"
             />

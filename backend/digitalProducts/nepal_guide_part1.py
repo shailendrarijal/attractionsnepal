@@ -17,9 +17,10 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus.flowables import Flowable
 
-FONT_DIR = Path("/tmp/nepal_guide_assets/fonts")
-IMG_DIR  = Path("/tmp/nepal_guide_assets/images")
-OUT_PATH = Path("/Users/shailendra/Nashtech/Clients/New attractions nepal/backend/digitalProducts/pdf/complete-nepal-tourist-guide.pdf")
+FONT_DIR   = Path("/tmp/nepal_guide_assets/fonts")
+IMG_DIR    = Path("/tmp/nepal_guide_assets/images")
+OUT_PATH   = Path("/Users/shailendra/Nashtech/Clients/New attractions nepal/backend/digitalProducts/pdf/complete-nepal-tourist-guide.pdf")
+COVER_SRC  = Path(__file__).parent / "images" / "cover_image.png"
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # ── Register fonts ────────────────────────────────────────────────────────────
