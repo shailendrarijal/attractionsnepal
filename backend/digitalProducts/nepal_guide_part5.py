@@ -296,13 +296,99 @@ def on_page(canvas, doc):
     canvas.restoreState()
 
 def on_first_page(canvas, doc):
-    pass  # No header/footer on cover
+    """Full-bleed illustrated cover — drawn entirely via canvas API."""
+    from reportlab.lib.pagesizes import A4
+    W, H = A4
+    cv = canvas
+
+    # 1. Full-bleed background image
+    cover_img = str(IMG_DIR / "cover_rgb.jpg")
+    if not Path(cover_img).exists():
+        cover_img = str(IMG_DIR / "cover.jpg")
+    if Path(cover_img).exists():
+        cv.drawImage(cover_img, 0, 0, W, H, preserveAspectRatio=False)
+
+    # 2. Dark gradient overlay — bottom 65% fades from transparent to near-black
+    from reportlab.lib import colors as _c
+    overlay_h = H * 0.65
+    strips = 60
+    strip_h = overlay_h / strips
+    for i in range(strips):
+        alpha = 0.10 + 0.68 * ((strips - i) / strips)
+        cv.setFillColor(_c.Color(0.05, 0.05, 0.12, alpha=alpha))
+        cv.rect(0, i * strip_h, W, strip_h + 0.5, fill=1, stroke=0)
+
+    # Additional top-of-image darkening so header text pops
+    cv.setFillColor(_c.Color(0, 0, 0, alpha=0.35))
+    cv.rect(0, H - 18*mm, W, 18*mm, fill=1, stroke=0)
+
+    # 3. Solid dark band at very bottom (0–26 mm)
+    cv.setFillColor(_c.Color(0.06, 0.06, 0.13, alpha=0.94))
+    cv.rect(0, 0, W, 26*mm, fill=1, stroke=0)
+
+    # 4. RED accent stripe at very top
+    cv.setFillColor(RED)
+    cv.rect(0, H - 10*mm, W, 10*mm, fill=1, stroke=0)
+    cv.setFont("NotoSerif", 7.5)
+    cv.setFillColor(WHITE)
+    cv.drawCentredString(W / 2, H - 6.4*mm, "ATTRACTIONSNEPAL.COM")
+
+    # 5. Gold horizontal rules framing the title zone
+    cv.setStrokeColor(GOLD)
+    cv.setLineWidth(0.8)
+    cv.line(18*mm, H * 0.38,  W - 18*mm, H * 0.38)   # below topics line
+    cv.line(18*mm, H * 0.565, W - 18*mm, H * 0.565)  # above "NEPAL"
+
+    # 6. "THE COMPLETE GUIDE TO" — gold label above title
+    cv.setFont("NotoSerif-Bold", 11)
+    cv.setFillColor(GOLD)
+    cv.drawCentredString(W / 2, H * 0.595, "THE COMPLETE GUIDE TO")
+
+    # 7. "NEPAL" — main title (large white)
+    cv.setFont("NotoSerif-Bold", 76)
+    cv.setFillColor(WHITE)
+    cv.drawCentredString(W / 2, H * 0.44, "NEPAL")
+
+    # 8. Topics line just below "NEPAL"
+    cv.setFont("NotoSerif-Italic", 9)
+    cv.setFillColor(_c.HexColor("#FFD9A0"))
+    cv.drawCentredString(
+        W / 2, H * 0.395,
+        "History  ·  Culture  ·  Trekking  ·  Temples  ·  Food  ·  Festivals  ·  Phrases"
+    )
+
+    # 9. Decorative double rule above bottom band
+    cv.setStrokeColor(_c.HexColor("#C0A060"))
+    cv.setLineWidth(0.4)
+    cv.line(18*mm, 28*mm, W - 18*mm, 28*mm)
+    cv.setLineWidth(1.0)
+    cv.line(18*mm, 27*mm, W - 18*mm, 27*mm)
+
+    # 10. Metadata in dark bottom band
+    cv.setFont("NotoSerif", 7.5)
+    cv.setFillColor(_c.HexColor("#E8D5B0"))
+    cv.drawCentredString(
+        W / 2, 17.5*mm,
+        "With IAST Transliteration Guide  ·  100 Essential Phrases  ·  AttractionsNepal.com"
+    )
+    cv.setFont("NotoSerif-Bold", 7.5)
+    cv.setFillColor(_c.HexColor("#AAAAAA"))
+    cv.drawCentredString(W / 2, 10*mm, "FIRST EDITION  ·  2025")
 
 # ── Main build ─────────────────────────────────────────────────────────────────
 def main():
     from nepal_guide_part2 import build_cover, build_toc, build_iast, build_intro, build_history
     from nepal_guide_part3 import build_geography, build_culture
     from nepal_guide_part4 import build_food, build_trekking, build_places
+
+    # Pre-convert cover image to RGB (avoids RGBA alpha issues in ReportLab)
+    from PIL import Image as _PIL
+    _cover_src = IMG_DIR / "cover.jpg"
+    _cover_dst = IMG_DIR / "cover_rgb.jpg"
+    if _cover_src.exists() and not _cover_dst.exists():
+        _img = _PIL.open(str(_cover_src)).convert("RGB")
+        _img.save(str(_cover_dst), "JPEG", quality=92)
+        print("  Converted cover.jpg → cover_rgb.jpg")
 
     doc = SimpleDocTemplate(
         str(OUT_PATH),
