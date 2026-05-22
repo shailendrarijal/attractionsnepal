@@ -126,6 +126,16 @@ export default function Footer() {
               <li><Link to="/explore" className="text-sm hover:text-white transition-colors">Map View</Link></li>
               <li><Link to="/blog"    className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
               <li><Link to="/stories" className="text-sm hover:text-white transition-colors">Stories</Link></li>
+              <li>
+                <a
+                  href="https://shailendra185.gumroad.com/l/jdvner"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-amber-400 hover:text-amber-300 transition-colors font-medium"
+                >
+                  📖 Nepal Travel Guide PDF
+                </a>
+              </li>
               <li><Link to="/admin"   className="text-sm hover:text-white transition-colors">Admin</Link></li>
             </ul>
 

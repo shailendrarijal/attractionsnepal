@@ -11,6 +11,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import AdBanner from '../components/AdBanner'
 import JsonLd from '../components/JsonLd'
+import GuidePromo from '../components/GuidePromo'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
@@ -158,6 +159,9 @@ export default function PlacePage() {
         <div className="prose prose-base max-w-none mb-10">
           <ReactMarkdown rehypePlugins={[rehypeRaw]}>{place.story}</ReactMarkdown>
         </div>
+
+        {/* Guide promo — high intent position after reading about the place */}
+        <GuidePromo variant="inline" />
 
         {/* Mid-page ad — after story, before sections */}
         <AdBanner size="leaderboard" />

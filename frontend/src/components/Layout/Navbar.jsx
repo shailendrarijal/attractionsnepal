@@ -107,6 +107,15 @@ export default function Navbar() {
             >
               Blog
             </NavLink>
+
+            <a
+              href="https://shailendra185.gumroad.com/l/jdvner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-1.5 transition-colors shadow-sm"
+            >
+              📖 Get the Guide
+            </a>
           </div>
 
           {/* Search */}
@@ -170,6 +179,15 @@ export default function Navbar() {
           <Link to="/blog" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Blog
           </Link>
+          <a
+            href="https://shailendra185.gumroad.com/l/jdvner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-3 transition-colors"
+            onClick={() => setMobileOpen(false)}
+          >
+            📖 Get the Nepal Travel Guide PDF →
+          </a>
           <div className="pt-1 border-t border-gray-100">
             <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 py-2">Categories</p>
             <div className="grid grid-cols-2 gap-1">

@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import JsonLd from '../components/JsonLd'
 import NewsletterSignup from '../components/NewsletterSignup'
+import GuidePromo from '../components/GuidePromo'
 
 const CATEGORIES = [
   { label: 'Temples',          slug: 'temple',           icon: '🛕' },
@@ -144,6 +145,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Guide promo */}
+      <GuidePromo />
+
       {/* Blog section */}
       <section className="py-14 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -185,6 +189,14 @@ export default function HomePage() {
             <Link to="/category/trek-route" className="btn-secondary bg-transparent border-white text-white hover:bg-primary-700">
               🥾 Browse Treks
             </Link>
+            <a
+              href="https://shailendra185.gumroad.com/l/jdvner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold px-5 py-2.5 transition-colors"
+            >
+              📖 Get the Travel Guide
+            </a>
           </div>
         </div>
       </section>

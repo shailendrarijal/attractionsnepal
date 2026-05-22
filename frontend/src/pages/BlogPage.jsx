@@ -6,6 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import AdBanner from '../components/AdBanner'
 import JsonLd from '../components/JsonLd'
+import GuidePromo from '../components/GuidePromo'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80'
 
@@ -98,6 +99,9 @@ export default function BlogPage() {
 
         {/* Mid ad — after content */}
         <AdBanner size="rectangle" />
+
+        {/* Guide promo — readers finishing an article are warm leads */}
+        <GuidePromo variant="inline" />
 
         {/* Related places */}
         {blog.relatedPlaceSlugs?.length > 0 && (
