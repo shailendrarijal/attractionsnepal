@@ -80,6 +80,15 @@ def make_styles():
     # White-text bold for use in table header cells (TableStyle TEXTCOLOR is ignored for Paragraphs)
     S["bold_white"]= ParagraphStyle("bold_white",fontName="NotoSerif-Bold",   fontSize=10, textColor=WHITE,
                                     leading=14, spaceAfter=0, spaceBefore=0)
+    # Introduction page styles
+    S["stat_cell"] = ParagraphStyle("stat_cell", fontName="NotoSerif-Bold",   fontSize=9,  textColor=WHITE,
+                                    leading=20, alignment=TA_CENTER, spaceAfter=0, spaceBefore=0)
+    S["intro_key"] = ParagraphStyle("intro_key", fontName="NotoSerif-Bold",   fontSize=9.5,textColor=BLUE,
+                                    leading=13, spaceAfter=0, spaceBefore=0)
+    S["fact_badge"]= ParagraphStyle("fact_badge",fontName="NotoSerif-Bold",   fontSize=17, textColor=WHITE,
+                                    leading=21, alignment=TA_CENTER, spaceAfter=0, spaceBefore=0)
+    S["fact_body"] = ParagraphStyle("fact_body", fontName="NotoSerif",        fontSize=9,  textColor=DARK,
+                                    leading=13, spaceAfter=0, spaceBefore=0)
     return S
 
 ST = make_styles()

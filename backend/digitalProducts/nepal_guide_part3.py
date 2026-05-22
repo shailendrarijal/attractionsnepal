@@ -206,33 +206,34 @@ def build_culture():
 
     flows += section_head("Public Holidays in Nepal")
     holidays = [
-        ("Prithvi Jayantī",           "Pauṣa 27 (Jan 11)",     "Birthday of Prithvi Narayan Shah"),
-        ("Martyr's Day",              "Māgha 5 (Jan 19/20)",    "Commemorating those who died for democracy"),
-        ("Maghe Sankranti",           "Māgha 1 (Jan 15)",       "Winter solstice holy bathing"),
-        ("Śivarātri",                 "Phālguna (Feb/Mar)",      "Śiva's night; Paśupatinātha pilgrimage"),
-        ("Phāgu Pūrṇimā (Holi)",      "Phālguna (Feb/Mar)",     "Festival of colours"),
-        ("Baladevi Caturtha",         "Caitra (Mar)",            "Newar festival"),
-        ("Ghoḍe Jātrā / Pāḍavā",     "Caitra (Mar/Apr)",       "Horse festival; spring new year"),
-        ("Rāma Navamī",               "Caitra (Mar/Apr)",        "Rāma's birthday"),
-        ("Baisakh 1 — New Year",     "Baisakh (Apr 14/15)",   "Nepalī New Year"),
-        ("Buda Jayantī",              "Vaiśākha (Apr/May)",      "Buddha's birth, enlightenment & death"),
-        ("Janai Pūrṇimā (Rākṣā Bandhana)","Śrāvaṇa (Aug)",     "Sacred thread ceremony; Ṛṣi Pañcamī"),
-        ("Gaī Jātrā",                 "Bhādra (Aug/Sep)",       "Cow procession for the recently deceased"),
-        ("Kṛṣṇa Aṣṭamī",             "Bhādra (Aug/Sep)",       "Kṛṣṇa's birthday"),
-        ("Indra Jātrā",               "Bhādra/Āśvina (Sep)",    "8-day festival; Kumārī chariot procession"),
-        ("Ghatasthāpanā",             "Āśvina (Sep/Oct)",       "First day of Dashain — sacred water vessel"),
-        ("Phūlapātī",                 "Āśvina 7th (Sep/Oct)",   "Seventh day of Dashain — flowers brought"),
-        ("Vijayā Daśamī",             "Āśvina 10th (Sep/Oct)",  "Main Dashain day — tīkā from elders"),
-        ("Lakṣmī Pūjā",               "Kārtika (Oct/Nov)",      "Third night of Tihar — goddess of wealth"),
-        ("Bhāī Ṭīkā",                 "Kārtika (Oct/Nov)",      "Fifth day of Tihar — sister-brother bond"),
-        ("Chhaṭha Pūjā",              "Kārtika (Oct/Nov)",      "Sun worship festival"),
-        ("Constitution Day",          "Āśvina 3 (Sep 19/20)",   "Promulgation of 2015 constitution"),
-        ("Republic Day",              "Jyaiṣṭha 15 (May/Jun)",  "Abolition of monarchy in 2008"),
+        # Fixed national holidays — exact B.S. date given; English is approximate
+        ("Prithvi Jayantī",              "Pauṣa 27",    "Early January",        "Birthday of unifier Prithvi Narayan Shah"),
+        ("Martyrs' Day",                 "Māgha 16",    "Late January",         "Honour those who died for democracy"),
+        ("Democracy Day",                "Phālguna 7",  "Late February",        "Restoration of multi-party democracy"),
+        ("International Women's Day",    "Phālguna 24", "Early March",          "Women's rights and empowerment"),
+        ("Nepalī New Year",              "Baisākha 1",  "Mid-April",            "Start of Bikram Saṃvat new year"),
+        ("International Workers' Day",   "Baisākha 18", "Early May",            "Labour Day"),
+        ("Republic Day",                 "Jyaiṣṭha 15", "Late May",             "Abolition of the monarchy, 2008"),
+        ("Constitution Day",             "Āśvina 3",    "Mid-September",        "Promulgation of the 2015 Constitution"),
+        # Religious holidays — dates shift yearly with the lunar calendar
+        ("Mahā Śivarātri",               "—",           "Late Feb / Early Mar", "Śiva's night; over a million pilgrims at Paśupatinātha"),
+        ("Phāgu Pūrṇimā (Holī)",         "—",           "Late Feb / Early Mar", "Festival of colours; bonfires on eve"),
+        ("Ghatasthāpanā",                "—",           "Late September",       "First day of Dashain; sacred water vessel installed"),
+        ("Mahāaṣṭamī",                   "—",           "Late Sep / Early Oct", "Eighth day of Dashain; Kālī temple offerings"),
+        ("Vijayā Daśamī (Dashain)",      "—",           "Early October",        "Main Dashain day — tīkā and jamārā from elders"),
+        ("Lakṣmī Pūjā (Tihar)",          "—",           "Mid-October / Early Nov", "Third night of Tihar; homes lit for goddess of wealth"),
+        ("Bhāī Ṭīkā (Tihar)",            "—",           "Mid-October / Early Nov", "Fifth day of Tihar; sisters apply tīkā to brothers"),
+        ("Chhaṭha Pūjā",                 "—",           "Mid-November",         "Direct sun worship; ritual bathing at river banks"),
+        ("Buda Jayantī",                 "—",           "April / May",          "Buddha's birth, enlightenment & death"),
+        ("Indra Jātrā",                  "—",           "Early September",      "8-day Kathmandu festival; living Kumārī chariot"),
+        ("Janai Pūrṇimā",                "—",           "August",               "Sacred thread renewal; Ṛṣi Pañcamī"),
+        ("Kṛṣṇa Aṣṭamī",                "—",           "Late August",          "Kṛṣṇa's birthday; Paṭan celebrations"),
+        ("Maghe Sankrānti",              "—",           "Mid-January",          "Winter solstice; holy bathing at river confluences"),
     ]
-    rows = [[Paragraph(c, ST["bold_white"]) for c in ["Holiday", "Date (approx.)", "Significance"]]]
-    for h, d, s in holidays:
-        rows.append([Paragraph(h,ST["bodyL"]), Paragraph(d,ST["bodyL"]), Paragraph(s,ST["bodyL"])])
-    t = Table(rows, colWidths=[55*mm, 35*mm, 80*mm])
+    rows = [[Paragraph(c, ST["bold_white"]) for c in ["Holiday", "Nepali Date (B.S.)", "Approx. English Period", "Significance"]]]
+    for h, nd, ep, sig in holidays:
+        rows.append([Paragraph(h,ST["bold"]), Paragraph(nd,ST["bodyL"]), Paragraph(ep,ST["bodyL"]), Paragraph(sig,ST["bodyL"])])
+    t = Table(rows, colWidths=[48*mm, 22*mm, 32*mm, 68*mm])
     t.setStyle(TableStyle([
         ("BACKGROUND",(0,0),(-1,0),BLUE),("TEXTCOLOR",(0,0),(-1,0),WHITE),
         ("ROWBACKGROUNDS",(0,1),(-1,-1),[WHITE,LGREY]),
@@ -322,7 +323,6 @@ def build_culture():
         "Don't <b>photograph cremation ghats</b> at Paśupatinātha without permission — funerals deserve privacy.",
         "Don't give <b>sweets, pens, or money directly to children</b> on the street — it reinforces organised begging.",
         "Don't <b>trek alone</b> in remote areas — register with TAAN (Trekking Agencies' Association of Nepal) and use a licensed guide.",
-        "Don't use your <b>left hand</b> to eat or to pass things — the left is used for washing and is considered unclean.",
         "Don't show <b>excessive public affection</b> — holding hands is generally acceptable; kissing in public is not.",
         "Don't <b>haggle aggressively</b> — polite bargaining is expected at markets, but firmness with anger is rude.",
         "Don't disrespect the <b>Svastika</b> — it is an ancient sacred symbol (meaning 'all is well') in Nepal, unrelated to its 20th-century misappropriation in Europe.",

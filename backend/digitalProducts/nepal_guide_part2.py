@@ -159,54 +159,101 @@ def build_iast():
 def build_intro():
     flows = chapter_header(
         "Chapter 2: Introduction to Nepal",
-        "A Himalayan kingdom between giants — birthplace of the Buddha, home of Everest"
+        "A Himalayan nation between giants — birthplace of the Buddha, home of Everest"
     )
     flows += img("mountains", caption="The Great Himālaya — eight of the world's ten highest peaks lie within Nepal")
 
-    flows += section_head("At a Glance")
+    # ── Key Stats Strip ──────────────────────────────────────────────────────
+    stat_items = [
+        ('<font size="19"><b>30 M</b></font><br/><font size="8">Population</font>',),
+        ('<font size="19"><b>8,849 m</b></font><br/><font size="8">Earth\'s Highest Peak</font>',),
+        ('<font size="19"><b>8</b></font><br/><font size="8">Eight-Thousanders</font>',),
+        ('<font size="19"><b>125+</b></font><br/><font size="8">Languages Spoken</font>',),
+    ]
+    stat_cells = [[Paragraph(s[0], ST["stat_cell"]) for s in stat_items]]
+    st = Table(stat_cells, colWidths=[170*mm/4]*4)
+    st.setStyle(TableStyle([
+        ("BACKGROUND",     (0,0),(-1,-1), DARK),
+        ("TOPPADDING",     (0,0),(-1,-1), 10),
+        ("BOTTOMPADDING",  (0,0),(-1,-1), 10),
+        ("LEFTPADDING",    (0,0),(-1,-1), 4),
+        ("RIGHTPADDING",   (0,0),(-1,-1), 4),
+        ("LINEAFTER",      (0,0),(2,-1), 0.5, colors.HexColor("#4A6080")),
+    ]))
+    flows += [st, Spacer(1, 6*mm)]
+
+    # ── Nepal at a Glance ────────────────────────────────────────────────────
+    flows += section_head("Nepal at a Glance")
     facts = [
         ["Official Name",    "Federal Democratic Republic of Nepal"],
-        ["Capital",          "Kathmandu (Kathmandu) — 1,400 m above sea level"],
+        ["Capital",          "Kathmandu — 1,400 m above sea level"],
         ["Population",       "Approx. 30 million (2024 estimate)"],
         ["Area",             "147,181 km² — roughly the size of England & Wales"],
-        ["Location",         "South Asia, landlocked between India (south/east/west) and China–Tibet (north)"],
-        ["Official Language","Nepalī (written in Devanāgarī script)"],
-        ["Other Languages",  "125+ officially recognised languages"],
-        ["Religion",         "Primarily Hindu (81 %), Buddhist (9 %), plus Muslim, Kirant, Christian minorities"],
+        ["Location",         "South Asia, landlocked between India (south, east, west) and China–Tibet (north)"],
+        ["Official Language","Nepalī (Devanāgarī script); 125+ other languages recognised"],
+        ["Religion",         "Hindu 81%, Buddhist 9%, Muslim 4%, Kirant & other minorities"],
         ["Currency",         "Nepalese Rupee (NPR); 1 USD ≈ 133 NPR (2024)"],
-        ["Time Zone",        "UTC +5:45 (the only ¾-hour offset in the world)"],
-        ["Calendar",         "Bikram Saṃvat (BS) — 56–57 years ahead of the Gregorian calendar"],
-        ["Highest Point",    "Sagarmatha (Everest) 8,848.86 m — Earth's highest peak"],
+        ["Time Zone",        "UTC +5:45 — the world's only ¾-hour timezone offset"],
+        ["Calendar",         "Bikram Saṃvat (BS) — 56–57 years ahead of the Gregorian"],
+        ["Highest Point",    "Sagarmatha (Everest) 8,848.86 m — Earth's highest point"],
         ["Lowest Point",     "Kechana Kalan, Jhāpā — 70 m above sea level"],
         ["Government",       "Federal parliamentary republic; President is head of state"],
     ]
-    rows = [[Paragraph(k, ST["bold"]), Paragraph(v, ST["bodyL"])] for k, v in facts]
+    rows = [[Paragraph(k, ST["intro_key"]), Paragraph(v, ST["bodyL"])] for k, v in facts]
     t = Table(rows, colWidths=[48*mm, 122*mm])
     t.setStyle(TableStyle([
-        ("ROWBACKGROUNDS",(0,0),(-1,-1),[WHITE,LGREY]),
-        ("GRID",(0,0),(-1,-1),0.3,colors.HexColor("#CCC")),
-        ("VALIGN",(0,0),(-1,-1),"TOP"),
-        ("TOPPADDING",(0,0),(-1,-1),4),("BOTTOMPADDING",(0,0),(-1,-1),4),
-        ("LEFTPADDING",(0,0),(-1,-1),5),
+        ("ROWBACKGROUNDS",  (0,0),(-1,-1), [WHITE, LGREY]),
+        ("BACKGROUND",      (0,0),(0,-1),  colors.HexColor("#EBF0F8")),
+        ("GRID",            (0,0),(-1,-1), 0.3, colors.HexColor("#C8C8C8")),
+        ("VALIGN",          (0,0),(-1,-1), "TOP"),
+        ("TOPPADDING",      (0,0),(-1,-1), 5),
+        ("BOTTOMPADDING",   (0,0),(-1,-1), 5),
+        ("LEFTPADDING",     (0,0),(-1,-1), 6),
+        ("LINEBEFORE",      (1,0),(1,-1),  1.5, colors.HexColor("#003893")),
     ]))
-    flows += [t, Spacer(1, 5*mm)]
+    flows += [t, Spacer(1, 6*mm)]
 
+    # ── 10 Remarkable Facts — numbered card grid ─────────────────────────────
     flows += section_head("10 Remarkable Facts About Nepal")
     fun_facts = [
-        "<b>The world's only non-rectangular national flag.</b> Nepal's flag is a double pennon — two stacked triangular shapes. Every other national flag in the world is a rectangle.",
-        "<b>Eight of the ten highest peaks</b> on Earth are in Nepal, including Sagarmatha (Everest, 8,848 m), Kanchenjunga (8,586 m), Lotse (8,516 m), and Makalu (8,463 m).",
-        "<b>Birthplace of the Buddha.</b> Siddhārtha Gautama was born in Lumbini, Nepal, c. 563 BCE. Lumbini is a UNESCO World Heritage Site and one of the holiest places on earth.",
-        "<b>The cow is the national animal</b> and is sacred throughout Nepal. Slaughtering a cow was historically punishable by law. Beef is not served in traditional Nepalī restaurants.",
-        "<b>Nepal was never colonised.</b> While neighbouring India, Burma, and Tibet fell under British or Chinese control, Nepal maintained its sovereignty — a source of enormous national pride.",
-        "<b>Time zone: UTC +5:45.</b> Nepal is the only country in the world with a ¾-hour offset, set partly to distinguish itself from India (UTC +5:30).",
-        "<b>The Bikram Saṃvat calendar</b> used in Nepal runs 56–57 years ahead of the Gregorian. The Nepalese New Year (Baisakh 1) falls in mid-April. The year 2025 CE is BS 2082.",
-        "<b>More than 240 peaks over 6,000 m.</b> Nepal's topography spans 70 m (Terai lowlands) to 8,849 m in a horizontal distance of barely 200 km — one of Earth's steepest gradients.",
-        "<b>Pashupatinātha</b> in Kathmandu is considered the most sacred Śiva temple in the world. Non-Hindus are not permitted inside the inner sanctum.",
-        "<b>The Gurkhas</b> — soldiers from Nepal's hill communities — have served in the British and Indian armies for over 200 years. Their motto: <i>Kaparnu bhanda marnu rāmro</i> — 'Better to die than live a coward.'",
+        "<b>The world's only non-rectangular national flag.</b> Nepal's flag is a double pennon — two stacked triangles. Every other country's flag is a rectangle.",
+        "<b>Eight of the ten highest peaks</b> on Earth are entirely or partly in Nepal: Sagarmatha, Kanchenjunga, Lhotse, Makalu, Cho Oyu, Dhaulagiri, Manaslu, and Annapurna I.",
+        "<b>Birthplace of the Buddha.</b> Siddhārtha Gautama was born in Lumbini, Nepal, c. 563 BCE — a UNESCO World Heritage Site and one of the holiest places on Earth.",
+        "<b>The cow is the national animal</b> and is sacred. Slaughtering a cow was historically a criminal offence. Beef is not served in traditional Nepalī households or restaurants.",
+        "<b>Nepal was never colonised.</b> While India, Burma, and Tibet fell under British or Chinese control, Nepal maintained full sovereignty — a source of enormous national pride.",
+        "<b>Time zone UTC +5:45.</b> Nepal is the only country in the world with a ¾-hour timezone offset, set partly to distinguish itself from India (UTC +5:30).",
+        "<b>The Bikram Saṃvat calendar</b> runs 56–57 years ahead of the Gregorian. Nepalī New Year (Baisakh 1) falls in mid-April. The year 2025 CE corresponds to BS 2082.",
+        "<b>More than 240 peaks above 6,000 m.</b> Nepal spans from 70 m (Terai) to 8,849 m in barely 200 km east–west — one of Earth's most extreme altitude gradients.",
+        "<b>Paśupatinātha Temple</b> in Kathmandu is considered the most sacred Śiva temple in the world and draws hundreds of thousands of Hindu pilgrims every year.",
+        "<b>The Gurkhas</b> — soldiers from Nepal's hill communities — have served in British and Indian armies for over 200 years. Motto: <i>Kaparnu bhanda marnu rāmro</i> — 'Better to die than live a coward.'",
     ]
-    for i, ff in enumerate(fun_facts, 1):
-        flows.append(Paragraph(f"<b>{i}.</b>  {ff}", ST["body"]))
-        flows.append(Spacer(1, 2*mm))
+
+    # Render as a full-width single table: red badge | fact text — alternating bg
+    fact_bg = [colors.HexColor("#FDF5F5"), colors.HexColor("#F5F5FD")]
+    badge_bg = [RED, BLUE]
+    fact_rows = []
+    for i, ff in enumerate(fun_facts):
+        fact_rows.append([
+            Paragraph(f"<b>{i+1}</b>", ST["fact_badge"]),
+            Paragraph(ff, ST["fact_body"]),
+        ])
+    ft = Table(fact_rows, colWidths=[12*mm, 158*mm])
+    row_styles = []
+    for i in range(len(fun_facts)):
+        row_styles += [
+            ("BACKGROUND", (0,i),(0,i), badge_bg[i%2]),
+            ("BACKGROUND", (1,i),(1,i), fact_bg[i%2]),
+        ]
+    ft.setStyle(TableStyle([
+        ("VALIGN",       (0,0),(-1,-1), "MIDDLE"),
+        ("TOPPADDING",   (0,0),(-1,-1), 7),
+        ("BOTTOMPADDING",(0,0),(-1,-1), 7),
+        ("LEFTPADDING",  (0,0),(0,-1),  2),
+        ("LEFTPADDING",  (1,0),(1,-1),  8),
+        ("RIGHTPADDING", (0,0),(-1,-1), 6),
+        ("LINEBELOW",    (0,0),(-1,-2), 0.3, colors.HexColor("#DDDDDD")),
+    ] + row_styles))
+    flows += [ft, Spacer(1, 4*mm)]
     return flows
 
 def build_history():
