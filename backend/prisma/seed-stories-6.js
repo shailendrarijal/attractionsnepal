@@ -7,6 +7,7 @@ const stories = [
     slug: 'janaki-mandir-ram-sita-wedding',
     title: 'Janaki Mandir: Where Sita Was Born and Married Rama',
     category: 'PILGRIMAGE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Janki_Mandir_alt_version.jpg/1280px-Janki_Mandir_alt_version.jpg',
     excerpt: 'Janakpur in Nepal\'s Madhesh is ancient Mithila — the kingdom of King Janaka where Sita was found as a baby in a furrow of ploughed earth. The Janaki Mandir marks where she was born, and every year the entire city re-enacts her wedding to Rama at Vivah Panchami.',
     relatedPlaceSlugs: ['janaki-mandir'],
     content: `## King Janaka and the Furrow
@@ -49,6 +50,7 @@ Janakpur also hosts a network of over 70 ponds (**pokhari**) surrounding the tem
     slug: 'ashta-chiranjeevi-eight-immortals',
     title: 'The Eight Immortals: Guardians Until Kalki Arrives',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/A_Hanuman_sculpture_in_Singapore.jpg/1280px-A_Hanuman_sculpture_in_Singapore.jpg',
     excerpt: 'Eight beings in Hindu tradition have been granted immortality — not as a reward, but as a duty. They roam the earth through every age, preserving dharma\'s thread, and will gather to assist Kalki, Vishnu\'s tenth avatar, when he comes to end the Kali Yuga.',
     relatedPlaceSlugs: [],
     content: `## The Concept of Chiranjivi
@@ -92,6 +94,7 @@ The Ashta Chiranjivi remind us that even in the darkest age, ancient wisdom is n
     slug: 'nepali-life-rituals-samskaras',
     title: 'The Rituals of a Nepali Life: From Birth to Old Age',
     category: 'TRADITION',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/A_Hindu_wedding_ceremony.jpg/1280px-A_Hindu_wedding_ceremony.jpg',
     excerpt: 'A traditional Nepali life is marked by a series of sacred ceremonies — samskaras — from the naming of a newborn to the celebration of an 84th birthday. Each ritual marks a transition, invokes blessings, and ties the individual to family, community, and the divine.',
     relatedPlaceSlugs: [],
     content: `## The Samskara Tradition

@@ -7,6 +7,7 @@ const stories = [
     slug: 'teej-festival-parvati-shiva',
     title: 'Teej: The Festival of Women\'s Devotion',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Teej.jpg/1280px-Teej.jpg',
     excerpt: 'Teej is Nepal\'s most vibrant women\'s festival — a day of fasting, red saris, dancing, and prayers for a husband\'s long life. Its roots lie in Parvati\'s fierce austerities to win Shiva as her husband, a devotion so intense the gods themselves had to intervene.',
     relatedPlaceSlugs: ['pashupatinath-temple'],
     content: `## Parvati's Longing for Shiva
@@ -43,6 +44,7 @@ Teej is one of the few festivals that is entirely women-led — a day when women
     slug: 'holi-holika-prahlad',
     title: 'Holi: The Festival of Colours',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Holika_dhan.jpg/1280px-Holika_dhan.jpg',
     excerpt: 'Before the colours, there was fire. Holi begins with the burning of Holika — a demoness who tried to kill the devotee Prahlad by holding him in flames. His faith in Vishnu made him fireproof; she burned instead. The following morning, the world erupted in joyful colour.',
     relatedPlaceSlugs: [],
     content: `## The Devotee the Demon King Could Not Break
@@ -84,6 +86,7 @@ Holi is one of the few festivals in Nepal where social hierarchies temporarily d
     slug: 'ramayana-nepali-epic',
     title: 'The Ramayana: Nepal\'s Sacred Epic',
     category: 'SCRIPTURE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/R%C4%81ma_slays_R%C4%81va%E1%B9%87a.png',
     excerpt: 'The Ramayana is not merely a story — it is a guide to dharma, a portrait of ideal conduct, and a living mythology. Nepal\'s deep connection to the epic runs through Janakpur (Sita\'s birthplace), the festivals of Dashain and Ram Navami, and daily temple worship.',
     relatedPlaceSlugs: ['janaki-mandir'],
     content: `## The Composition
@@ -120,6 +123,7 @@ In Nepali homes, Hanuman is the most personally beloved deity of the Ramayana �
     slug: 'mahabharata-epic-dharma',
     title: 'The Mahabharata: The Epic of Dharma',
     category: 'SCRIPTURE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/8/81/Kurukshetra.jpg',
     excerpt: 'The Mahabharata is the longest epic in the world — ten times the length of the Iliad and Odyssey combined. At its heart is the Kurukshetra war between cousins, and the Bhagavad Gita spoken on the battlefield. The Pandavas\' journey to heaven passed through the Nepal Himalayas.',
     relatedPlaceSlugs: ['muktinath-temple'],
     content: `## The Scope of the Epic
@@ -160,6 +164,7 @@ The epic permeates Nepali life through:
     slug: 'four-yugas-ten-avatars-vishnu',
     title: 'The Four Yugas and the Ten Avatars of Vishnu',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Vishnu_Avatars.jpg',
     excerpt: 'Hindu cosmology divides time into four great ages — Satya, Treta, Dwapara, and Kali Yuga — each shorter and more corrupt than the last. In each age, Vishnu descends to earth as an avatar to restore dharma. Nine have come; the tenth is yet to arrive.',
     relatedPlaceSlugs: ['muktinath-temple', 'boudhanath-stupa'],
     content: `## The Cosmic Cycle of Time

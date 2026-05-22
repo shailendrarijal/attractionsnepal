@@ -7,6 +7,7 @@ const stories = [
     slug: 'char-binayak-kathmandu-valley',
     title: 'Char Binayak: The Four Ganesha Guardians of the Kathmandu Valley',
     category: 'PILGRIMAGE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Ganesha_Basohli_miniature_circa_1730_Dubost_p73.jpg',
     excerpt: 'Four ancient Ganesh shrines guard the four directions of the Kathmandu Valley. Visiting all four — Chandra Binayak, Surya Binayak, Jal Binayak, and Karu Binayak — in a single pilgrimage is believed to remove all obstacles and protect every aspect of life.',
     relatedPlaceSlugs: [],
     content: `## Ganesh as the Remover of Obstacles
@@ -53,6 +54,7 @@ Wednesday is considered the most auspicious day for Ganesh worship. Ganesh Chatu
     slug: 'asta-matrika-kathmandu',
     title: 'Asta Matrika: The Eight Mother Goddesses of Kathmandu',
     category: 'DEITY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Mahishasura-Mardini_Durga.jpg',
     excerpt: 'Eight fierce mother goddesses — the Asta Matrika — guard the eight directions of the Kathmandu Valley, placed at its boundaries to protect the city from demons and disease. Each is a distinct emanation of Durga\'s power, and together they form a complete cosmic shield.',
     relatedPlaceSlugs: ['kathmandu-durbar-square', 'pashupatinath-temple'],
     content: `## The Origin of the Matrikas
@@ -104,6 +106,7 @@ During **Dashain** — the festival of Durga worship — the Asta Matrika receiv
     slug: 'shaligram-kali-gandaki-vishnu',
     title: 'Shaligram: Vishnu in a Stone, Found Only in the Kali Gandaki',
     category: 'TRADITION',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/The_Muktinath_Temple.jpg/1280px-The_Muktinath_Temple.jpg',
     excerpt: 'In the Kali Gandaki river gorge near Muktinath, devotees collect black ammonite fossils called Shaligram. These smooth, spiral-marked stones are considered direct manifestations of Vishnu himself — the only form of Vishnu that requires no consecration ceremony, sacred from the moment of discovery.',
     relatedPlaceSlugs: ['muktinath-temple'],
     content: `## What is a Shaligram
@@ -162,6 +165,7 @@ The most prized discoveries are those found at the bend of the river near **Damo
     slug: 'sacred-plants-nepali-puja',
     title: 'Sacred Plants of Nepal: Tulsi, Kush, Peepal, Parijat, Kamal, and Tejpatta',
     category: 'RITUAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Tulsi_or_Tulasi_Holy_basil.jpg/1280px-Tulsi_or_Tulasi_Holy_basil.jpg',
     excerpt: 'Every plant used in Nepali puja has a story. Tulsi is Vishnu\'s consort in plant form. Kush grass enables ancestors to receive offerings. The Peepal tree is where the Buddha was enlightened. Parijat emerged from the churning of the ocean. Each plant is a living bridge to the divine.',
     relatedPlaceSlugs: [],
     content: `## Plants as Divine Presences

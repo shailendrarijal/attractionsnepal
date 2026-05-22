@@ -1,7 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async'
 import { APIProvider } from '@vis.gl/react-google-maps'
+import { useEffect } from 'react'
+import { trackPageView } from './utils/analytics'
 
 import Layout from './components/Layout/Layout'
 import HomePage from './pages/HomePage'
@@ -28,9 +30,19 @@ const queryClient = new QueryClient({
 
 const mapsKey = import.meta.env.VITE_GOOGLE_MAPS_KEY
 
+/** Fires a GA page_view on every SPA route change. */
+function GAPageTracker() {
+  const location = useLocation()
+  useEffect(() => {
+    trackPageView(location.pathname + location.search)
+  }, [location])
+  return null
+}
+
 export default function App() {
   const inner = (
     <BrowserRouter>
+      <GAPageTracker />
       <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<HomePage />} />

@@ -228,7 +228,7 @@ def build_places():
     flows += img("boudhanath", caption="Boudhanātha Stūpa — one of the world's largest Buddhist stūpas, a living centre of Tibetan Buddhist culture in Kathmandu")
 
     flows += top10_table("Top 10 Hindu Temples", [
-        ("Paśupatinātha, Kathmandu", "Most sacred Śiva temple in the Himalayan world. Main liṅga (Caturmukha — four-faced) in the inner sanctum. Cremation ghāṭs on the Bagmati. UNESCO World Heritage. Non-Hindus observe from across the river."),
+        ("Paśupatinātha, Kathmandu", "Most sacred Śiva temple in the Himalayan world. Main liṅga (Pañcamukha — five-faced: four cardinal faces plus Īśāna on top) in the inner sanctum. Cremation ghāṭs on the Bagmatī. UNESCO World Heritage. Non-Hindus observe from across the river."),
         ("Mānakāmanā, Gorkha",       "Wish-fulfilling goddess Mānakāmanā on a ridge in Gorkha, accessible by cable car from Trisulī valley. Possibly the most regularly visited temple in Nepal by sheer numbers."),
         ("Chaṅgu Narayan, Bhaktapur","Nepal's oldest surviving temple (5th century CE Licchavī inscriptions). UNESCO World Heritage. Finest collection of ancient stone sculpture in the country."),
         ("Janakī Mandir, Janakpur",   "White palace-temple built in 1910 at the site of Sītā's birth and childhood in ancient Mithilā. Centre of the annual Vivāha Pañcamī festival re-enacting Rāma and Sītā's wedding."),
@@ -271,7 +271,7 @@ def build_places():
         ("Patan Darbar Square",       "Lalitapur's ancient royal square — considered by many the finest mediaeval architecture in the valley. Krishna Mandir (all-stone), Bhairavanātha, Viśvanātha."),
         ("Bhaktapur Darbar Square",   "Best-preserved of the three squares. The 55-Window Palace, Nyātapola Temple (tallest pagoda in Nepal at 30 m), Bhairavanātha temple."),
         ("Svayambhunātha",            "2,500-year-old hilltop stūpa. The eternal-flame origin myth of the Kathmandu Valley."),
-        ("Paśupatinātha",             "Most sacred Śiva temple in the world. Four-faced liṅga, Ārya Ghāṭa cremation site on the Bagmati."),
+        ("Paśupatinātha",             "Most sacred Śiva temple in the world. Five-faced (Pañcamukha) liṅga, Ārya Ghāṭa cremation site on the Bagmatī."),
         ("Boudhanātha",               "Largest stūpa in Nepal; greatest centre of Tibetan Buddhist culture outside Tibet."),
         ("Chaṅgu Narayan",          "Nepal's oldest temple — 5th-century Licchavī inscriptions; finest collection of ancient Hindu sculpture."),
         ("Lumbini",                   "Birthplace of the Buddha. Māyadevī temple, sacred garden, Aśokan pillar (249 BCE), international monastery zone."),

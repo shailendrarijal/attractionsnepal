@@ -7,6 +7,7 @@ const stories = [
     slug: 'lakhe-dance-indra-jatra',
     title: 'The Lakhe Dance: Guardian Demon of Indra Jatra',
     category: 'TRADITION',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Sweta_bhairava_krt.jpg',
     excerpt: 'The Lakhe — a fearsome demon in an elaborate mask and costume — dances through Kathmandu\'s streets during Indra Jatra. But this demon is no villain: he was tamed by the goddess and now protects the city, his wild dance keeping evil forces away from the valley.',
     relatedPlaceSlugs: ['kathmandu-durbar-square'],
     content: `## The Origin of the Lakhe
@@ -53,6 +54,7 @@ In a city increasingly shaped by modernity and migration, the sight of the Lakhe
     slug: 'hanuman-kathmandu-durbar-square',
     title: 'Hanuman: The Devoted Servant and His Temple at Kathmandu Durbar Square',
     category: 'DEITY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Hanuman_singing.jpg',
     excerpt: 'At the entrance to Kathmandu\'s royal palace stands a Hanuman statue so thick with vermilion and oil that his features have long been obscured — offered by devotees for centuries. Hanuman\'s story is one of absolute devotion: a being who found his highest nature in service to Rama.',
     relatedPlaceSlugs: ['kathmandu-durbar-square', 'pashupatinath-temple'],
     content: `## The Birth of Hanuman
@@ -99,6 +101,7 @@ He is loved not because he is invincible, but because he chose to serve when he 
     slug: 'garuda-garuda-purana-death-rituals',
     title: 'Garuda and the Garuda Purana: Rituals of Death in Nepal',
     category: 'DEITY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Garuda_by_Hyougushi_in_Delhi.jpg',
     excerpt: 'Garuda is Vishnu\'s great eagle vehicle — half man, half bird, enemy of serpents, carrier of the divine. But it is the Garuda Purana, recited for 13 days after a Hindu death in Nepal, that makes him central to every family\'s encounter with mortality.',
     relatedPlaceSlugs: ['pashupatinath-temple'],
     content: `## Garuda's Birth and Nature
@@ -146,6 +149,7 @@ At **Pashupatinath**, the cremation ghats on the Bagmati River are where countle
     slug: 'chhath-puja-sun-god',
     title: 'Chhath Puja: Devotion to the Sun God',
     category: 'RITUAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/JanakpurChhathParvaFestival.jpg/1280px-JanakpurChhathParvaFestival.jpg',
     excerpt: 'Chhath is one of the most ancient and physically demanding festivals in Nepal and India — devotees fast for 36 hours, standing waist-deep in rivers at sunrise and sunset to offer arghya to the sun. It is a direct, priest-free act of gratitude to the source of all life.',
     relatedPlaceSlugs: [],
     content: `## Surya — The Sun God

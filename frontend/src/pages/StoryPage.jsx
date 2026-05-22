@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import { useStory } from '../hooks/useStories'
@@ -6,6 +7,8 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import AdBanner from '../components/AdBanner'
 import JsonLd from '../components/JsonLd'
+import { autoLinkPlaces } from '../utils/autoLinkPlaces'
+import { Analytics } from '../utils/analytics'
 
 const CATEGORY_LABELS = {
   MYTHOLOGY:  'Mythology',
@@ -50,6 +53,13 @@ export default function StoryPage() {
 
   const gradient = CATEGORY_GRADIENTS[story.category] ?? 'from-gray-700 to-gray-500'
   const label    = CATEGORY_LABELS[story.category]    ?? story.category
+
+  // Fire GA story_view once per load
+  useEffect(() => {
+    Analytics.storyView(story.slug, story.title, story.category)
+  }, [story.slug]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const linkedContent = autoLinkPlaces(story.content, story.relatedPlaceSlugs)
 
   const stripUndefined = (obj) => JSON.parse(JSON.stringify(obj))
 
@@ -120,7 +130,7 @@ export default function StoryPage() {
 
         {/* Body */}
         <div className="prose prose-base lg:prose-lg max-w-none">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{story.content}</ReactMarkdown>
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{linkedContent}</ReactMarkdown>
         </div>
 
         {/* Mid ad */}
@@ -135,6 +145,7 @@ export default function StoryPage() {
                 <Link
                   key={s}
                   to={`/places/${s}`}
+                  onClick={() => Analytics.relatedPlaceClick(s, story.slug)}
                   className="text-sm font-medium text-primary-700 hover:underline"
                 >
                   → {s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}

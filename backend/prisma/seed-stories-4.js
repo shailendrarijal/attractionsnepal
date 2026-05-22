@@ -7,6 +7,7 @@ const stories = [
     slug: 'kukur-tihar-dog-worship',
     title: 'Kukur Tihar: Why Dogs Are Worshipped',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Kathmandu_Tihar_Swayambhu.jpg/1280px-Kathmandu_Tihar_Swayambhu.jpg',
     excerpt: 'On the second day of Tihar, every dog in Nepal — stray or pet — receives a garland of marigolds, a tika on its forehead, and a feast. Dogs are sacred as messengers of Yamaraj, the god of death, who uses them to guide souls through the underworld.',
     relatedPlaceSlugs: [],
     content: `## Dogs and the God of Death
@@ -44,6 +45,7 @@ In a country where many street dogs live hard lives, Kukur Tihar is also a momen
     slug: 'kaag-tihar-crow-worship',
     title: 'Kaag Tihar: The Worship of Crows',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Kathmandu_Tihar_Swayambhu.jpg/1280px-Kathmandu_Tihar_Swayambhu.jpg',
     excerpt: 'On the first morning of Tihar, before any human has eaten, Nepali households put out food for crows. These black birds are considered messengers of Yamaraj and carry news between the living and the dead — a crow\'s arrival brings word from the ancestors.',
     relatedPlaceSlugs: [],
     content: `## Crows as Divine Messengers
@@ -82,6 +84,7 @@ Kaag Tihar honours this ancient relationship — acknowledging that the boundary
     slug: 'gaai-tihar-cow-worship',
     title: 'Gaai Tihar: The Worship of the Sacred Cow',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Kathmandu_Tihar_Swayambhu.jpg/1280px-Kathmandu_Tihar_Swayambhu.jpg',
     excerpt: 'The cow is Nepal\'s national animal and among its most sacred beings. On the third day of Tihar, cows are garlanded, fed sweets, and worshipped as the earthly form of Lakshmi and Kamdhenu, the divine wish-fulfilling cow who sustains all life.',
     relatedPlaceSlugs: [],
     content: `## The Cow in Hindu Cosmology
@@ -120,6 +123,7 @@ This protection is not merely legal — it reflects a genuine cultural reverence
     slug: 'lakshmi-samudra-manthan-tihar',
     title: 'Lakshmi: From the Cosmic Ocean to the Goddess of Prosperity',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Raja_Ravi_Varma%2C_Goddess_Lakshmi%2C_1896.jpg',
     excerpt: 'When Lakshmi rose from the churning of the cosmic ocean, all beings stood in awe. She chose Vishnu as her eternal consort and became the goddess of wealth, beauty, and good fortune. On Laxmi Puja night during Tihar, every lamp lit in Nepal is an invitation for her to enter.',
     relatedPlaceSlugs: [],
     content: `## Born from the Ocean
@@ -166,6 +170,7 @@ The belief is simple and ancient: Lakshmi will only enter a home that is clean, 
     slug: 'bhai-tika-yamuna-yamaraj',
     title: 'Bhai Tika: The Bond Between Brother and Sister',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Newari_traditional_painting_about_Kijapuja.jpg',
     excerpt: 'On the fifth and final day of Tihar, sisters apply a seven-coloured tika to their brothers\' foreheads and pray for their long life. The festival traces back to Yamuna, the river goddess, who refused to let her brother Yamaraj die and wrested a promise of longevity from the god of death himself.',
     relatedPlaceSlugs: [],
     content: `## Yamuna and Yamaraj

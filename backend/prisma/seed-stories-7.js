@@ -7,6 +7,7 @@ const stories = [
     slug: 'mit-mitini-sworn-friendship',
     title: 'Mit and Mitini: Nepal\'s Sacred Bond of Sworn Friendship',
     category: 'TRADITION',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Best_friends_%281934%29%2C_by_Romualdo_Locatelli.jpg/1280px-Best_friends_%281934%29%2C_by_Romualdo_Locatelli.jpg',
     excerpt: 'Mit and Mitini are the Nepali tradition of choosing a non-blood sibling — a sworn friend elevated to family. The relationship is formalised at a temple, treated as binding across generations, and carries real social obligations of mutual support and loyalty.',
     relatedPlaceSlugs: [],
     content: `## A Bond Beyond Blood
@@ -54,6 +55,7 @@ While urbanisation and changing social patterns have reduced the formality of th
     slug: 'devghat-sacred-confluence',
     title: 'Devghat: Where Rivers Meet and Souls Find Liberation',
     category: 'PILGRIMAGE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Devghat_Baati.jpg/1280px-Devghat_Baati.jpg',
     excerpt: 'Devghat sits at the confluence of the Seti and Trishuli rivers — where they become the Narayani. Hindus believe dying here grants moksha (liberation). Elderly Nepalis come to spend their final days beside the water, and every Makar Sankranti draws hundreds of thousands of pilgrims.',
     relatedPlaceSlugs: ['devghat'],
     content: `## The Sacred Confluence
@@ -88,6 +90,7 @@ These associations reinforce Devghat's character as a place where extraordinary 
     slug: 'char-dham-nepal',
     title: 'Char Dham of Nepal: The Four Sacred Pilgrimages',
     category: 'PILGRIMAGE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Pashupatinath_Temple-2020.jpg/1280px-Pashupatinath_Temple-2020.jpg',
     excerpt: 'Nepal has its own Char Dham — four sacred sites whose combined pilgrimage is believed to lead to liberation. Unlike India\'s Char Dham scattered across four corners of the subcontinent, Nepal\'s are all within the country: Pashupatinath, Muktinath, Manakamana, and Baraha Kshetra.',
     relatedPlaceSlugs: ['pashupatinath-temple', 'muktinath-temple', 'manakamana-temple'],
     content: `## The Concept of Char Dham
@@ -134,6 +137,7 @@ Together, these four sites represent Shiva (Pashupatinath), Vishnu (Muktinath an
     slug: 'char-narayan-kathmandu-valley',
     title: 'Char Narayan: The Four Vishnu Temples of Kathmandu Valley',
     category: 'PILGRIMAGE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Nepal_-_Changu_Narayan_%283566057331%29.jpg',
     excerpt: 'Four ancient Vishnu (Narayan) temples guard the four directions of the Kathmandu Valley. Visiting all four — Changu Narayan, Bishankhu Narayan, Shesh Narayan, and Ichangu Narayan — is considered a complete act of Vishnu worship, protecting the pilgrim and the valley.',
     relatedPlaceSlugs: ['changu-narayan'],
     content: `## Vishnu as Valley Guardian

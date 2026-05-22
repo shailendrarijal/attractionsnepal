@@ -7,6 +7,7 @@ const stories = [
     slug: 'samudra-manthan-gosaikunda',
     title: 'Samudra Manthan and the Sacred Gosaikunda',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/The_Holy_Gosainkunda_Lake_during_the_winter.jpg/1280px-The_Holy_Gosainkunda_Lake_during_the_winter.jpg',
     excerpt: 'The churning of the cosmic ocean brought forth both nectar and poison. When Shiva drank the deadly halahala to save creation, he cooled his burning throat in the icy waters of Gosaikunda — making it one of Nepal\'s most sacred lakes.',
     relatedPlaceSlugs: ['gosaikunda'],
     content: `## The Churning of the Cosmic Ocean
@@ -45,6 +46,7 @@ Gosaikunda stands as a permanent reminder that the greatest act of the churning 
     slug: 'sati-death-guheswori',
     title: 'The Death of Sati and the Origin of Guheswori',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Guhyeshwari_Temple_Pashupatinath_Kathmandu.jpg/1280px-Guhyeshwari_Temple_Pashupatinath_Kathmandu.jpg',
     excerpt: 'When Sati sacrificed herself in grief and Shiva carried her body across the world in anguish, Vishnu\'s Sudarshana Chakra split her remains into 51 sacred sites. One of the most revered — Guheswori in Kathmandu — marks where her reproductive organ fell.',
     relatedPlaceSlugs: ['pashupatinath-temple'],
     content: `## Sati and Daksha
@@ -85,6 +87,7 @@ Sati was later reborn as Parvati, the daughter of the mountain king Himavan. Her
     slug: 'durga-mahishasura-navaratri',
     title: 'Durga Slays Mahishasura: The Story of Navaratri',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Mahishasura-Mardini_Durga.jpg',
     excerpt: 'The buffalo demon Mahishasura had conquered the heavens and could not be slain by any man or god. The combined divine energy of the Trimurti gave birth to Durga — a warrior goddess who fought him for nine days and nights before finally beheading him.',
     relatedPlaceSlugs: [],
     content: `## The Demon Who Conquered Heaven
@@ -133,6 +136,7 @@ The tenth day — **Bijaya Dashami** ("victorious tenth") — celebrates Durga's
     slug: 'rama-ravana-bijaya-dashami',
     title: 'Rama\'s Victory Over Ravana: The Story of Bijaya Dashami',
     category: 'FESTIVAL',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Ramlila_Dasratha.jpg/1280px-Ramlila_Dasratha.jpg',
     excerpt: 'When the demon king Ravana abducted Sita, Prince Rama of Ayodhya built an army of monkeys, crossed the ocean to Lanka, and waged a great war to rescue her. His victory on the tenth day of Ashwin is celebrated across Nepal as Bijaya Dashami.',
     relatedPlaceSlugs: ['janaki-mandir'],
     content: `## The Exile and the Abduction
@@ -173,6 +177,7 @@ In Janakpur — the birthplace of Sita — the festival holds special significan
     slug: 'origin-naag-panchami',
     title: 'The Origin of Naag Panchami',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Naag_Deuta_Naag_Sthan_Indradaha_Dahachwok_Nag_Panchami.jpg/1280px-Naag_Deuta_Naag_Sthan_Indradaha_Dahachwok_Nag_Panchami.jpg',
     excerpt: 'On the fifth day of the bright fortnight of Shrawan, Nepalis paste images of serpents above their doorways and offer milk and rice. This ancient tradition traces back to the belief that serpent kings protect the land from floods, drought, and evil.',
     relatedPlaceSlugs: [],
     content: `## Serpents in Hindu Cosmology

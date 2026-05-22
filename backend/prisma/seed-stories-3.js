@@ -7,6 +7,7 @@ const stories = [
     slug: 'raktabeej-kali-kalinchowk',
     title: 'Raktabeej, Kali, and the Sacred Kalinchowk Temple',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Kali_by_Raja_Ravi_Varma.jpg/1280px-Kali_by_Raja_Ravi_Varma.jpg',
     excerpt: 'The demon Raktabeej had a fatal boon: every drop of his blood that hit the ground spawned a new demon. Durga\'s armies were overwhelmed — until she transformed into the fearsome Kali, who drank every drop before it could fall. Kalinchowk in Dolakha is where this energy resides.',
     relatedPlaceSlugs: ['kalinchowk'],
     content: `## The Undefeatable Demon
@@ -46,6 +47,7 @@ Devotees believe that the goddess at Kalinchowk is particularly responsive to si
     slug: 'swayambhu-manjushree-kathmandu-valley',
     title: 'Swayambhu: How the Kathmandu Valley Was Born',
     category: 'MYTHOLOGY',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Swayambhunath_2018.jpg/1280px-Swayambhunath_2018.jpg',
     excerpt: 'Long before Kathmandu existed, the valley was a great lake. From its waters rose a lotus of blazing light — the self-manifested (Swayambhu) flame of primordial Buddha. The bodhisattva Manjushree drained the lake with a single sword stroke, making the valley habitable.',
     relatedPlaceSlugs: ['swayambhunath'],
     content: `## The Lake and the Lotus
@@ -82,6 +84,7 @@ The hill is populated by hundreds of rhesus monkeys — so revered and protected
     slug: 'siddhartha-gautama-buddha',
     title: 'Siddhartha Gautama: The Prince Who Became the Buddha',
     category: 'SCRIPTURE',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kamakura_Budda_Daibutsu_front_1885.jpg/1280px-Kamakura_Budda_Daibutsu_front_1885.jpg',
     excerpt: 'Born a prince in Lumbini, sheltered from suffering his entire childhood, Siddhartha Gautama encountered old age, sickness, and death in a single afternoon. He walked away from his throne, his wife, and his infant son to find an answer to suffering — and under a Bodhi tree in India, he found it.',
     relatedPlaceSlugs: ['lumbini'],
     content: `## The Prophecy at Birth

@@ -21,18 +21,21 @@ router.post('/subscribe', async (req, res) => {
 
     await prisma.subscriber.create({ data: { email } })
 
-    // Send welcome email with checklist
+    // Send welcome email — failure here must not surface as 500 to the subscriber
     if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY)
-      const templatePath = join(__dir, '../../../templates/welcome-email.html')
-      let html = readFileSync(templatePath, 'utf-8')
-
-      await resend.emails.send({
-        from: 'Attractions Nepal <hello@attractionsnepal.com>',
-        to: email,
-        subject: 'Your Nepal Trip Planning Checklist 🏔️',
-        html,
-      })
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY)
+        const templatePath = join(__dir, '../../templates/welcome-email.html')
+        const html = readFileSync(templatePath, 'utf-8')
+        await resend.emails.send({
+          from: 'Attractions Nepal <hello@attractionsnepal.com>',
+          to: email,
+          subject: 'Your Nepal Trip Planning Checklist 🏔️',
+          html,
+        })
+      } catch (emailErr) {
+        console.error('Welcome email failed (subscriber saved):', emailErr)
+      }
     }
 
     res.json({ message: 'Subscribed! Check your inbox for your free checklist.' })
