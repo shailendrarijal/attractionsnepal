@@ -109,6 +109,19 @@ export default function Navbar() {
             </NavLink>
 
             <NavLink
+              to="/plan-my-trip"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3.5 py-1.5 transition-colors ${
+                  isActive
+                    ? 'bg-primary-700 text-white'
+                    : 'bg-primary-50 text-primary-700 hover:bg-primary-100'
+                }`
+              }
+            >
+              🗺️ Plan My Trip
+            </NavLink>
+
+            <NavLink
               to="/blog"
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors ${isActive ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'}`
@@ -196,6 +209,13 @@ export default function Navbar() {
           </Link>
           <Link to="/itineraries" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Itineraries
+          </Link>
+          <Link
+            to="/plan-my-trip"
+            className="flex items-center gap-2 rounded-xl bg-primary-700 text-white text-sm font-semibold px-4 py-3 transition-colors hover:bg-primary-800"
+            onClick={() => setMobileOpen(false)}
+          >
+            🗺️ Plan My Trip →
           </Link>
           <Link to="/blog" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Blog

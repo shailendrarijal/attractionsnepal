@@ -130,8 +130,9 @@ export default function Footer() {
 
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Explore</h3>
             <ul className="space-y-2">
-              <li><Link to="/explore"     className="text-sm hover:text-white transition-colors">Map View</Link></li>
-              <li><Link to="/itineraries" className="text-sm hover:text-white transition-colors">Itineraries</Link></li>
+              <li><Link to="/explore"       className="text-sm hover:text-white transition-colors">Map View</Link></li>
+              <li><Link to="/plan-my-trip" className="text-sm text-primary-300 hover:text-white transition-colors font-medium">🗺️ Plan My Trip</Link></li>
+              <li><Link to="/itineraries"  className="text-sm hover:text-white transition-colors">Itineraries</Link></li>
               <li><Link to="/blog"        className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
               <li><Link to="/stories"     className="text-sm hover:text-white transition-colors">Stories</Link></li>
               <li><Link to="/contact" className="text-sm hover:text-white transition-colors">Contact Us</Link></li>

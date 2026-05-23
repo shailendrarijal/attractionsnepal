@@ -52,6 +52,7 @@ console.log(`  Places: ${placeList.length}, Blogs: ${blogList.length}, Stories: 
 
 const staticPages = [
   '/itineraries',
+  '/plan-my-trip',
   '/visit-nepal',
   '/nepal-trekking-guide',
   '/best-time-to-visit-nepal',

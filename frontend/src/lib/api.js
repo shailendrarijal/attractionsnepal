@@ -94,5 +94,6 @@ export const sendContactMessage = (payload) =>
 
 // ── Itineraries ────────────────────────────────────────────────────────────
 
-export const getItineraries = (params) => api.get('/itineraries', { params }).then((r) => r.data)
-export const getItinerary   = (slug)   => api.get(`/itineraries/${slug}`).then((r) => r.data)
+export const getItineraries    = (params)        => api.get('/itineraries', { params }).then((r) => r.data)
+export const getItinerary      = (slug)          => api.get(`/itineraries/${slug}`).then((r) => r.data)
+export const emailItinerary    = (slug, payload) => api.post(`/itineraries/${slug}/email`, payload).then((r) => r.data)

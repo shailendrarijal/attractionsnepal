@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import { useItinerary } from '../hooks/useItineraries'
+import { emailItinerary } from '../lib/api'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import JsonLd from '../components/JsonLd'
@@ -59,11 +60,122 @@ const CATEGORY_ICONS = {
   AMUSEMENT_PARK:   '🎡',
 }
 
+// ─── Email modal ─────────────────────────────────────────────────────────────
+function EmailModal({ slug, selectedDays, itineraryTitle, onClose }) {
+  const [name, setName]       = useState('')
+  const [email, setEmail]     = useState('')
+  const [status, setStatus]   = useState('idle')  // idle | sending | done | error
+  const [errMsg, setErrMsg]   = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('sending')
+    try {
+      await emailItinerary(slug, { name, email, selectedDays })
+      setStatus('done')
+    } catch (err) {
+      setErrMsg(err?.response?.data?.error ?? 'Something went wrong. Please try again.')
+      setStatus('error')
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4" role="dialog" aria-modal="true">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm" onClick={onClose} />
+
+      {/* Panel */}
+      <div className="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden">
+        {/* Header */}
+        <div className="bg-primary-700 px-6 py-5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="font-display font-bold text-white text-lg leading-tight">
+                📧 Email me this itinerary
+              </h2>
+              <p className="text-primary-200 text-xs mt-1">
+                Get your personalised plan delivered to your inbox — free.
+              </p>
+            </div>
+            <button onClick={onClose} className="text-primary-200 hover:text-white mt-0.5 shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div className="px-6 py-5">
+          {status === 'done' ? (
+            <div className="text-center py-6">
+              <p className="text-4xl mb-3">✉️</p>
+              <h3 className="font-bold text-gray-900 text-lg mb-1">Check your inbox!</h3>
+              <p className="text-gray-500 text-sm">
+                Your itinerary for <em>{itineraryTitle}</em> has been sent to <strong>{email}</strong>.
+              </p>
+              <button onClick={onClose} className="btn-primary mt-5 w-full">Done</button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email-name">
+                  Your name <span className="text-gray-400 font-normal">(optional)</span>
+                </label>
+                <input
+                  id="email-name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Sarah"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email-addr">
+                  Email address <span className="text-red-400">*</span>
+                </label>
+                <input
+                  id="email-addr"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
+                />
+              </div>
+
+              <p className="text-xs text-gray-400">
+                We'll also subscribe you to our free Nepal travel tips newsletter. Unsubscribe anytime.
+              </p>
+
+              {status === 'error' && (
+                <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{errMsg}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'sending' || !email}
+                className="btn-primary w-full py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? 'Sending…' : 'Send me this itinerary →'}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Main page ────────────────────────────────────────────────────────────────
 export default function ItineraryPage() {
   const { slug } = useParams()
   const { data: itinerary, isLoading, error } = useItinerary(slug)
   // Tracks which plan is selected per day: { [dayNum]: planId }
   const [selectedOptions, setSelectedOptions] = useState({})
+  const [showEmailModal, setShowEmailModal]   = useState(false)
 
   if (isLoading) return <LoadingSpinner />
 
@@ -105,6 +217,14 @@ export default function ItineraryPage() {
 
   return (
     <>
+      {showEmailModal && (
+        <EmailModal
+          slug={slug}
+          selectedDays={selectedOptions}
+          itineraryTitle={itinerary.title}
+          onClose={() => setShowEmailModal(false)}
+        />
+      )}
       <PageSeo
         title={itinerary.seoTitle ?? itinerary.title}
         description={itinerary.seoDescription ?? itinerary.excerpt}
@@ -313,6 +433,22 @@ export default function ItineraryPage() {
             </div>
           </div>
         )}
+
+        {/* Email CTA */}
+        <div className="mb-10 rounded-2xl bg-gradient-to-r from-primary-700 to-primary-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h3 className="font-display font-bold text-white text-lg">📧 Save this itinerary to your inbox</h3>
+            <p className="text-primary-200 text-sm mt-0.5">
+              Get the full day-by-day plan emailed to you — including any day options you've selected.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowEmailModal(true)}
+            className="shrink-0 bg-white text-primary-800 font-bold px-6 py-2.5 rounded-xl hover:bg-primary-50 transition-colors shadow-sm whitespace-nowrap"
+          >
+            Email me this plan →
+          </button>
+        </div>
 
         {/* Guide promo */}
         <GuidePromo variant="inline" />
