@@ -119,9 +119,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Explore + Legal */}
+          {/* Travel Guides */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Explore</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Travel Guides</h3>
+            <ul className="space-y-2">
+              <li><Link to="/visit-nepal"              className="text-sm hover:text-white transition-colors">Nepal Travel Guide</Link></li>
+              <li><Link to="/nepal-trekking-guide"     className="text-sm hover:text-white transition-colors">Nepal Trekking Guide</Link></li>
+              <li><Link to="/best-time-to-visit-nepal" className="text-sm hover:text-white transition-colors">Best Time to Visit</Link></li>
+            </ul>
+
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Explore</h3>
             <ul className="space-y-2">
               <li><Link to="/explore" className="text-sm hover:text-white transition-colors">Map View</Link></li>
               <li><Link to="/blog"    className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>

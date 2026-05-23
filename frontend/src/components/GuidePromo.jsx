@@ -1,10 +1,10 @@
 const GUMROAD_URL = 'https://shailendra185.gumroad.com/l/jdvner'
 
 const BULLETS = [
-  '200+ attractions with insider tips',
-  'Festivals, customs & cultural etiquette',
-  'Province-by-province itineraries',
-  'Downloadable & printable PDF',
+  'Top 10 lists: treks, temples, lakes & adventures',
+  'Culture, festivals & etiquette guide',
+  '100 essential Nepali phrases',
+  'Visa, transport & practical travel info',
 ]
 
 export default function GuidePromo({ variant = 'banner' }) {

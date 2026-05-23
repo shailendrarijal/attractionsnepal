@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://attractionsnepal-api.onrender.com/sitemap.xml
+Sitemap: https://attractionsnepal.com/sitemap.xml

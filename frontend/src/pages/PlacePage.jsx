@@ -15,6 +15,26 @@ import GuidePromo from '../components/GuidePromo'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
+const CATEGORY_LABELS_BREADCRUMB = {
+  TEMPLE:           'Temples',
+  MONASTERY:        'Monasteries',
+  STUPA:            'Stupas',
+  DURBAR_PALACE:    'Palaces & Durbar Squares',
+  ARCHAEOLOGICAL:   'Archaeological Sites',
+  CULTURAL_VILLAGE: 'Cultural Villages',
+  HILL_VIEWPOINT:   'Hilltop Viewpoints',
+  MOUNTAIN_VIEW:    'Mountain Views',
+  RIVER:            'Rivers',
+  WATERFALL:        'Waterfalls',
+  LAKE:             'Lakes',
+  HOT_SPRING:       'Hot Springs',
+  CAVE:             'Caves',
+  NATIONAL_PARK:    'National Parks',
+  TREK_ROUTE:       'Trekking Routes',
+  ADVENTURE_SPORTS: 'Adventure Sports',
+  AMUSEMENT_PARK:   'Amusement Parks',
+}
+
 const SECTION_ICONS = {
   WHERE_TO_STAY:      '🏨',
   WHERE_TO_EAT:       '🍜',
@@ -61,6 +81,19 @@ export default function PlacePage() {
       : undefined,
   })
 
+  const categorySlug = place.category.toLowerCase().replace(/_/g, '-')
+  const categoryLabel = CATEGORY_LABELS_BREADCRUMB[place.category] ?? place.category
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://attractionsnepal.com' },
+      { '@type': 'ListItem', position: 2, name: categoryLabel, item: `https://attractionsnepal.com/category/${categorySlug}` },
+      { '@type': 'ListItem', position: 3, name: place.name, item: `https://attractionsnepal.com/places/${place.slug}` },
+    ],
+  }
+
   return (
     <>
       <PageSeo
@@ -70,6 +103,7 @@ export default function PlacePage() {
         canonicalPath={`/places/${place.slug}`}
       />
       <JsonLd data={placeJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
 
       {/* Hero */}
       <div className="relative h-72 sm:h-96 lg:h-[480px] bg-gray-900 overflow-hidden">

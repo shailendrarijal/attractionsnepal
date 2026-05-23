@@ -19,6 +19,9 @@ import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import ContactPage from './pages/ContactPage'
 import AdminPage from './pages/admin/AdminPage'
+import VisitNepalPage from './pages/seo/VisitNepalPage'
+import TrekkingGuidePage from './pages/seo/TrekkingGuidePage'
+import BestTimePage from './pages/seo/BestTimePage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +60,9 @@ export default function App() {
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms"   element={<TermsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/visit-nepal" element={<VisitNepalPage />} />
+                <Route path="/nepal-trekking-guide" element={<TrekkingGuidePage />} />
+                <Route path="/best-time-to-visit-nepal" element={<BestTimePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />

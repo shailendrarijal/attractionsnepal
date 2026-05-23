@@ -3,6 +3,7 @@ import { usePlaces } from '../hooks/usePlaces'
 import PlaceCard from '../components/PlaceCard'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
+import JsonLd from '../components/JsonLd'
 
 const SLUG_TO_ENUM = {
   'temple':          'TEMPLE',
@@ -61,6 +62,15 @@ export default function CategoryPage() {
     )
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://attractionsnepal.com' },
+      { '@type': 'ListItem', position: 2, name: meta.label, item: `https://attractionsnepal.com/category/${category}` },
+    ],
+  }
+
   return (
     <>
       <PageSeo
@@ -68,6 +78,7 @@ export default function CategoryPage() {
         description={meta.description}
         canonicalPath={`/category/${category}`}
       />
+      <JsonLd data={breadcrumbJsonLd} />
 
       {/* Header */}
       <div className="bg-gray-50 border-b border-gray-100 py-10">

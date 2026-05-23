@@ -48,9 +48,28 @@ const storyList  = stories.stories ?? stories ?? []
 
 console.log(`  Places: ${placeList.length}, Blogs: ${blogList.length}, Stories: ${storyList.length}`)
 
+const staticPages = [
+  '/visit-nepal',
+  '/nepal-trekking-guide',
+  '/best-time-to-visit-nepal',
+  '/contact',
+  '/category/temple',
+  '/category/monastery',
+  '/category/stupa',
+  '/category/durbar-palace',
+  '/category/trek-route',
+  '/category/national-park',
+  '/category/waterfall',
+  '/category/lake',
+  '/category/adventure-sports',
+  '/category/hill-viewpoint',
+  '/category/mountain-view',
+]
+
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${url('/', today, '1.0', 'daily')}
+${staticPages.map((p) => url(p, today, '0.9', 'weekly')).join('\n')}
 ${url('/explore', today, '0.9', 'daily')}
 ${url('/blog', today, '0.8', 'weekly')}
 ${url('/stories', today, '0.8', 'weekly')}
@@ -62,4 +81,4 @@ ${storyList.map((s) => url(`/stories/${s.slug}`,(s.updatedAt  ?? today).split('T
 const outPath = join(__dir, '../public/sitemap.xml')
 writeFileSync(outPath, xml, 'utf-8')
 console.log(`  Saved: ${outPath}`)
-console.log(`  Total URLs: ${4 + placeList.length + blogList.length + storyList.length}`)
+console.log(`  Total URLs: ${4 + staticPages.length + placeList.length + blogList.length + storyList.length}`)
