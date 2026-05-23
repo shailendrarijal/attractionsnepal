@@ -38,37 +38,35 @@ function StoryCard({ story }) {
   return (
     <Link
       to={`/stories/${story.slug}`}
-      className="card group flex flex-col hover:shadow-md transition-shadow"
+      className="group relative block aspect-[4/3] overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-shadow"
     >
-      {/* Thumbnail */}
-      <div className="relative aspect-[16/9] overflow-hidden">
-        {story.heroImage ? (
-          <img
-            src={story.heroImage}
-            alt={story.title}
-            loading="lazy"
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        ) : (
-          <div className={`h-full w-full bg-gradient-to-br ${gradient} flex items-center justify-center`}>
-            <span className="text-4xl opacity-60">📖</span>
-          </div>
-        )}
-        {/* Category badge over image */}
-        <span className="absolute top-3 left-3 badge bg-primary-700/90 text-white text-xs font-semibold">
-          {label}
-        </span>
-      </div>
+      {/* Background — image or category gradient */}
+      {story.heroImage ? (
+        <img
+          src={story.heroImage}
+          alt={story.title}
+          loading="lazy"
+          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <div className={`h-full w-full bg-gradient-to-br ${gradient} group-hover:brightness-110 transition-all duration-500`} />
+      )}
 
-      <div className="flex flex-col flex-1 p-4">
-        <h3 className="font-semibold text-gray-900 text-base leading-snug group-hover:text-primary-700 transition-colors line-clamp-2 flex-1">
+      {/* Gradient overlay — lighter over solid gradients since they're already dark */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+      {/* Category badge — top left */}
+      <span className="absolute top-3 left-3 badge bg-white/20 backdrop-blur-sm text-white text-xs font-semibold border border-white/20">
+        {label}
+      </span>
+
+      {/* Title + date — bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="font-display font-bold text-white text-base leading-snug line-clamp-2 group-hover:text-green-200 transition-colors">
           {story.title}
         </h3>
-
-        <p className="mt-2 text-sm text-gray-600 line-clamp-2">{story.excerpt}</p>
-
         {date && (
-          <p className="mt-3 text-xs text-gray-400">{date}</p>
+          <p className="mt-1.5 text-xs text-gray-400">{date}</p>
         )}
       </div>
     </Link>

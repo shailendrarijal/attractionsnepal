@@ -17,9 +17,13 @@ router.post('/subscribe', async (req, res) => {
 
   try {
     const existing = await prisma.subscriber.findUnique({ where: { email } })
-    if (existing) return res.json({ message: 'Already subscribed!' })
+    if (existing) {
+      console.log(`[newsletter] already subscribed: ${email}`)
+      return res.json({ message: 'Already subscribed!' })
+    }
 
-    await prisma.subscriber.create({ data: { email } })
+    await prisma.subscriber.create({ data: { email, confirmed: true } })
+    console.log(`[newsletter] new subscriber saved: ${email}`)
 
     // Send welcome email — failure here must not surface as 500 to the subscriber
     if (process.env.RESEND_API_KEY) {
@@ -27,20 +31,23 @@ router.post('/subscribe', async (req, res) => {
         const resend = new Resend(process.env.RESEND_API_KEY)
         const templatePath = join(__dir, '../../templates/welcome-email.html')
         const html = readFileSync(templatePath, 'utf-8')
-        await resend.emails.send({
+        const result = await resend.emails.send({
           from: 'Attractions Nepal <noreply@attractionsnepal.com>',
           to: email,
           subject: 'Your Nepal Trip Planning Checklist 🏔️',
           html,
         })
+        console.log(`[newsletter] welcome email sent to ${email} — id: ${result?.data?.id ?? 'n/a'}`)
       } catch (emailErr) {
-        console.error('Welcome email failed (subscriber saved):', emailErr)
+        console.error(`[newsletter] welcome email failed for ${email}:`, emailErr?.message ?? emailErr)
       }
+    } else {
+      console.warn('[newsletter] RESEND_API_KEY not set — welcome email skipped')
     }
 
     res.json({ message: 'Subscribed! Check your inbox for your free checklist.' })
   } catch (err) {
-    console.error('Newsletter error', err)
+    console.error('[newsletter] subscription error:', err)
     res.status(500).json({ error: 'Subscription failed' })
   }
 })

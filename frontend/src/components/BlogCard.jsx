@@ -10,36 +10,37 @@ export default function BlogCard({ blog }) {
   return (
     <Link
       to={`/blog/${blog.slug}`}
-      className="card group flex flex-col hover:shadow-md transition-shadow"
+      className="group relative block aspect-[4/3] overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-shadow"
     >
-      <div className="relative aspect-[16/9] overflow-hidden">
-        <img
-          src={blog.heroImage ?? PLACEHOLDER}
-          alt={blog.title}
-          loading="lazy"
-          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
+      {/* Background image */}
+      <img
+        src={blog.heroImage ?? PLACEHOLDER}
+        alt={blog.title}
+        loading="lazy"
+        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
 
-      <div className="flex flex-col flex-1 p-4">
-        {blog.tags?.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-2">
-            {blog.tags.slice(0, 3).map(({ tag }) => (
-              <span key={tag.slug} className="badge bg-primary-50 text-primary-700">
-                {tag.name}
-              </span>
-            ))}
-          </div>
-        )}
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-        <h3 className="font-semibold text-gray-900 text-base leading-snug group-hover:text-primary-700 transition-colors line-clamp-2 flex-1">
+      {/* Tags — top left */}
+      {blog.tags?.length > 0 && (
+        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+          {blog.tags.slice(0, 2).map(({ tag }) => (
+            <span key={tag.slug} className="badge bg-primary-700/80 text-white text-xs">
+              {tag.name}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Title + date — bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4">
+        <h3 className="font-display font-bold text-white text-base leading-snug line-clamp-2 group-hover:text-green-200 transition-colors">
           {blog.title}
         </h3>
-
-        <p className="mt-2 text-sm text-gray-600 line-clamp-2">{blog.excerpt}</p>
-
         {date && (
-          <p className="mt-3 text-xs text-gray-400">{date}</p>
+          <p className="mt-1.5 text-xs text-gray-400">{date}</p>
         )}
       </div>
     </Link>

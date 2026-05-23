@@ -32,7 +32,7 @@ export default function NewsletterSignup() {
           Get the Free Nepal Trip Checklist
         </h2>
         <p className="mt-3 text-green-200 text-base sm:text-lg">
-          Join 10,000+ travelers. No spam, unsubscribe anytime.
+          No spam, unsubscribe anytime.
         </p>
 
         {status === 'success' ? (
