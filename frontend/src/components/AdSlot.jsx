@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'react'
  *   <AdSlot slot={import.meta.env.VITE_ADSENSE_SLOT_LEADERBOARD} />
  */
 
-const CLIENT = import.meta.env.VITE_ADSENSE_CLIENT ?? 'ca-pub-6862894074348546'
+const CLIENT = import.meta.env.VITE_ADSENSE_CLIENT ?? 'ca-pub-9065458316312467'
 
 export default function AdSlot({
   slot,

@@ -12,6 +12,8 @@ import PageSeo from '../components/PageSeo'
 import AdBanner from '../components/AdBanner'
 import JsonLd from '../components/JsonLd'
 import GuidePromo from '../components/GuidePromo'
+import ItineraryCard from '../components/ItineraryCard'
+import { useItineraries } from '../hooks/useItineraries'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
@@ -46,6 +48,7 @@ const SECTION_ICONS = {
 export default function PlacePage() {
   const { slug } = useParams()
   const { data: place, isLoading, error } = usePlace(slug)
+  const { data: itineraryData } = useItineraries({ placeSlug: slug, limit: 4 })
 
   if (isLoading) return <LoadingSpinner />
 
@@ -330,6 +333,20 @@ export default function PlacePage() {
           <div className="mb-10">
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">📍 Location</h2>
             <MapView places={mapPlaces} height="350px" mode="place" />
+          </div>
+        )}
+
+        {/* Featured in itineraries */}
+        {itineraryData?.itineraries?.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-display font-bold text-xl text-gray-900 mb-4">
+              🗺️ Itineraries that include {place.name}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {itineraryData.itineraries.map((it) => (
+                <ItineraryCard key={it.id} itinerary={it} />
+              ))}
+            </div>
           </div>
         )}
 

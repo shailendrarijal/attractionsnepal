@@ -135,8 +135,9 @@ model Place {
   updatedAt   DateTime @updatedAt
 
   // Relations
-  sections PlaceSection[]
-  tags     PlaceTag[]
+  sections           PlaceSection[]
+  tags               PlaceTag[]
+  itineraryDayPlaces ItineraryDayPlace[]
 
   @@index([category])
   @@index([province])
@@ -199,9 +200,10 @@ model Tag {
   name String @unique
   slug String @unique
 
-  places  PlaceTag[]
-  blogs   BlogTag[]
-  stories StoryTag[]
+  places      PlaceTag[]
+  blogs       BlogTag[]
+  stories     StoryTag[]
+  itineraries ItineraryTag[]
 }
 
 model PlaceTag {
@@ -281,4 +283,102 @@ model Subscriber {
   email     String   @unique
   createdAt DateTime @default(now())
   confirmed Boolean  @default(true)
+}
+
+// ─────────────────────────────────────────────
+// ITINERARIES — structured multi-day travel plans
+// ─────────────────────────────────────────────
+
+enum ItineraryActivity {
+  TREKKING
+  CULTURAL
+  SPIRITUAL
+  ADVENTURE
+  WILDLIFE
+  RELAXATION
+}
+
+enum ItineraryBudget {
+  BUDGET    // Under USD 50/day
+  MIDRANGE  // USD 50–150/day
+  LUXURY    // USD 150+/day
+}
+
+model Itinerary {
+  id      String @id @default(cuid())
+  slug    String @unique
+  title   String
+  excerpt String
+
+  days       Int
+  activities ItineraryActivity[]
+  budget     ItineraryBudget?
+  difficulty Difficulty?
+  provinces  Province[]
+
+  heroImage  String?
+  highlights String[]
+
+  startLocation String?
+  endLocation   String?
+
+  seoTitle       String?
+  seoDescription String?
+
+  published   Boolean   @default(false)
+  featured    Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  dayPlans ItineraryDay[]
+  tags     ItineraryTag[]
+
+  @@index([published])
+  @@index([featured])
+}
+
+model ItineraryDay {
+  id          String    @id @default(cuid())
+  itineraryId String
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+
+  day              Int
+  title            String
+  description      String  @db.Text
+  accommodation    String?
+  meals            String?
+  distanceKm       Float?
+  maxElevation     Int?
+
+  isAlternative    Boolean @default(false)
+  alternativeLabel String?
+
+  order Int @default(0)
+
+  places ItineraryDayPlace[]
+
+  @@index([itineraryId])
+}
+
+model ItineraryDayPlace {
+  id             String       @id @default(cuid())
+  itineraryDayId String
+  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id], onDelete: Cascade)
+  placeId        String
+  place          Place        @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  order Int     @default(0)
+  note  String?
+
+  @@unique([itineraryDayId, placeId])
+}
+
+model ItineraryTag {
+  itineraryId String
+  tagId       String
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([itineraryId, tagId])
 }

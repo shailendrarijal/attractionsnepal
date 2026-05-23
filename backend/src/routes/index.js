@@ -8,6 +8,7 @@ import adminRoutes from './admin.js'
 import uploadRoutes from './upload.js'
 import newsletterRoutes from './newsletter.js'
 import contactRoutes from './contact.js'
+import itinerariesRoutes from './itineraries.js'
 
 const router = Router()
 
@@ -20,5 +21,6 @@ router.use('/admin', adminRoutes)
 router.use('/upload', uploadRoutes)
 router.use('/newsletter', newsletterRoutes)
 router.use('/contact', contactRoutes)
+router.use('/itineraries', itinerariesRoutes)
 
 export default router

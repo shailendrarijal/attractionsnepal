@@ -18,6 +18,8 @@ import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import ContactPage from './pages/ContactPage'
+import ItineraryListPage from './pages/ItineraryListPage'
+import ItineraryPage from './pages/ItineraryPage'
 import AdminPage from './pages/admin/AdminPage'
 import VisitNepalPage from './pages/seo/VisitNepalPage'
 import TrekkingGuidePage from './pages/seo/TrekkingGuidePage'
@@ -60,6 +62,8 @@ export default function App() {
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms"   element={<TermsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/itineraries" element={<ItineraryListPage />} />
+                <Route path="/itineraries/:slug" element={<ItineraryPage />} />
                 <Route path="/visit-nepal" element={<VisitNepalPage />} />
                 <Route path="/nepal-trekking-guide" element={<TrekkingGuidePage />} />
                 <Route path="/best-time-to-visit-nepal" element={<BestTimePage />} />

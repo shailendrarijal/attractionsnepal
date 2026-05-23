@@ -36,19 +36,22 @@ const today = new Date().toISOString().split('T')[0]
 
 console.log(`Generating sitemap (API: ${API_URL}) …`)
 
-const [places, blogs, stories] = await Promise.all([
+const [places, blogs, stories, itineraries] = await Promise.all([
   fetchSlugs('/places?limit=500&published=true'),
   fetchSlugs('/blogs?limit=500&published=true'),
   fetchSlugs('/stories?limit=500'),
+  fetchSlugs('/itineraries?limit=500'),
 ])
 
-const placeList  = places.places  ?? places  ?? []
-const blogList   = blogs.blogs    ?? blogs   ?? []
-const storyList  = stories.stories ?? stories ?? []
+const placeList     = places.places          ?? places      ?? []
+const blogList      = blogs.blogs            ?? blogs       ?? []
+const storyList     = stories.stories        ?? stories     ?? []
+const itineraryList = itineraries.itineraries ?? itineraries ?? []
 
-console.log(`  Places: ${placeList.length}, Blogs: ${blogList.length}, Stories: ${storyList.length}`)
+console.log(`  Places: ${placeList.length}, Blogs: ${blogList.length}, Stories: ${storyList.length}, Itineraries: ${itineraryList.length}`)
 
 const staticPages = [
+  '/itineraries',
   '/visit-nepal',
   '/nepal-trekking-guide',
   '/best-time-to-visit-nepal',
@@ -75,10 +78,11 @@ ${url('/blog', today, '0.8', 'weekly')}
 ${url('/stories', today, '0.8', 'weekly')}
 ${placeList.map((p) => url(`/places/${p.slug}`, (p.updatedAt ?? today).split('T')[0], '0.8')).join('\n')}
 ${blogList.map((b)  => url(`/blog/${b.slug}`,   (b.updatedAt  ?? today).split('T')[0], '0.7')).join('\n')}
-${storyList.map((s) => url(`/stories/${s.slug}`,(s.updatedAt  ?? today).split('T')[0], '0.7')).join('\n')}
+${storyList.map((s)     => url(`/stories/${s.slug}`,      (s.updatedAt ?? today).split('T')[0], '0.7')).join('\n')}
+${itineraryList.map((i) => url(`/itineraries/${i.slug}`, (i.updatedAt ?? today).split('T')[0], '0.8')).join('\n')}
 </urlset>`
 
 const outPath = join(__dir, '../public/sitemap.xml')
 writeFileSync(outPath, xml, 'utf-8')
 console.log(`  Saved: ${outPath}`)
-console.log(`  Total URLs: ${4 + staticPages.length + placeList.length + blogList.length + storyList.length}`)
+console.log(`  Total URLs: ${4 + staticPages.length + placeList.length + blogList.length + storyList.length + itineraryList.length}`)

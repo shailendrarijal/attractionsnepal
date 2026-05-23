@@ -17,7 +17,7 @@ import { useEffect, useRef } from 'react'
  * (enabled via the <script> in index.html) fills the gap automatically.
  */
 
-const CLIENT = import.meta.env.VITE_ADSENSE_CLIENT ?? 'ca-pub-6862894074348546'
+const CLIENT = import.meta.env.VITE_ADSENSE_CLIENT ?? 'ca-pub-9065458316312467'
 
 const SLOT_MAP = {
   leaderboard: import.meta.env.VITE_ADSENSE_SLOT_LEADERBOARD,
