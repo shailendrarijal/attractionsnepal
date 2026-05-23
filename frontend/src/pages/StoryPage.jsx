@@ -34,6 +34,12 @@ export default function StoryPage() {
   const { slug } = useParams()
   const { data: story, isLoading, error } = useStory(slug)
 
+  // Must be ABOVE early returns — React Rules of Hooks require hooks to be
+  // called unconditionally in the same order on every render.
+  useEffect(() => {
+    if (story) Analytics.storyView(story.slug, story.title, story.category)
+  }, [story?.slug]) // eslint-disable-line react-hooks/exhaustive-deps
+
   if (isLoading) return <LoadingSpinner />
 
   if (error || !story) {
@@ -53,11 +59,6 @@ export default function StoryPage() {
 
   const gradient = CATEGORY_GRADIENTS[story.category] ?? 'from-gray-700 to-gray-500'
   const label    = CATEGORY_LABELS[story.category]    ?? story.category
-
-  // Fire GA story_view once per load
-  useEffect(() => {
-    Analytics.storyView(story.slug, story.title, story.category)
-  }, [story.slug]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const linkedContent = autoLinkPlaces(story.content, story.relatedPlaceSlugs)
 
