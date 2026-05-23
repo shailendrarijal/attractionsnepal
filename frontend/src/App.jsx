@@ -17,6 +17,7 @@ import ExplorePage from './pages/ExplorePage'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
+import ContactPage from './pages/ContactPage'
 import AdminPage from './pages/admin/AdminPage'
 
 const queryClient = new QueryClient({
@@ -55,6 +56,7 @@ export default function App() {
                 <Route path="/stories/:slug" element={<StoryPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms"   element={<TermsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />

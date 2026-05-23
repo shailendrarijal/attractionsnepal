@@ -108,6 +108,15 @@ export default function Navbar() {
               Blog
             </NavLink>
 
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-colors ${isActive ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'}`
+              }
+            >
+              Contact
+            </NavLink>
+
             <a
               href="https://shailendra185.gumroad.com/l/jdvner"
               target="_blank"
@@ -178,6 +187,9 @@ export default function Navbar() {
           </Link>
           <Link to="/blog" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
             Blog
+          </Link>
+          <Link to="/contact" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileOpen(false)}>
+            Contact
           </Link>
           <a
             href="https://shailendra185.gumroad.com/l/jdvner"

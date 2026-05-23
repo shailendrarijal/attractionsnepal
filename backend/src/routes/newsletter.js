@@ -28,7 +28,7 @@ router.post('/subscribe', async (req, res) => {
         const templatePath = join(__dir, '../../templates/welcome-email.html')
         const html = readFileSync(templatePath, 'utf-8')
         await resend.emails.send({
-          from: 'Attractions Nepal <hello@attractionsnepal.com>',
+          from: 'Attractions Nepal <noreply@attractionsnepal.com>',
           to: email,
           subject: 'Your Nepal Trip Planning Checklist 🏔️',
           html,

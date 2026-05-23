@@ -86,3 +86,8 @@ export const uploadBlogImage   = (file) => {
 
 export const subscribeNewsletter = (email) =>
   api.post('/newsletter/subscribe', { email }).then((r) => r.data)
+
+// ── Contact ────────────────────────────────────────────────────────────────
+
+export const sendContactMessage = (payload) =>
+  api.post('/contact', payload).then((r) => r.data)
