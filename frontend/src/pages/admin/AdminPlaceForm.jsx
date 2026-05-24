@@ -16,12 +16,103 @@ const CATEGORIES = [
 ]
 const PROVINCES = ['KOSHI','MADHESH','BAGMATI','GANDAKI','LUMBINI','KARNALI','SUDURPASHCHIM']
 const DIFFICULTIES = ['EASY','MODERATE','HARD','EXTREME']
+const SECTION_TYPES = [
+  { value: 'TOURS_EXPERIENCES', label: '🎯 Tours & Experiences' },
+  { value: 'WHERE_TO_EAT',      label: '🍜 Where to Eat' },
+  { value: 'WHERE_TO_STAY',     label: '🏨 Where to Stay' },
+  { value: 'TRAVEL_TIPS',       label: '💡 Travel Tips' },
+  { value: 'NEARBY_PLACES',     label: '📍 Nearby Places' },
+]
+const LINK_TYPES = ['affiliate', 'info', 'booking']
 
-function Field({ label, children }) {
+function Field({ label, hint, children }) {
   return (
     <div>
       <label className="label">{label}</label>
+      {hint && <p className="text-xs text-gray-400 mb-1">{hint}</p>}
       {children}
+    </div>
+  )
+}
+
+function emptySection() {
+  return { type: 'TOURS_EXPERIENCES', title: '', content: '', links: [] }
+}
+function emptyLink() {
+  return { label: '', url: '', type: 'affiliate' }
+}
+
+function SectionEditor({ section, idx, onChange, onRemove, onMoveUp, onMoveDown, isFirst, isLast }) {
+  function setField(key, val) { onChange({ ...section, [key]: val }) }
+
+  function addLink() { onChange({ ...section, links: [...section.links, emptyLink()] }) }
+  function removeLink(i) { onChange({ ...section, links: section.links.filter((_, li) => li !== i) }) }
+  function setLink(i, key, val) {
+    const links = section.links.map((l, li) => li === i ? { ...l, [key]: val } : l)
+    onChange({ ...section, links })
+  }
+
+  return (
+    <div className="border border-gray-200 rounded-xl p-4 space-y-3 bg-white">
+      <div className="flex items-center gap-2">
+        <select value={section.type} onChange={e => setField('type', e.target.value)} className="input text-sm flex-1">
+          {SECTION_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
+        </select>
+        <div className="flex gap-1">
+          <button type="button" onClick={onMoveUp} disabled={isFirst} className="p-1.5 rounded hover:bg-gray-100 disabled:opacity-30 text-xs">↑</button>
+          <button type="button" onClick={onMoveDown} disabled={isLast} className="p-1.5 rounded hover:bg-gray-100 disabled:opacity-30 text-xs">↓</button>
+          <button type="button" onClick={onRemove} className="p-1.5 rounded hover:bg-red-50 text-red-500 text-xs ml-1">✕ Remove</button>
+        </div>
+      </div>
+
+      <input
+        value={section.title}
+        onChange={e => setField('title', e.target.value)}
+        className="input text-sm"
+        placeholder="Section title e.g. Best Restaurants Near Bhaktapur"
+      />
+
+      <textarea
+        value={section.content}
+        onChange={e => setField('content', e.target.value)}
+        className="input text-sm font-mono"
+        rows={4}
+        placeholder="Write editorial content in Markdown. E.g. describe the top restaurants, tours, or tips..."
+      />
+
+      {/* Links */}
+      <div>
+        <p className="text-xs font-medium text-gray-600 mb-2">
+          Links — for TOURS_EXPERIENCES paste the GYG activity URL; for WHERE_TO_EAT paste a Google Maps link
+        </p>
+        <div className="space-y-2">
+          {section.links.map((link, i) => (
+            <div key={i} className="flex gap-2 items-center">
+              <input
+                value={link.label}
+                onChange={e => setLink(i, 'label', e.target.value)}
+                className="input text-xs w-36 shrink-0"
+                placeholder="Label"
+              />
+              <input
+                value={link.url}
+                onChange={e => setLink(i, 'url', e.target.value)}
+                className="input text-xs flex-1 font-mono"
+                placeholder="https://..."
+              />
+              <select
+                value={link.type}
+                onChange={e => setLink(i, 'type', e.target.value)}
+                className="input text-xs w-28 shrink-0"
+              >
+                {LINK_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+              </select>
+              <button type="button" onClick={() => removeLink(i)} className="text-red-400 hover:text-red-600 shrink-0 text-sm">✕</button>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={addLink} className="mt-2 text-xs text-primary-700 hover:underline">+ Add link</button>
+      </div>
     </div>
   )
 }
@@ -45,6 +136,7 @@ export default function AdminPlaceForm() {
   const isEdit = !!id
 
   const [form, setForm] = useState(EMPTY)
+  const [sections, setSections] = useState([])
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
   const [selectedTags, setSelectedTags] = useState([])
@@ -94,6 +186,11 @@ export default function AdminPlaceForm() {
         featured: place.featured ?? false,
       })
       setSelectedTags(place.tags?.map((t) => t.tag.id) ?? [])
+      setSections(
+        [...(place.sections ?? [])]
+          .sort((a, b) => a.order - b.order)
+          .map(s => ({ type: s.type, title: s.title, content: s.content, links: s.links ?? [] }))
+      )
     }
   }, [place])
 
@@ -143,7 +240,27 @@ export default function AdminPlaceForm() {
       published: form.published,
       featured: form.featured,
       tags: selectedTags,
+      sections: sections.map((s, i) => ({
+        type: s.type,
+        title: s.title,
+        content: s.content,
+        links: s.links,
+        order: i,
+      })),
     }
+  }
+
+  function addSection() { setSections(s => [...s, emptySection()]) }
+  function removeSection(i) { setSections(s => s.filter((_, si) => si !== i)) }
+  function updateSection(i, updated) { setSections(s => s.map((sec, si) => si === i ? updated : sec)) }
+  function moveSection(i, dir) {
+    setSections(s => {
+      const next = [...s]
+      const swap = i + dir
+      if (swap < 0 || swap >= next.length) return s;
+      [next[i], next[swap]] = [next[swap], next[i]]
+      return next
+    })
   }
 
   async function handleHeroUpload(e) {
@@ -300,6 +417,31 @@ export default function AdminPlaceForm() {
             </button>
           ))}
           {!allTags.length && <p className="text-sm text-gray-400">No tags yet. Create them via the API.</p>}
+        </div>
+
+        {/* Content Sections */}
+        <h2 className="font-semibold text-gray-900 border-b pb-2 pt-2">Content Sections</h2>
+        <p className="text-xs text-gray-500 -mt-2">
+          Add curated blocks that appear on the place page — tours, where to eat, travel tips, etc.
+          For GYG activities: find the activity on getyourguide.com, copy its URL, add <code className="bg-gray-100 px-1 rounded">?partner_id=YOUR_ID</code> to the end, set type to <em>affiliate</em>.
+        </p>
+        <div className="space-y-3">
+          {sections.map((sec, idx) => (
+            <SectionEditor
+              key={idx}
+              idx={idx}
+              section={sec}
+              onChange={(updated) => updateSection(idx, updated)}
+              onRemove={() => removeSection(idx)}
+              onMoveUp={() => moveSection(idx, -1)}
+              onMoveDown={() => moveSection(idx, 1)}
+              isFirst={idx === 0}
+              isLast={idx === sections.length - 1}
+            />
+          ))}
+          <button type="button" onClick={addSection} className="btn-secondary text-sm w-full">
+            + Add Section
+          </button>
         </div>
 
         {/* Publishing */}

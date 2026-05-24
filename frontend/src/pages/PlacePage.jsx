@@ -234,14 +234,62 @@ export default function PlacePage() {
         {/* Content sections — ad injected after every 2nd section */}
         {place.sections?.map((section, idx) => (
           <div key={section.id}>
-            <div className="mb-8 p-6 rounded-2xl bg-gray-50 border border-gray-100">
+            <div className={`mb-8 p-6 rounded-2xl border ${
+              section.type === 'TOURS_EXPERIENCES' ? 'bg-green-50 border-green-100' :
+              section.type === 'WHERE_TO_EAT'      ? 'bg-amber-50 border-amber-100' :
+              section.type === 'WHERE_TO_STAY'     ? 'bg-blue-50 border-blue-100'   :
+              'bg-gray-50 border-gray-100'
+            }`}>
               <h2 className="font-display font-bold text-xl text-gray-900 mb-3">
                 {SECTION_ICONS[section.type] ?? '📌'} {section.title}
               </h2>
               <div className="prose prose-sm max-w-none">
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>{section.content}</ReactMarkdown>
               </div>
-              {section.links && Array.isArray(section.links) && section.links.length > 0 && (
+
+              {/* TOURS_EXPERIENCES — styled activity cards */}
+              {section.type === 'TOURS_EXPERIENCES' && section.links?.length > 0 && (
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {section.links.map((link, i) => (
+                    <a
+                      key={i}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white border border-green-200 hover:border-green-400 hover:shadow-sm transition-all group"
+                    >
+                      <span className="text-sm font-medium text-gray-800">{link.label}</span>
+                      <span className="shrink-0 text-xs font-semibold text-white bg-green-600 group-hover:bg-green-700 px-3 py-1 rounded-full transition-colors">
+                        Book →
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* WHERE_TO_EAT — restaurant card links */}
+              {section.type === 'WHERE_TO_EAT' && section.links?.length > 0 && (
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {section.links.map((link, i) => (
+                    <a
+                      key={i}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white border border-amber-200 hover:border-amber-400 hover:shadow-sm transition-all group"
+                    >
+                      <span className="text-sm font-medium text-gray-800">{link.label}</span>
+                      <span className="shrink-0 text-xs font-semibold text-amber-700 border border-amber-300 group-hover:bg-amber-100 px-3 py-1 rounded-full transition-colors">
+                        View →
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* All other section types — plain pill links */}
+              {section.type !== 'TOURS_EXPERIENCES' && section.type !== 'WHERE_TO_EAT' &&
+                section.links?.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-2">
                   {section.links.map((link, i) => (
                     <a
