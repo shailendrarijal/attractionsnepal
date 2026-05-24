@@ -4,9 +4,12 @@ import { login } from '../../lib/api'
 import AdminPlaces from './AdminPlaces'
 import AdminBlogs from './AdminBlogs'
 import AdminStories from './AdminStories'
+import AdminItineraries from './AdminItineraries'
 import AdminPlaceForm from './AdminPlaceForm'
 import AdminBlogForm from './AdminBlogForm'
 import AdminStoryForm from './AdminStoryForm'
+import AdminItineraryForm from './AdminItineraryForm'
+import AdminTips from './AdminTips'
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('')
@@ -117,6 +120,22 @@ function AdminLayout({ onLogout }) {
           >
             📖 Stories
           </NavLink>
+          <NavLink
+            to="/admin/itineraries"
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${isActive ? 'bg-primary-700 text-white' : 'hover:bg-gray-800'}`
+            }
+          >
+            🗺️ Itineraries
+          </NavLink>
+          <NavLink
+            to="/admin/tips"
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${isActive ? 'bg-primary-700 text-white' : 'hover:bg-gray-800'}`
+            }
+          >
+            💬 Tips
+          </NavLink>
           <Link
             to="/"
             target="_blank"
@@ -148,6 +167,10 @@ function AdminLayout({ onLogout }) {
           <Route path="stories" element={<AdminStories />} />
           <Route path="stories/new" element={<AdminStoryForm />} />
           <Route path="stories/:id/edit" element={<AdminStoryForm />} />
+          <Route path="itineraries" element={<AdminItineraries />} />
+          <Route path="itineraries/new" element={<AdminItineraryForm />} />
+          <Route path="itineraries/:id/edit" element={<AdminItineraryForm />} />
+          <Route path="tips" element={<AdminTips />} />
         </Routes>
       </main>
     </div>
@@ -182,6 +205,16 @@ function AdminDashboard() {
           <p className="text-4xl mb-3">📖</p>
           <h2 className="font-semibold text-gray-900">Add a Story</h2>
           <p className="text-sm text-gray-500 mt-1">Publish a myth, festival legend, or tradition</p>
+        </Link>
+        <Link to="/admin/itineraries/new" className="card p-6 hover:shadow-md transition-shadow text-center">
+          <p className="text-4xl mb-3">🗺️</p>
+          <h2 className="font-semibold text-gray-900">Add an Itinerary</h2>
+          <p className="text-sm text-gray-500 mt-1">Create a new trip plan</p>
+        </Link>
+        <Link to="/admin/tips" className="card p-6 hover:shadow-md transition-shadow text-center">
+          <p className="text-4xl mb-3">💬</p>
+          <h2 className="font-semibold text-gray-900">Moderate Tips</h2>
+          <p className="text-sm text-gray-500 mt-1">Review and approve visitor tips</p>
         </Link>
       </div>
     </div>

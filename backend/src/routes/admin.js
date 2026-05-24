@@ -374,6 +374,171 @@ router.delete('/stories/:id', async (req, res) => {
   }
 })
 
+// ─── Itineraries ─────────────────────────────────────────────────────────────
+
+router.get('/itineraries', async (req, res) => {
+  try {
+    const { page = '1', limit = '50' } = req.query
+    const skip = (parseInt(page) - 1) * parseInt(limit)
+    const take = Math.min(parseInt(limit), 100)
+
+    const [itineraries, total] = await Promise.all([
+      prisma.itinerary.findMany({
+        skip,
+        take,
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          days: true,
+          published: true,
+          featured: true,
+          activities: true,
+          budget: true,
+          createdAt: true,
+        },
+      }),
+      prisma.itinerary.count(),
+    ])
+
+    res.json({ itineraries, total })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch itineraries' })
+  }
+})
+
+router.post('/itineraries', async (req, res) => {
+  try {
+    const { title, tags, dayPlans, ...rest } = req.body
+    if (!title) return res.status(400).json({ error: 'title is required' })
+
+    const slug = makeSlug(title)
+    const itinerary = await prisma.itinerary.create({
+      data: {
+        title,
+        slug,
+        ...rest,
+        publishedAt: rest.published ? new Date() : null,
+        dayPlans: dayPlans?.length
+          ? {
+              create: dayPlans.map((dp, i) => ({
+                day: dp.day,
+                title: dp.title,
+                description: dp.description,
+                accommodation: dp.accommodation ?? null,
+                meals: dp.meals ?? null,
+                distanceKm: dp.distanceKm ?? null,
+                maxElevation: dp.maxElevation ?? null,
+                isAlternative: dp.isAlternative ?? false,
+                alternativeLabel: dp.alternativeLabel ?? null,
+                order: i,
+              })),
+            }
+          : undefined,
+        tags: tags?.length
+          ? { create: tags.map((tagId) => ({ tag: { connect: { id: tagId } } })) }
+          : undefined,
+      },
+      include: {
+        dayPlans: { orderBy: [{ day: 'asc' }, { order: 'asc' }] },
+        tags: { include: { tag: true } },
+      },
+    })
+
+    res.status(201).json(itinerary)
+  } catch (err) {
+    if (err.code === 'P2002') {
+      return res.status(409).json({ error: 'Slug already exists' })
+    }
+    console.error(err)
+    res.status(500).json({ error: 'Failed to create itinerary' })
+  }
+})
+
+router.get('/itineraries/:id', async (req, res) => {
+  try {
+    const itinerary = await prisma.itinerary.findUnique({
+      where: { id: req.params.id },
+      include: {
+        dayPlans: { orderBy: [{ day: 'asc' }, { order: 'asc' }] },
+        tags: { include: { tag: true } },
+      },
+    })
+    if (!itinerary) return res.status(404).json({ error: 'Not found' })
+    res.json(itinerary)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch itinerary' })
+  }
+})
+
+router.put('/itineraries/:id', async (req, res) => {
+  try {
+    const { tags, dayPlans, slug: bodySlug, ...rest } = req.body
+
+    if (rest.published && !rest.publishedAt) {
+      rest.publishedAt = new Date()
+    }
+
+    const itinerary = await prisma.$transaction(async (tx) => {
+      await tx.itineraryDay.deleteMany({ where: { itineraryId: req.params.id } })
+      if (tags !== undefined) {
+        await tx.itineraryTag.deleteMany({ where: { itineraryId: req.params.id } })
+      }
+      return tx.itinerary.update({
+        where: { id: req.params.id },
+        data: {
+          ...rest,
+          ...(bodySlug ? { slug: bodySlug } : {}),
+          dayPlans: dayPlans?.length
+            ? {
+                create: dayPlans.map((dp, i) => ({
+                  day: dp.day,
+                  title: dp.title,
+                  description: dp.description,
+                  accommodation: dp.accommodation ?? null,
+                  meals: dp.meals ?? null,
+                  distanceKm: dp.distanceKm ?? null,
+                  maxElevation: dp.maxElevation ?? null,
+                  isAlternative: dp.isAlternative ?? false,
+                  alternativeLabel: dp.alternativeLabel ?? null,
+                  order: i,
+                })),
+              }
+            : undefined,
+          tags: tags?.length
+            ? { create: tags.map((tagId) => ({ tag: { connect: { id: tagId } } })) }
+            : undefined,
+        },
+        include: {
+          dayPlans: { orderBy: [{ day: 'asc' }, { order: 'asc' }] },
+          tags: { include: { tag: true } },
+        },
+      })
+    })
+
+    res.json(itinerary)
+  } catch (err) {
+    if (err.code === 'P2002') {
+      return res.status(409).json({ error: 'Slug already exists' })
+    }
+    console.error(err)
+    res.status(500).json({ error: 'Failed to update itinerary' })
+  }
+})
+
+router.delete('/itineraries/:id', async (req, res) => {
+  try {
+    await prisma.itinerary.delete({ where: { id: req.params.id } })
+    res.json({ ok: true })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to delete itinerary' })
+  }
+})
+
 // ─── Tags ────────────────────────────────────────────────────────────────────
 
 router.post('/tags', async (req, res) => {
@@ -397,6 +562,63 @@ router.delete('/tags/:id', async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Failed to delete tag' })
+  }
+})
+
+// ─── Tips ────────────────────────────────────────────────────────────────────
+
+// GET /admin/tips — list tips, paginated
+router.get('/tips', async (req, res) => {
+  try {
+    const { page = '1', limit = '50', status = 'pending' } = req.query
+    const skip = (parseInt(page) - 1) * parseInt(limit)
+    const take = Math.min(parseInt(limit), 100)
+
+    const where = {}
+    if (status === 'pending') where.approved = false
+    else if (status === 'approved') where.approved = true
+    // 'all' — no filter
+
+    const [tips, total] = await Promise.all([
+      prisma.placeTip.findMany({
+        where,
+        skip,
+        take,
+        orderBy: { createdAt: 'desc' },
+        include: { place: { select: { id: true, name: true, slug: true } } },
+      }),
+      prisma.placeTip.count({ where }),
+    ])
+
+    res.json({ tips, total })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch tips' })
+  }
+})
+
+// PUT /admin/tips/:id/approve — approve a tip
+router.put('/tips/:id/approve', async (req, res) => {
+  try {
+    const tip = await prisma.placeTip.update({
+      where: { id: req.params.id },
+      data: { approved: true },
+    })
+    res.json(tip)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to approve tip' })
+  }
+})
+
+// DELETE /admin/tips/:id — reject/delete a tip
+router.delete('/tips/:id', async (req, res) => {
+  try {
+    await prisma.placeTip.delete({ where: { id: req.params.id } })
+    res.json({ ok: true })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to delete tip' })
   }
 })
 

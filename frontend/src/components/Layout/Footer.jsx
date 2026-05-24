@@ -126,6 +126,10 @@ export default function Footer() {
               <li><Link to="/visit-nepal"              className="text-sm hover:text-white transition-colors">Nepal Travel Guide</Link></li>
               <li><Link to="/nepal-trekking-guide"     className="text-sm hover:text-white transition-colors">Nepal Trekking Guide</Link></li>
               <li><Link to="/best-time-to-visit-nepal" className="text-sm hover:text-white transition-colors">Best Time to Visit</Link></li>
+              <li><Link to="/nepal-visa-guide"         className="text-sm hover:text-white transition-colors">Nepal Visa Guide</Link></li>
+              <li><Link to="/nepal-travel-cost"        className="text-sm hover:text-white transition-colors">Nepal Travel Cost</Link></li>
+              <li><Link to="/kathmandu-to-pokhara"     className="text-sm hover:text-white transition-colors">Kathmandu to Pokhara</Link></li>
+              <li><Link to="/nepal-packing-list"       className="text-sm hover:text-white transition-colors">Nepal Packing List</Link></li>
             </ul>
 
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Explore</h3>

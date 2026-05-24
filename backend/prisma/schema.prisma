@@ -134,9 +134,14 @@ model Place {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // Community features
+  youtubeUrl String?          // YouTube video URL for lite embed
+  vibeVotes  Json?            // { "🕉️ Spiritually moving": 42, ... }
+
   // Relations
   sections           PlaceSection[]
   tags               PlaceTag[]
+  tips               PlaceTip[]
   itineraryDayPlaces ItineraryDayPlace[]
 
   @@index([category])
@@ -158,6 +163,28 @@ model PlaceSection {
   content String      @db.Text    // markdown
   links   Json?                   // [{label, url, type: "affiliate"|"info"|"booking"}]
   order   Int         @default(0)
+}
+
+// ─────────────────────────────────────────────
+// COMMUNITY — visitor-contributed tips
+// ─────────────────────────────────────────────
+
+model PlaceTip {
+  id            String   @id @default(cuid())
+  placeId       String
+  place         Place    @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  authorName    String   // required
+  authorCountry String   // required
+  content       String   // 20–500 chars
+
+  approved      Boolean  @default(false)
+  ipAddress     String?  // for rate-limiting (1 tip per place per 24h per IP)
+
+  createdAt     DateTime @default(now())
+
+  @@index([placeId, approved])
+  @@index([approved])
 }
 
 // ─────────────────────────────────────────────

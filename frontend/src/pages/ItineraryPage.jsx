@@ -9,6 +9,9 @@ import PageSeo from '../components/PageSeo'
 import JsonLd from '../components/JsonLd'
 import GuidePromo from '../components/GuidePromo'
 import AdBanner from '../components/AdBanner'
+import WhatsAppShare from '../components/WhatsAppShare'
+import FAQ from '../components/FAQ'
+import TravelInsuranceCTA from '../components/TravelInsuranceCTA'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80'
 
@@ -198,6 +201,17 @@ export default function ItineraryPage() {
   }
   const dayNumbers = Object.keys(dayGroups).map(Number).sort((a, b) => a - b)
 
+  function buildFaqs(it) {
+    const faqs = []
+    faqs.push({ question: `How many days is the ${it.title}?`, answer: `This itinerary is ${it.days} ${it.days === 1 ? 'day' : 'days'} long, starting in ${it.startLocation ?? 'Nepal'} and ending in ${it.endLocation ?? it.startLocation ?? 'Nepal'}.` })
+    if (it.difficulty) faqs.push({ question: `Is the ${it.title} suitable for beginners?`, answer: it.difficulty === 'EASY' ? 'Yes, this itinerary is rated Easy and is suitable for most fitness levels with no trekking experience required.' : it.difficulty === 'MODERATE' ? 'This itinerary is Moderate difficulty. A reasonable level of fitness is needed. No technical experience required but regular exercise beforehand is recommended.' : `This itinerary is rated ${it.difficulty.charAt(0) + it.difficulty.slice(1).toLowerCase()}. Good physical fitness and prior trekking experience is recommended.` })
+    if (it.budget) faqs.push({ question: `How much does the ${it.title} cost?`, answer: it.budget === 'BUDGET' ? 'This is a budget-friendly itinerary, typically costing $25–50 per person per day including accommodation, food, and transport.' : it.budget === 'MIDRANGE' ? 'This mid-range itinerary typically costs $60–120 per person per day, including comfortable accommodation, guided tours, and good restaurants.' : 'This luxury itinerary typically costs $200+ per person per day, including boutique hotels, private guides, and premium experiences.' })
+    faqs.push({ question: 'Do I need travel insurance for this trip?', answer: 'Yes — travel insurance with helicopter evacuation cover is strongly recommended for all Nepal trips, especially trekking itineraries. Medical emergencies at altitude can cost $10,000+ without insurance.' })
+    faqs.push({ question: 'What is the best time of year for this itinerary?', answer: 'October–November is the most popular time (clear skies, ideal temperatures). March–April is the second best season with rhododendrons in bloom. December–February is cold but crowd-free. June–September (monsoon) brings lush scenery but rain and leeches on lower trails.' })
+    return faqs
+  }
+  const itineraryFaqs = buildFaqs(itinerary)
+
   function getSelectedPlan(dayNum) {
     const plans = dayGroups[dayNum] ?? []
     const primary = plans.find((p) => !p.isAlternative) ?? plans[0]
@@ -262,6 +276,9 @@ export default function ItineraryPage() {
                 )}
               </p>
             )}
+            <div className="mt-3">
+              <WhatsAppShare title={itinerary.title} url={`https://attractionsnepal.com/itineraries/${itinerary.slug}`} />
+            </div>
           </div>
         </div>
       </div>
@@ -433,6 +450,16 @@ export default function ItineraryPage() {
             </div>
           </div>
         )}
+
+        {/* FAQ */}
+        <div className="mb-10">
+          <FAQ faqs={itineraryFaqs} title="Frequently Asked Questions" />
+        </div>
+
+        {/* Travel insurance */}
+        <div className="mb-10">
+          <TravelInsuranceCTA />
+        </div>
 
         {/* Email CTA */}
         <div className="mb-10 rounded-2xl bg-gradient-to-r from-primary-700 to-primary-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">

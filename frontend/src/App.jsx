@@ -25,6 +25,10 @@ import AdminPage from './pages/admin/AdminPage'
 import VisitNepalPage from './pages/seo/VisitNepalPage'
 import TrekkingGuidePage from './pages/seo/TrekkingGuidePage'
 import BestTimePage from './pages/seo/BestTimePage'
+import NepalVisaGuidePage from './pages/seo/NepalVisaGuidePage'
+import NepalTravelCostPage from './pages/seo/NepalTravelCostPage'
+import KathmanduToPokharaPage from './pages/seo/KathmanduToPokharaPage'
+import NepalPackingListPage from './pages/seo/NepalPackingListPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +73,10 @@ export default function App() {
                 <Route path="/visit-nepal" element={<VisitNepalPage />} />
                 <Route path="/nepal-trekking-guide" element={<TrekkingGuidePage />} />
                 <Route path="/best-time-to-visit-nepal" element={<BestTimePage />} />
+                <Route path="/nepal-visa-guide" element={<NepalVisaGuidePage />} />
+                <Route path="/nepal-travel-cost" element={<NepalTravelCostPage />} />
+                <Route path="/kathmandu-to-pokhara" element={<KathmanduToPokharaPage />} />
+                <Route path="/nepal-packing-list" element={<NepalPackingListPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />

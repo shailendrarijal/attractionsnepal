@@ -97,3 +97,14 @@ export const sendContactMessage = (payload) =>
 export const getItineraries    = (params)        => api.get('/itineraries', { params }).then((r) => r.data)
 export const getItinerary      = (slug)          => api.get(`/itineraries/${slug}`).then((r) => r.data)
 export const emailItinerary    = (slug, payload) => api.post(`/itineraries/${slug}/email`, payload).then((r) => r.data)
+
+export const adminGetItineraries   = (p)     => api.get('/admin/itineraries', { params: p }).then((r) => r.data)
+export const adminGetItinerary     = (id)    => api.get(`/admin/itineraries/${id}`).then((r) => r.data)
+export const adminCreateItinerary  = (d)     => api.post('/admin/itineraries', d).then((r) => r.data)
+export const adminUpdateItinerary  = (id, d) => api.put(`/admin/itineraries/${id}`, d).then((r) => r.data)
+export const adminDeleteItinerary  = (id)    => api.delete(`/admin/itineraries/${id}`).then((r) => r.data)
+
+// ── Community tips admin ────────────────────────────────────────────────────
+export const adminGetTips     = (p)  => api.get('/admin/tips', { params: p }).then((r) => r.data)
+export const adminApproveTip  = (id) => api.put(`/admin/tips/${id}/approve`).then((r) => r.data)
+export const adminDeleteTip   = (id) => api.delete(`/admin/tips/${id}`).then((r) => r.data)

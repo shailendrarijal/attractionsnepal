@@ -14,6 +14,14 @@ import JsonLd from '../components/JsonLd'
 import GuidePromo from '../components/GuidePromo'
 import ItineraryCard from '../components/ItineraryCard'
 import { useItineraries } from '../hooks/useItineraries'
+import WhatsAppShare from '../components/WhatsAppShare'
+import FAQ from '../components/FAQ'
+import WeatherWidget from '../components/WeatherWidget'
+import CurrencyConverter from '../components/CurrencyConverter'
+import ElevationConverter from '../components/ElevationConverter'
+import VibeTags from '../components/VibeTags'
+import CommunityTips from '../components/CommunityTips'
+import YouTubeLiteEmbed from '../components/YouTubeLiteEmbed'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
@@ -45,6 +53,17 @@ const SECTION_ICONS = {
   NEARBY_PLACES:      '📍',
 }
 
+function buildPlaceFaqs(place) {
+  const faqs = [
+    { question: `What is ${place.name}?`, answer: place.summary ?? place.seoDescription ?? `${place.name} is a ${place.category?.toLowerCase()?.replace(/_/g, ' ')} located in ${place.district ?? 'Nepal'}.` },
+    { question: `Where is ${place.name} located?`, answer: `${place.name} is located in ${place.district ? place.district + ',' : ''} ${place.province?.replace(/_/g, ' ') ?? ''} Province, Nepal. ${place.address ?? ''}` },
+    { question: `How do I get to ${place.name}?`, answer: place.gettingThere ?? `${place.name} is accessible from ${place.district ?? 'the nearest city'}. Local transport options including taxis and buses are available.` },
+    { question: `What is the best time to visit ${place.name}?`, answer: 'The best time to visit is October to November (clear skies, pleasant weather) or March to May (spring blooms). Avoid monsoon (June–September) for outdoor sites.' },
+    { question: `Is there an entry fee for ${place.name}?`, answer: place.entryFee ? `Yes — ${place.entryFee}` : 'Entry fees vary. Many temples and sites charge a nominal fee for foreign visitors. Check the official site or local tourist board for current pricing.' },
+  ]
+  return faqs
+}
+
 export default function PlacePage() {
   const { slug } = useParams()
   const { data: place, isLoading, error } = usePlace(slug)
@@ -64,6 +83,7 @@ export default function PlacePage() {
   }
 
   const mapPlaces = place.lat && place.lng ? [place] : []
+  const placeFaqs = buildPlaceFaqs(place)
 
   const stripUndefined = (obj) => JSON.parse(JSON.stringify(obj))
 
@@ -135,6 +155,11 @@ export default function PlacePage() {
       </div>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
+        {/* WhatsApp share */}
+        <div className="mb-6 flex items-center justify-end">
+          <WhatsAppShare title={place.name} url={`https://attractionsnepal.com/places/${place.slug}`} />
+        </div>
+
         {/* Quick facts */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           {place.bestSeason && (
@@ -347,6 +372,49 @@ export default function PlacePage() {
                 <ItineraryCard key={it.id} itinerary={it} />
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Vibe tags */}
+        <div className="mb-10">
+          <VibeTags
+            placeSlug={place.slug}
+            category={place.category}
+            initialVotes={place.vibeVotes ?? {}}
+          />
+        </div>
+
+        {/* Community tips */}
+        <div className="mb-10">
+          <CommunityTips
+            placeSlug={place.slug}
+            placeName={place.name}
+            initialTips={place.tips ?? []}
+          />
+        </div>
+
+        {/* YouTube embed */}
+        {place.youtubeUrl && (
+          <div className="mb-10">
+            <YouTubeLiteEmbed youtubeUrl={place.youtubeUrl} title={`${place.name} — video guide`} />
+          </div>
+        )}
+
+        {/* FAQ */}
+        <div className="mb-10">
+          <FAQ faqs={placeFaqs} />
+        </div>
+
+        {/* Utility widgets row */}
+        <div className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <CurrencyConverter />
+          <ElevationConverter />
+        </div>
+
+        {/* Weather widget — only if coordinates available */}
+        {place.lat && place.lng && (
+          <div className="mb-8">
+            <WeatherWidget placeName={place.name} lat={place.lat} lng={place.lng} />
           </div>
         )}
 

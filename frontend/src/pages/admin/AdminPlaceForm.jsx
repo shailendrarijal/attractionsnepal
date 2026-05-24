@@ -34,7 +34,7 @@ const EMPTY = {
   trekDays: '', trekDifficulty: '', trekMaxElevation: '', trekDistance: '',
   trekStartPoint: '', trekEndPoint: '', trekHighlights: '',
   gygQuery: '', bookingCity: '',
-  heroImage: '', images: '',
+  heroImage: '', images: '', youtubeUrl: '',
   seoTitle: '', seoDescription: '',
   published: false, featured: false,
 }
@@ -87,6 +87,7 @@ export default function AdminPlaceForm() {
         bookingCity: place.bookingCity ?? '',
         heroImage: place.heroImage ?? '',
         images: (place.images ?? []).join('\n'),
+        youtubeUrl: place.youtubeUrl ?? '',
         seoTitle: place.seoTitle ?? '',
         seoDescription: place.seoDescription ?? '',
         published: place.published ?? false,
@@ -136,6 +137,7 @@ export default function AdminPlaceForm() {
       images: form.images
         ? form.images.split('\n').map((s) => s.trim()).filter(Boolean)
         : [],
+      youtubeUrl: form.youtubeUrl || null,
       seoTitle: form.seoTitle || null,
       seoDescription: form.seoDescription || null,
       published: form.published,
@@ -268,6 +270,15 @@ export default function AdminPlaceForm() {
         </Field>
         <Field label="Gallery Images (one URL per line)">
           <textarea value={form.images} onChange={(e) => set('images', e.target.value)} className="input font-mono text-xs" rows={4} placeholder="https://..." />
+        </Field>
+        <Field label="YouTube Video URL">
+          <input
+            value={form.youtubeUrl ?? ''}
+            onChange={(e) => set('youtubeUrl', e.target.value)}
+            className="input"
+            placeholder="https://www.youtube.com/watch?v=..."
+          />
+          <p className="text-xs text-gray-400 mt-1">Paste a YouTube URL to show a video preview on the place page.</p>
         </Field>
 
         {/* SEO */}
