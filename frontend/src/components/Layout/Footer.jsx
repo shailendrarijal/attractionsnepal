@@ -139,6 +139,7 @@ export default function Footer() {
               <li><Link to="/itineraries"  className="text-sm hover:text-white transition-colors">Itineraries</Link></li>
               <li><Link to="/blog"        className="text-sm hover:text-white transition-colors">Travel Blog</Link></li>
               <li><Link to="/stories"     className="text-sm hover:text-white transition-colors">Stories</Link></li>
+              <li><Link to="/about"   className="text-sm hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/contact" className="text-sm hover:text-white transition-colors">Contact Us</Link></li>
               <li>
                 <a

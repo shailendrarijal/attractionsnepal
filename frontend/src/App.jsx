@@ -18,6 +18,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
 import ItineraryListPage from './pages/ItineraryListPage'
 import ItineraryPage from './pages/ItineraryPage'
 import TripPlannerPage from './pages/TripPlannerPage'
@@ -67,6 +68,7 @@ export default function App() {
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms"   element={<TermsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/about"   element={<AboutPage />} />
                 <Route path="/itineraries" element={<ItineraryListPage />} />
                 <Route path="/itineraries/:slug" element={<ItineraryPage />} />
                 <Route path="/plan-my-trip" element={<TripPlannerPage />} />
