@@ -12,7 +12,7 @@ const VALUES = [
   {
     icon: '🗺️',
     title: 'Accuracy first',
-    body: 'Every place listing is researched from primary sources — local knowledge, official tourism boards, and on-the-ground accounts. When we're unsure, we say so.',
+    body: `Every place listing is researched from primary sources — local knowledge, official tourism boards, and on-the-ground accounts. When we're unsure, we say so.`,
   },
   {
     icon: '🏔️',
@@ -27,7 +27,7 @@ const VALUES = [
   {
     icon: '🔄',
     title: 'Always improving',
-    body: 'Nepal changes — trails get rerouted, entry fees update, new places open. We actively update listings and welcome corrections from readers who've been there recently.',
+    body: `Nepal changes — trails get rerouted, entry fees update, new places open. We actively update listings and welcome corrections from readers who've been there recently.`,
   },
 ]
 
