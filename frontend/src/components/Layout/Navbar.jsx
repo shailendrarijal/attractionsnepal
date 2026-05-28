@@ -45,11 +45,12 @@ export default function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <span className="text-2xl">🏔️</span>
-            <span className="font-display text-xl font-bold text-primary-800">
-              AttractionsNepal
-            </span>
+          <Link to="/" className="shrink-0">
+            <img
+              src="/an_logo.png"
+              alt="Attractions Nepal"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -60,7 +61,7 @@ export default function Navbar() {
                 onMouseEnter={() => setCatOpen(true)}
                 className="text-sm font-medium text-gray-700 hover:text-primary-700 transition-colors flex items-center gap-1"
               >
-                Categories
+                Places
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -145,7 +146,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-1.5 transition-colors shadow-sm"
             >
-              📖 Get the Travel Guide
+              📖 Travel Guide
             </a>
           </div>
 
@@ -230,10 +231,10 @@ export default function Navbar() {
             className="flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-3 transition-colors"
             onClick={() => setMobileOpen(false)}
           >
-            📖 Get the Travel Guide →
+            📖 Travel Guide →
           </a>
           <div className="pt-1 border-t border-gray-100">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 py-2">Categories</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 py-2">Places</p>
             <div className="grid grid-cols-2 gap-1">
               {CATEGORIES.map((c) => (
                 <Link

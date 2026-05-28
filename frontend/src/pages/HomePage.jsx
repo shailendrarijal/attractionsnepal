@@ -66,6 +66,9 @@ export default function HomePage() {
       {/* Hero */}
       <section className="hero-gradient text-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-green-300 mb-3">
+            Explore. Discover. Experience.
+          </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
             Discover Nepal's<br />
             <span className="text-green-300">Hidden Wonders</span>
@@ -152,7 +155,12 @@ export default function HomePage() {
       <section className="py-14 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-display font-bold text-gray-900">Travel Guides & Stories</h2>
+            <div>
+              <p className="text-xs font-semibold tracking-widest uppercase text-primary-500 mb-1">
+                Stories from the Heart of Nepal.
+              </p>
+              <h2 className="text-2xl font-display font-bold text-gray-900">Travel Guides & Stories</h2>
+            </div>
             <Link to="/blog" className="text-sm font-medium text-primary-700 hover:underline">
               All articles →
             </Link>

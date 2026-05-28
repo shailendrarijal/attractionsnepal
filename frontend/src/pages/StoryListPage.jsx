@@ -106,7 +106,7 @@ export default function StoryListPage() {
       {/* Header */}
       <div className="bg-gradient-to-br from-indigo-950 to-primary-900 py-12 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-indigo-300 mb-2">Sacred Narratives</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-indigo-300 mb-2">Stories from the Heart of Nepal.</p>
           <h1 className="font-display text-3xl sm:text-4xl font-bold">Stories of Nepal</h1>
           <p className="mt-3 text-indigo-200 max-w-xl mx-auto">
             Mythological tales, festival legends, deity lore, ancient traditions and pilgrimage histories
