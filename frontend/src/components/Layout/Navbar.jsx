@@ -49,7 +49,7 @@ export default function Navbar() {
             <img
               src="/an_logo.png"
               alt="Attractions Nepal"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 
