@@ -167,8 +167,8 @@ export default function PrivacyPage() {
               <p><strong>Nashtech Solutions</strong> (trading as AttractionsNepal)</p>
               <p>
                 Email:{' '}
-                <a href="mailto:shailendra@nashtech.com.au" className="text-primary-700 hover:underline">
-                  shailendra@nashtech.com.au
+                <a href="mailto:hello@attractionsnepal.com" className="text-primary-700 hover:underline">
+                  hello@attractionsnepal.com
                 </a>
               </p>
               <p>Website: <a href="https://attractionsnepal.com" className="text-primary-700 hover:underline">attractionsnepal.com</a></p>

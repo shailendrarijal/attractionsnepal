@@ -19,7 +19,7 @@ export default function GuidePromo({ variant = 'banner' }) {
           />
         </div>
         <div className="flex-1 p-5 flex flex-col justify-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1">Free Bonus with Every Visit</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1">📖 Instant PDF Download</p>
           <h3 className="font-display font-bold text-gray-900 text-lg leading-snug mb-2">
             The Complete Nepal Travel Guide PDF
           </h3>

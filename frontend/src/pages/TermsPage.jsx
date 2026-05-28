@@ -122,8 +122,8 @@ export default function TermsPage() {
             <p className="text-gray-600 leading-relaxed">
               For any questions regarding these Terms, contact <strong>Nashtech Solutions</strong> (trading
               as AttractionsNepal) at{' '}
-              <a href="mailto:shailendra@nashtech.com.au" className="text-primary-700 hover:underline">
-                shailendra@nashtech.com.au
+              <a href="mailto:hello@attractionsnepal.com" className="text-primary-700 hover:underline">
+                hello@attractionsnepal.com
               </a>.
             </p>
           </section>

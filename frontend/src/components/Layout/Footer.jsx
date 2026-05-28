@@ -79,9 +79,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-1 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-3">
-              <span className="text-2xl">🏔️</span>
-              <span className="font-display text-lg font-bold text-white">AttractionsNepal</span>
+            <Link to="/" className="inline-block mb-3">
+              <img src="/an_logo.png" alt="Attractions Nepal" className="h-10 w-auto brightness-0 invert" />
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Your complete guide to Nepal's temples, treks, natural wonders, and hidden gems.
