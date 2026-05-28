@@ -120,9 +120,10 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">10. Contact</h2>
             <p className="text-gray-600 leading-relaxed">
-              For any questions regarding these Terms, contact us at{' '}
-              <a href="mailto:hello@attractionsnepal.com" className="text-primary-700 hover:underline">
-                hello@attractionsnepal.com
+              For any questions regarding these Terms, contact <strong>Nashtech Solutions</strong> (trading
+              as AttractionsNepal) at{' '}
+              <a href="mailto:shailendra@nashtech.com.au" className="text-primary-700 hover:underline">
+                shailendra@nashtech.com.au
               </a>.
             </p>
           </section>
