@@ -409,3 +409,19 @@ model ItineraryTag {
 
   @@id([itineraryId, tagId])
 }
+
+// ─────────────────────────────────────────────
+// AMAZON AFFILIATE — product groups managed via admin
+// Each group has a context key used by the frontend
+// to know which group to display where
+// ─────────────────────────────────────────────
+
+model AmazonProductGroup {
+  id       String  @id @default(cuid())
+  context  String  @unique  // TREKKING | WILDLIFE | GENERAL — matched by frontend
+  title    String           // Heading shown above the product grid
+  products Json             // [{name, icon, note, url}]
+  active   Boolean @default(true)
+
+  updatedAt DateTime @updatedAt
+}

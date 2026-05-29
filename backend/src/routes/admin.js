@@ -622,4 +622,65 @@ router.delete('/tips/:id', async (req, res) => {
   }
 })
 
+// ─── Amazon Product Groups ────────────────────────────────────────────────────
+
+// GET /admin/amazon-products — list all groups
+router.get('/amazon-products', async (_req, res) => {
+  try {
+    const groups = await prisma.amazonProductGroup.findMany({
+      orderBy: { context: 'asc' },
+    })
+    res.json(groups)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch product groups' })
+  }
+})
+
+// POST /admin/amazon-products — create a new group
+router.post('/amazon-products', async (req, res) => {
+  try {
+    const { context, title, products = [], active = true } = req.body
+    if (!context || !title) return res.status(400).json({ error: 'context and title are required' })
+    const group = await prisma.amazonProductGroup.create({
+      data: { context: context.toUpperCase(), title, products, active },
+    })
+    res.status(201).json(group)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to create product group' })
+  }
+})
+
+// PUT /admin/amazon-products/:id — update a group
+router.put('/amazon-products/:id', async (req, res) => {
+  try {
+    const { context, title, products, active } = req.body
+    const data = {}
+    if (context !== undefined) data.context = context.toUpperCase()
+    if (title    !== undefined) data.title   = title
+    if (products !== undefined) data.products = products
+    if (active   !== undefined) data.active   = active
+    const group = await prisma.amazonProductGroup.update({
+      where: { id: req.params.id },
+      data,
+    })
+    res.json(group)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to update product group' })
+  }
+})
+
+// DELETE /admin/amazon-products/:id — delete a group
+router.delete('/amazon-products/:id', async (req, res) => {
+  try {
+    await prisma.amazonProductGroup.delete({ where: { id: req.params.id } })
+    res.json({ ok: true })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to delete product group' })
+  }
+})
+
 export default router

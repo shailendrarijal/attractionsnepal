@@ -22,8 +22,12 @@ import ElevationConverter from '../components/ElevationConverter'
 import VibeTags from '../components/VibeTags'
 import CommunityTips from '../components/CommunityTips'
 import YouTubeLiteEmbed from '../components/YouTubeLiteEmbed'
+import { AmazonProductBoxLoader } from '../components/AmazonProductBox'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
+
+const TREK_CATEGORIES     = new Set(['TREK_ROUTE', 'ADVENTURE_SPORTS', 'HILL_VIEWPOINT', 'MOUNTAIN_VIEW'])
+const WILDLIFE_CATEGORIES = new Set(['NATIONAL_PARK'])
 
 const CATEGORY_LABELS_BREADCRUMB = {
   TEMPLE:           'Temples',
@@ -374,6 +378,15 @@ export default function PlacePage() {
 
         {/* GetYourGuide */}
         <GetYourGuide query={place.gygQuery} />
+
+        {/* Amazon gear box — trek/adventure categories */}
+        {TREK_CATEGORIES.has(place.category) && (
+          <AmazonProductBoxLoader context="TREKKING" title="Recommended Gear for This Trek" />
+        )}
+        {/* Amazon gear box — wildlife / national park */}
+        {WILDLIFE_CATEGORIES.has(place.category) && (
+          <AmazonProductBoxLoader context="WILDLIFE" title="What to Bring on Safari" />
+        )}
 
         {/* Gallery */}
         {place.images?.length > 0 && (

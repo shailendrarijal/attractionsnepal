@@ -10,6 +10,7 @@ import AdminBlogForm from './AdminBlogForm'
 import AdminStoryForm from './AdminStoryForm'
 import AdminItineraryForm from './AdminItineraryForm'
 import AdminTips from './AdminTips'
+import AdminAmazonProducts from './AdminAmazonProducts'
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('')
@@ -136,6 +137,14 @@ function AdminLayout({ onLogout }) {
           >
             💬 Tips
           </NavLink>
+          <NavLink
+            to="/admin/amazon-products"
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${isActive ? 'bg-primary-700 text-white' : 'hover:bg-gray-800'}`
+            }
+          >
+            🛒 Amazon Gear
+          </NavLink>
           <Link
             to="/"
             target="_blank"
@@ -171,6 +180,7 @@ function AdminLayout({ onLogout }) {
           <Route path="itineraries/new" element={<AdminItineraryForm />} />
           <Route path="itineraries/:id/edit" element={<AdminItineraryForm />} />
           <Route path="tips" element={<AdminTips />} />
+          <Route path="amazon-products" element={<AdminAmazonProducts />} />
         </Routes>
       </main>
     </div>

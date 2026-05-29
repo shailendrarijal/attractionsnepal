@@ -12,6 +12,7 @@ import AdBanner from '../components/AdBanner'
 import WhatsAppShare from '../components/WhatsAppShare'
 import FAQ from '../components/FAQ'
 import TravelInsuranceCTA from '../components/TravelInsuranceCTA'
+import { AmazonProductBoxLoader } from '../components/AmazonProductBox'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80'
 
@@ -450,6 +451,12 @@ export default function ItineraryPage() {
             </div>
           </div>
         )}
+
+        {/* Amazon gear box — trekking itineraries get full gear list; others get travel accessories */}
+        <AmazonProductBoxLoader
+          context={itinerary.activities?.includes('TREKKING') ? 'TREKKING' : 'GENERAL'}
+          title={itinerary.activities?.includes('TREKKING') ? 'Gear Checklist for This Trek' : 'Nepal Travel Essentials'}
+        />
 
         {/* FAQ */}
         <div className="mb-10">

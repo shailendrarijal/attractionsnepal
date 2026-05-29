@@ -9,6 +9,7 @@ import uploadRoutes from './upload.js'
 import newsletterRoutes from './newsletter.js'
 import contactRoutes from './contact.js'
 import itinerariesRoutes from './itineraries.js'
+import amazonProductsRoutes from './amazon-products.js'
 
 const router = Router()
 
@@ -22,5 +23,6 @@ router.use('/upload', uploadRoutes)
 router.use('/newsletter', newsletterRoutes)
 router.use('/contact', contactRoutes)
 router.use('/itineraries', itinerariesRoutes)
+router.use('/amazon-products', amazonProductsRoutes)
 
 export default router

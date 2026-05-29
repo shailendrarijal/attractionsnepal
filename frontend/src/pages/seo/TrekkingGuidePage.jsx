@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PageSeo from '../../components/PageSeo'
 import JsonLd from '../../components/JsonLd'
 import GuidePromo from '../../components/GuidePromo'
+import { AmazonProductBoxLoader } from '../../components/AmazonProductBox'
 
 const faqs = [
   {
@@ -231,6 +232,9 @@ export default function TrekkingGuidePage() {
         </section>
 
         {/* Guide promo */}
+        {/* Amazon gear box — high intent after reading trekking guide */}
+        <AmazonProductBoxLoader context="TREKKING" />
+
         <GuidePromo variant="inline" />
       </div>
     </>

@@ -108,3 +108,13 @@ export const adminDeleteItinerary  = (id)    => api.delete(`/admin/itineraries/$
 export const adminGetTips     = (p)  => api.get('/admin/tips', { params: p }).then((r) => r.data)
 export const adminApproveTip  = (id) => api.put(`/admin/tips/${id}/approve`).then((r) => r.data)
 export const adminDeleteTip   = (id) => api.delete(`/admin/tips/${id}`).then((r) => r.data)
+
+// ── Amazon product groups (public) ─────────────────────────────────────────
+export const getAmazonProductGroup = (context) =>
+  api.get(`/amazon-products/${context}`).then((r) => r.data)
+
+// ── Amazon product groups (admin) ──────────────────────────────────────────
+export const adminGetAmazonProducts    = ()      => api.get('/admin/amazon-products').then((r) => r.data)
+export const adminCreateAmazonProduct  = (d)     => api.post('/admin/amazon-products', d).then((r) => r.data)
+export const adminUpdateAmazonProduct  = (id, d) => api.put(`/admin/amazon-products/${id}`, d).then((r) => r.data)
+export const adminDeleteAmazonProduct  = (id)    => api.delete(`/admin/amazon-products/${id}`).then((r) => r.data)

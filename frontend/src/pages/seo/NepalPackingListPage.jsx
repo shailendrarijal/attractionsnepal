@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PageSeo from '../../components/PageSeo'
 import JsonLd from '../../components/JsonLd'
 import GuidePromo from '../../components/GuidePromo'
+import { AmazonProductBoxLoader } from '../../components/AmazonProductBox'
 
 const faqs = [
   {
@@ -348,23 +349,22 @@ export default function NepalPackingListPage() {
           </div>
         </section>
 
-        {/* Gear list */}
+        {/* Trekking gear — Amazon affiliate boxes */}
         <section className="mb-14">
-          <h2 className="font-display text-2xl font-bold text-gray-900 mb-3">Recommended Gear</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="font-display text-2xl font-bold text-gray-900 mb-3">Recommended Trekking Gear</h2>
+          <p className="text-gray-600 mb-2">
             These are the most important items to invest in for Nepal trekking. Buy quality — cheap gear fails when it matters most.
           </p>
-          <div className="space-y-4">
-            {gearList.map(({ name, tip }) => (
-              <div key={name} className="rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 p-5">
-                <h3 className="font-semibold text-gray-900 mb-1">{name}</h3>
-                <p className="text-sm text-gray-600">{tip}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 text-sm text-gray-500">
-            Affiliate links will be added to this section — items listed above are genuine recommendations based on real trekking experience.
+          <AmazonProductBoxLoader context="TREKKING" title="Trekking Essentials" />
+        </section>
+
+        {/* Travel accessories — Amazon affiliate boxes */}
+        <section className="mb-14">
+          <h2 className="font-display text-2xl font-bold text-gray-900 mb-3">Travel Accessories</h2>
+          <p className="text-gray-600 mb-2">
+            Useful for all Nepal trips, not just trekking.
           </p>
+          <AmazonProductBoxLoader context="GENERAL" title="Nepal Travel Accessories" />
         </section>
 
         {/* FAQ */}
