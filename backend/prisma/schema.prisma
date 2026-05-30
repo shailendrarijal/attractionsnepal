@@ -113,6 +113,7 @@ model Place {
   trekEndLat       Float?       // geocoded end-point coordinates
   trekEndLng       Float?
   trekHighlights   String[]     // e.g. ["Thorong La Pass", "Annapurna Base Camp"]
+  trekWaypoints    Json?        // [{lat, lng, label?}] — key stops for map rendering
   // ────────────────────────────────────────────────────────────────
 
   // Monetisation hooks
