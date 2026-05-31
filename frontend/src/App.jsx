@@ -30,6 +30,13 @@ import NepalVisaGuidePage from './pages/seo/NepalVisaGuidePage'
 import NepalTravelCostPage from './pages/seo/NepalTravelCostPage'
 import KathmanduToPokharaPage from './pages/seo/KathmanduToPokharaPage'
 import NepalPackingListPage from './pages/seo/NepalPackingListPage'
+import KathmanduThingsToDoPage from './pages/seo/KathmanduThingsToDoPage'
+import EverestBaseCampPage from './pages/seo/EverestBaseCampPage'
+import AnnapurnaCircuitPage from './pages/seo/AnnapurnaCircuitPage'
+import PokharaGuidePage from './pages/seo/PokharaGuidePage'
+import ChitwanGuidePage from './pages/seo/ChitwanGuidePage'
+import TrekkingPermitsPage from './pages/seo/TrekkingPermitsPage'
+import LumbiniGuidePage from './pages/seo/LumbiniGuidePage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,7 +85,14 @@ export default function App() {
                 <Route path="/nepal-visa-guide" element={<NepalVisaGuidePage />} />
                 <Route path="/nepal-travel-cost" element={<NepalTravelCostPage />} />
                 <Route path="/kathmandu-to-pokhara" element={<KathmanduToPokharaPage />} />
-                <Route path="/nepal-packing-list" element={<NepalPackingListPage />} />
+                <Route path="/nepal-packing-list"          element={<NepalPackingListPage />} />
+                <Route path="/things-to-do-in-kathmandu"  element={<KathmanduThingsToDoPage />} />
+                <Route path="/everest-base-camp-trek"      element={<EverestBaseCampPage />} />
+                <Route path="/annapurna-circuit-trek"      element={<AnnapurnaCircuitPage />} />
+                <Route path="/pokhara-travel-guide"        element={<PokharaGuidePage />} />
+                <Route path="/chitwan-national-park"       element={<ChitwanGuidePage />} />
+                <Route path="/nepal-trekking-permits"      element={<TrekkingPermitsPage />} />
+                <Route path="/lumbini-guide"               element={<LumbiniGuidePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />

@@ -122,13 +122,24 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Travel Guides</h3>
             <ul className="space-y-2">
-              <li><Link to="/visit-nepal"              className="text-sm hover:text-white transition-colors">Nepal Travel Guide</Link></li>
+              <li><Link to="/visit-nepal"                  className="text-sm hover:text-white transition-colors">Nepal Travel Guide</Link></li>
+              <li><Link to="/things-to-do-in-kathmandu"    className="text-sm hover:text-white transition-colors">Things to Do in Kathmandu</Link></li>
+              <li><Link to="/pokhara-travel-guide"         className="text-sm hover:text-white transition-colors">Pokhara Travel Guide</Link></li>
+              <li><Link to="/chitwan-national-park"        className="text-sm hover:text-white transition-colors">Chitwan National Park</Link></li>
+              <li><Link to="/lumbini-guide"                className="text-sm hover:text-white transition-colors">Lumbini Guide</Link></li>
+              <li><Link to="/best-time-to-visit-nepal"     className="text-sm hover:text-white transition-colors">Best Time to Visit</Link></li>
+              <li><Link to="/nepal-visa-guide"             className="text-sm hover:text-white transition-colors">Nepal Visa Guide</Link></li>
+              <li><Link to="/nepal-travel-cost"            className="text-sm hover:text-white transition-colors">Nepal Travel Cost</Link></li>
+              <li><Link to="/kathmandu-to-pokhara"         className="text-sm hover:text-white transition-colors">Kathmandu to Pokhara</Link></li>
+              <li><Link to="/nepal-packing-list"           className="text-sm hover:text-white transition-colors">Nepal Packing List</Link></li>
+            </ul>
+
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Trekking Guides</h3>
+            <ul className="space-y-2">
               <li><Link to="/nepal-trekking-guide"     className="text-sm hover:text-white transition-colors">Nepal Trekking Guide</Link></li>
-              <li><Link to="/best-time-to-visit-nepal" className="text-sm hover:text-white transition-colors">Best Time to Visit</Link></li>
-              <li><Link to="/nepal-visa-guide"         className="text-sm hover:text-white transition-colors">Nepal Visa Guide</Link></li>
-              <li><Link to="/nepal-travel-cost"        className="text-sm hover:text-white transition-colors">Nepal Travel Cost</Link></li>
-              <li><Link to="/kathmandu-to-pokhara"     className="text-sm hover:text-white transition-colors">Kathmandu to Pokhara</Link></li>
-              <li><Link to="/nepal-packing-list"       className="text-sm hover:text-white transition-colors">Nepal Packing List</Link></li>
+              <li><Link to="/everest-base-camp-trek"   className="text-sm hover:text-white transition-colors">Everest Base Camp Trek</Link></li>
+              <li><Link to="/annapurna-circuit-trek"   className="text-sm hover:text-white transition-colors">Annapurna Circuit Trek</Link></li>
+              <li><Link to="/nepal-trekking-permits"   className="text-sm hover:text-white transition-colors">Trekking Permits</Link></li>
             </ul>
 
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-4">Explore</h3>
