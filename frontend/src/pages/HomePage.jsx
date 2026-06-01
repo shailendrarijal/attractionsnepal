@@ -4,11 +4,31 @@ import { usePlaces } from '../hooks/usePlaces'
 import { useBlogs } from '../hooks/useBlogs'
 import PlaceCard from '../components/PlaceCard'
 import BlogCard from '../components/BlogCard'
-import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import JsonLd from '../components/JsonLd'
 import NewsletterSignup from '../components/NewsletterSignup'
 import GuidePromo from '../components/GuidePromo'
+
+/** Skeleton card — same aspect ratio as PlaceCard so no layout shift when data loads */
+function PlaceCardSkeleton() {
+  return (
+    <div className="aspect-[4/3] rounded-2xl bg-gray-200 animate-pulse" />
+  )
+}
+
+function BlogCardSkeleton() {
+  return (
+    <div className="rounded-2xl bg-white shadow-sm overflow-hidden animate-pulse">
+      <div className="aspect-[16/9] bg-gray-200" />
+      <div className="p-5 space-y-3">
+        <div className="h-3 w-1/3 bg-gray-200 rounded" />
+        <div className="h-5 w-3/4 bg-gray-200 rounded" />
+        <div className="h-3 w-full bg-gray-200 rounded" />
+        <div className="h-3 w-2/3 bg-gray-200 rounded" />
+      </div>
+    </div>
+  )
+}
 
 const CATEGORIES = [
   { label: 'Temples',          slug: 'temple',           icon: '🛕' },
@@ -136,15 +156,14 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {featuredLoading ? (
-            <LoadingSpinner />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredData?.places?.map((place) => (
-                <PlaceCard key={place.id} place={place} />
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredLoading
+              ? Array.from({ length: 6 }).map((_, i) => <PlaceCardSkeleton key={i} />)
+              : featuredData?.places?.map((place, idx) => (
+                  <PlaceCard key={place.id} place={place} priority={idx === 0} />
+                ))
+            }
+          </div>
         </div>
       </section>
 
@@ -167,7 +186,9 @@ export default function HomePage() {
           </div>
 
           {blogLoading ? (
-            <LoadingSpinner />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 3 }).map((_, i) => <BlogCardSkeleton key={i} />)}
+            </div>
           ) : blogData?.blogs?.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogData.blogs.map((blog) => (

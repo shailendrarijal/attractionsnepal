@@ -1,28 +1,31 @@
 import { useParams, Link } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import { usePlace } from '../hooks/usePlaces'
 import CategoryBadge from '../components/CategoryBadge'
-import MapView from '../components/MapView'
-import TrekRouteMap from '../components/TrekRouteMap'
-import GetYourGuide from '../components/GetYourGuide'
-import BookingWidget from '../components/BookingWidget'
 import LoadingSpinner from '../components/LoadingSpinner'
 import PageSeo from '../components/PageSeo'
 import AdBanner from '../components/AdBanner'
 import JsonLd from '../components/JsonLd'
 import GuidePromo from '../components/GuidePromo'
-import ItineraryCard from '../components/ItineraryCard'
-import { useItineraries } from '../hooks/useItineraries'
 import WhatsAppShare from '../components/WhatsAppShare'
-import FAQ from '../components/FAQ'
-import WeatherWidget from '../components/WeatherWidget'
-import CurrencyConverter from '../components/CurrencyConverter'
-import ElevationConverter from '../components/ElevationConverter'
-import VibeTags from '../components/VibeTags'
-import CommunityTips from '../components/CommunityTips'
-import YouTubeLiteEmbed from '../components/YouTubeLiteEmbed'
+import { useItineraries } from '../hooks/useItineraries'
 import { AmazonProductBoxLoader } from '../components/AmazonProductBox'
+
+// Heavy below-the-fold components — lazy loaded to improve LCP
+const MapView            = lazy(() => import('../components/MapView'))
+const TrekRouteMap       = lazy(() => import('../components/TrekRouteMap'))
+const GetYourGuide       = lazy(() => import('../components/GetYourGuide'))
+const BookingWidget      = lazy(() => import('../components/BookingWidget'))
+const WeatherWidget      = lazy(() => import('../components/WeatherWidget'))
+const CurrencyConverter  = lazy(() => import('../components/CurrencyConverter'))
+const ElevationConverter = lazy(() => import('../components/ElevationConverter'))
+const VibeTags           = lazy(() => import('../components/VibeTags'))
+const CommunityTips      = lazy(() => import('../components/CommunityTips'))
+const YouTubeLiteEmbed   = lazy(() => import('../components/YouTubeLiteEmbed'))
+const ItineraryCard      = lazy(() => import('../components/ItineraryCard'))
+const FAQ                = lazy(() => import('../components/FAQ'))
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80'
 
@@ -137,6 +140,8 @@ export default function PlacePage() {
         <img
           src={place.heroImage ?? PLACEHOLDER}
           alt={place.name}
+          fetchpriority="high"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
@@ -233,7 +238,9 @@ export default function PlacePage() {
         <AdBanner size="leaderboard" />
 
         {/* Booking widget */}
-        <BookingWidget city={place.bookingCity} placeName={place.name} />
+        <Suspense fallback={null}>
+          <BookingWidget city={place.bookingCity} placeName={place.name} />
+        </Suspense>
 
         {/* Content sections — ad injected after every 2nd section */}
         {place.sections?.map((section, idx) => (
@@ -377,7 +384,9 @@ export default function PlacePage() {
         )}
 
         {/* GetYourGuide */}
-        <GetYourGuide query={place.gygQuery} />
+        <Suspense fallback={null}>
+          <GetYourGuide query={place.gygQuery} />
+        </Suspense>
 
         {/* Amazon gear box — trek/adventure categories */}
         {TREK_CATEGORIES.has(place.category) && (
@@ -410,7 +419,9 @@ export default function PlacePage() {
         {place.category === 'TREK_ROUTE' && (place.trekStartLat || place.trekEndLat) && (
           <div className="mb-10">
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">🗺️ Trek Route</h2>
-            <TrekRouteMap place={place} height="400px" />
+            <Suspense fallback={<div className="h-[400px] bg-gray-100 rounded-2xl animate-pulse" />}>
+              <TrekRouteMap place={place} height="400px" />
+            </Suspense>
           </div>
         )}
 
@@ -418,7 +429,9 @@ export default function PlacePage() {
         {mapPlaces.length > 0 && (place.category !== 'TREK_ROUTE' || (!place.trekStartLat && !place.trekEndLat)) && (
           <div className="mb-10">
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">📍 Location</h2>
-            <MapView places={mapPlaces} height="350px" mode="place" />
+            <Suspense fallback={<div className="h-[350px] bg-gray-100 rounded-2xl animate-pulse" />}>
+              <MapView places={mapPlaces} height="350px" mode="place" />
+            </Suspense>
           </div>
         )}
 
@@ -428,54 +441,68 @@ export default function PlacePage() {
             <h2 className="font-display font-bold text-xl text-gray-900 mb-4">
               🗺️ Itineraries that include {place.name}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {itineraryData.itineraries.map((it) => (
-                <ItineraryCard key={it.id} itinerary={it} />
-              ))}
-            </div>
+            <Suspense fallback={null}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {itineraryData.itineraries.map((it) => (
+                  <ItineraryCard key={it.id} itinerary={it} />
+                ))}
+              </div>
+            </Suspense>
           </div>
         )}
 
         {/* Vibe tags */}
         <div className="mb-10">
-          <VibeTags
-            placeSlug={place.slug}
-            category={place.category}
-            initialVotes={place.vibeVotes ?? {}}
-          />
+          <Suspense fallback={null}>
+            <VibeTags
+              placeSlug={place.slug}
+              category={place.category}
+              initialVotes={place.vibeVotes ?? {}}
+            />
+          </Suspense>
         </div>
 
         {/* Community tips */}
         <div className="mb-10">
-          <CommunityTips
-            placeSlug={place.slug}
-            placeName={place.name}
-            initialTips={place.tips ?? []}
-          />
+          <Suspense fallback={null}>
+            <CommunityTips
+              placeSlug={place.slug}
+              placeName={place.name}
+              initialTips={place.tips ?? []}
+            />
+          </Suspense>
         </div>
 
         {/* YouTube embed */}
         {place.youtubeUrl && (
           <div className="mb-10">
-            <YouTubeLiteEmbed youtubeUrl={place.youtubeUrl} title={`${place.name} — video guide`} />
+            <Suspense fallback={null}>
+              <YouTubeLiteEmbed youtubeUrl={place.youtubeUrl} title={`${place.name} — video guide`} />
+            </Suspense>
           </div>
         )}
 
         {/* FAQ */}
         <div className="mb-10">
-          <FAQ faqs={placeFaqs} />
+          <Suspense fallback={null}>
+            <FAQ faqs={placeFaqs} />
+          </Suspense>
         </div>
 
         {/* Utility widgets row */}
-        <div className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <CurrencyConverter />
-          <ElevationConverter />
-        </div>
+        <Suspense fallback={null}>
+          <div className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <CurrencyConverter />
+            <ElevationConverter />
+          </div>
+        </Suspense>
 
         {/* Weather widget — only if coordinates available */}
         {place.lat && place.lng && (
           <div className="mb-8">
-            <WeatherWidget placeName={place.name} lat={place.lat} lng={place.lng} />
+            <Suspense fallback={null}>
+              <WeatherWidget placeName={place.name} lat={place.lat} lng={place.lng} />
+            </Suspense>
           </div>
         )}
 

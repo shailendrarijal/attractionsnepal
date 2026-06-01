@@ -3,7 +3,7 @@ import CategoryBadge from './CategoryBadge'
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'
 
-export default function PlaceCard({ place }) {
+export default function PlaceCard({ place, priority = false }) {
   return (
     <Link
       to={`/places/${place.slug}`}
@@ -13,7 +13,9 @@ export default function PlaceCard({ place }) {
       <img
         src={place.heroImage ?? PLACEHOLDER}
         alt={place.name}
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding="async"
         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
 

@@ -1,6 +1,7 @@
 import { Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import MapsProvider from './MapsProvider'
 
 const NEPAL_CENTER = { lat: 28.3949, lng: 84.124 }
 
@@ -35,6 +36,7 @@ export default function MapView({
   const defaultZoom = isPlaceMode ? 14 : 7
 
   return (
+    <MapsProvider>
     <div style={{ height }} className="rounded-2xl overflow-hidden ring-1 ring-gray-200">
       <Map
         defaultCenter={center}
@@ -100,5 +102,6 @@ export default function MapView({
         )}
       </Map>
     </div>
+    </MapsProvider>
   )
 }

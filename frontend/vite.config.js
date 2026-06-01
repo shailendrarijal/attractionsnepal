@@ -18,13 +18,43 @@ export default defineConfig({
     },
   },
   build: {
+    // Raise the chunk size warning threshold — we're splitting intentionally
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react:    ['react', 'react-dom', 'react-router-dom'],
-          query:    ['@tanstack/react-query'],
-          maps:     ['@vis.gl/react-google-maps'],
-          markdown: ['react-markdown', 'rehype-raw', 'remark-gfm'],
+        manualChunks(id) {
+          // React core — always needed, own chunk
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react'
+          }
+          // Router — needed once React loads
+          if (id.includes('node_modules/react-router-dom/') || id.includes('node_modules/react-router/')) {
+            return 'router'
+          }
+          // Data fetching
+          if (id.includes('@tanstack/react-query')) {
+            return 'query'
+          }
+          // Google Maps — only loads when a map is rendered (lazy components)
+          if (id.includes('@vis.gl/react-google-maps')) {
+            return 'maps'
+          }
+          // Markdown rendering — only loads on place/blog pages (lazy)
+          if (
+            id.includes('react-markdown') ||
+            id.includes('rehype-raw') ||
+            id.includes('remark-gfm') ||
+            id.includes('remark-parse') ||
+            id.includes('rehype') ||
+            id.includes('unified') ||
+            id.includes('vfile') ||
+            id.includes('micromark') ||
+            id.includes('mdast') ||
+            id.includes('hast')
+          ) {
+            return 'markdown'
+          }
+          // Helmet (SEO) — shared across pages but small enough to stay in index
         },
       },
     },

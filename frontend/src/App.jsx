@@ -1,42 +1,48 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async'
-import { APIProvider } from '@vis.gl/react-google-maps'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { trackPageView } from './utils/analytics'
 
 import Layout from './components/Layout/Layout'
+import LoadingSpinner from './components/LoadingSpinner'
+
+// ── Eagerly loaded — tiny, always needed ─────────────────────────────────────
 import HomePage from './pages/HomePage'
-import PlacePage from './pages/PlacePage'
-import CategoryPage from './pages/CategoryPage'
-import BlogListPage from './pages/BlogListPage'
-import BlogPage from './pages/BlogPage'
-import StoryListPage from './pages/StoryListPage'
-import StoryPage from './pages/StoryPage'
-import ExplorePage from './pages/ExplorePage'
 import NotFoundPage from './pages/NotFoundPage'
-import PrivacyPage from './pages/PrivacyPage'
-import TermsPage from './pages/TermsPage'
-import ContactPage from './pages/ContactPage'
-import AboutPage from './pages/AboutPage'
-import ItineraryListPage from './pages/ItineraryListPage'
-import ItineraryPage from './pages/ItineraryPage'
-import TripPlannerPage from './pages/TripPlannerPage'
-import AdminPage from './pages/admin/AdminPage'
-import VisitNepalPage from './pages/seo/VisitNepalPage'
-import TrekkingGuidePage from './pages/seo/TrekkingGuidePage'
-import BestTimePage from './pages/seo/BestTimePage'
-import NepalVisaGuidePage from './pages/seo/NepalVisaGuidePage'
-import NepalTravelCostPage from './pages/seo/NepalTravelCostPage'
-import KathmanduToPokharaPage from './pages/seo/KathmanduToPokharaPage'
-import NepalPackingListPage from './pages/seo/NepalPackingListPage'
-import KathmanduThingsToDoPage from './pages/seo/KathmanduThingsToDoPage'
-import EverestBaseCampPage from './pages/seo/EverestBaseCampPage'
-import AnnapurnaCircuitPage from './pages/seo/AnnapurnaCircuitPage'
-import PokharaGuidePage from './pages/seo/PokharaGuidePage'
-import ChitwanGuidePage from './pages/seo/ChitwanGuidePage'
-import TrekkingPermitsPage from './pages/seo/TrekkingPermitsPage'
-import LumbiniGuidePage from './pages/seo/LumbiniGuidePage'
+
+// ── Lazy loaded — split into separate chunks ──────────────────────────────────
+const PlacePage          = lazy(() => import('./pages/PlacePage'))
+const CategoryPage       = lazy(() => import('./pages/CategoryPage'))
+const BlogListPage       = lazy(() => import('./pages/BlogListPage'))
+const BlogPage           = lazy(() => import('./pages/BlogPage'))
+const StoryListPage      = lazy(() => import('./pages/StoryListPage'))
+const StoryPage          = lazy(() => import('./pages/StoryPage'))
+const ExplorePage        = lazy(() => import('./pages/ExplorePage'))
+const PrivacyPage        = lazy(() => import('./pages/PrivacyPage'))
+const TermsPage          = lazy(() => import('./pages/TermsPage'))
+const ContactPage        = lazy(() => import('./pages/ContactPage'))
+const AboutPage          = lazy(() => import('./pages/AboutPage'))
+const ItineraryListPage  = lazy(() => import('./pages/ItineraryListPage'))
+const ItineraryPage      = lazy(() => import('./pages/ItineraryPage'))
+const TripPlannerPage    = lazy(() => import('./pages/TripPlannerPage'))
+const AdminPage          = lazy(() => import('./pages/admin/AdminPage'))
+
+// SEO pages — lazy loaded, each is independent content
+const VisitNepalPage           = lazy(() => import('./pages/seo/VisitNepalPage'))
+const TrekkingGuidePage        = lazy(() => import('./pages/seo/TrekkingGuidePage'))
+const BestTimePage             = lazy(() => import('./pages/seo/BestTimePage'))
+const NepalVisaGuidePage       = lazy(() => import('./pages/seo/NepalVisaGuidePage'))
+const NepalTravelCostPage      = lazy(() => import('./pages/seo/NepalTravelCostPage'))
+const KathmanduToPokharaPage   = lazy(() => import('./pages/seo/KathmanduToPokharaPage'))
+const NepalPackingListPage     = lazy(() => import('./pages/seo/NepalPackingListPage'))
+const KathmanduThingsToDoPage  = lazy(() => import('./pages/seo/KathmanduThingsToDoPage'))
+const EverestBaseCampPage      = lazy(() => import('./pages/seo/EverestBaseCampPage'))
+const AnnapurnaCircuitPage     = lazy(() => import('./pages/seo/AnnapurnaCircuitPage'))
+const PokharaGuidePage         = lazy(() => import('./pages/seo/PokharaGuidePage'))
+const ChitwanGuidePage         = lazy(() => import('./pages/seo/ChitwanGuidePage'))
+const TrekkingPermitsPage      = lazy(() => import('./pages/seo/TrekkingPermitsPage'))
+const LumbiniGuidePage         = lazy(() => import('./pages/seo/LumbiniGuidePage'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,8 +52,6 @@ const queryClient = new QueryClient({
     },
   },
 })
-
-const mapsKey = import.meta.env.VITE_GOOGLE_MAPS_KEY
 
 /** Fires a GA page_view on every SPA route change. */
 function GAPageTracker() {
@@ -59,54 +63,49 @@ function GAPageTracker() {
 }
 
 export default function App() {
-  const inner = (
-    <BrowserRouter>
-      <GAPageTracker />
-      <Routes>
+  return (
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <GAPageTracker />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
               <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/explore" element={<ExplorePage />} />
-                <Route path="/places/:slug" element={<PlacePage />} />
-                <Route path="/category/:category" element={<CategoryPage />} />
-                <Route path="/blog" element={<BlogListPage />} />
-                <Route path="/blog/:slug" element={<BlogPage />} />
-                <Route path="/stories" element={<StoryListPage />} />
-                <Route path="/stories/:slug" element={<StoryPage />} />
-                <Route path="/privacy" element={<PrivacyPage />} />
-                <Route path="/terms"   element={<TermsPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/about"   element={<AboutPage />} />
-                <Route path="/itineraries" element={<ItineraryListPage />} />
-                <Route path="/itineraries/:slug" element={<ItineraryPage />} />
-                <Route path="/plan-my-trip" element={<TripPlannerPage />} />
-                <Route path="/visit-nepal" element={<VisitNepalPage />} />
-                <Route path="/nepal-trekking-guide" element={<TrekkingGuidePage />} />
-                <Route path="/best-time-to-visit-nepal" element={<BestTimePage />} />
-                <Route path="/nepal-visa-guide" element={<NepalVisaGuidePage />} />
-                <Route path="/nepal-travel-cost" element={<NepalTravelCostPage />} />
-                <Route path="/kathmandu-to-pokhara" element={<KathmanduToPokharaPage />} />
-                <Route path="/nepal-packing-list"          element={<NepalPackingListPage />} />
-                <Route path="/things-to-do-in-kathmandu"  element={<KathmanduThingsToDoPage />} />
-                <Route path="/everest-base-camp-trek"      element={<EverestBaseCampPage />} />
-                <Route path="/annapurna-circuit-trek"      element={<AnnapurnaCircuitPage />} />
-                <Route path="/pokhara-travel-guide"        element={<PokharaGuidePage />} />
-                <Route path="/chitwan-national-park"       element={<ChitwanGuidePage />} />
-                <Route path="/nepal-trekking-permits"      element={<TrekkingPermitsPage />} />
-                <Route path="/lumbini-guide"               element={<LumbiniGuidePage />} />
+                <Route path="/"          element={<HomePage />} />
+                <Route path="/explore"   element={<ExplorePage />} />
+                <Route path="/places/:slug"        element={<PlacePage />} />
+                <Route path="/category/:category"  element={<CategoryPage />} />
+                <Route path="/blog"                element={<BlogListPage />} />
+                <Route path="/blog/:slug"          element={<BlogPage />} />
+                <Route path="/stories"             element={<StoryListPage />} />
+                <Route path="/stories/:slug"       element={<StoryPage />} />
+                <Route path="/privacy"             element={<PrivacyPage />} />
+                <Route path="/terms"               element={<TermsPage />} />
+                <Route path="/contact"             element={<ContactPage />} />
+                <Route path="/about"               element={<AboutPage />} />
+                <Route path="/itineraries"         element={<ItineraryListPage />} />
+                <Route path="/itineraries/:slug"   element={<ItineraryPage />} />
+                <Route path="/plan-my-trip"        element={<TripPlannerPage />} />
+                <Route path="/visit-nepal"                    element={<VisitNepalPage />} />
+                <Route path="/nepal-trekking-guide"           element={<TrekkingGuidePage />} />
+                <Route path="/best-time-to-visit-nepal"       element={<BestTimePage />} />
+                <Route path="/nepal-visa-guide"               element={<NepalVisaGuidePage />} />
+                <Route path="/nepal-travel-cost"              element={<NepalTravelCostPage />} />
+                <Route path="/kathmandu-to-pokhara"           element={<KathmanduToPokharaPage />} />
+                <Route path="/nepal-packing-list"             element={<NepalPackingListPage />} />
+                <Route path="/things-to-do-in-kathmandu"      element={<KathmanduThingsToDoPage />} />
+                <Route path="/everest-base-camp-trek"         element={<EverestBaseCampPage />} />
+                <Route path="/annapurna-circuit-trek"         element={<AnnapurnaCircuitPage />} />
+                <Route path="/pokhara-travel-guide"           element={<PokharaGuidePage />} />
+                <Route path="/chitwan-national-park"          element={<ChitwanGuidePage />} />
+                <Route path="/nepal-trekking-permits"         element={<TrekkingPermitsPage />} />
+                <Route path="/lumbini-guide"                  element={<LumbiniGuidePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
               <Route path="/admin/*" element={<AdminPage />} />
             </Routes>
-          </BrowserRouter>
-  )
-
-  return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        {mapsKey
-          ? <APIProvider apiKey={mapsKey}>{inner}</APIProvider>
-          : inner
-        }
+          </Suspense>
+        </BrowserRouter>
       </QueryClientProvider>
     </HelmetProvider>
   )

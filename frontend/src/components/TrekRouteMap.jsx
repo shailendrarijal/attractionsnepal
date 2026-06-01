@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Map, AdvancedMarker, useMap, useMapsLibrary } from '@vis.gl/react-google-maps'
+import MapsProvider from './MapsProvider'
 
 // ── Dashed polyline — connects all points in the path array ──────────────────
 // If trekWaypoints are stored, the line threads through them in order.
@@ -129,6 +130,7 @@ export default function TrekRouteMap({ place, height = '380px' }) {
   if (!hasStart && !hasEnd) return null
 
   return (
+    <MapsProvider>
     <div>
       {/* Route summary bar */}
       <div className="flex items-center gap-4 mb-3 flex-wrap text-sm">
@@ -220,5 +222,6 @@ export default function TrekRouteMap({ place, height = '380px' }) {
         </p>
       )}
     </div>
+    </MapsProvider>
   )
 }

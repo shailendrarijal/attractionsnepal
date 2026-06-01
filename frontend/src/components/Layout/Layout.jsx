@@ -1,9 +1,12 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import Navbar from './Navbar'
-import Footer from './Footer'
 import AdSidebar from '../AdSidebar'
 import MobileAdBanner from '../MobileAdBanner'
+
+// Footer is large (categories list + newsletter) — lazy load so it doesn't
+// block the initial render of the page content above the fold
+const Footer = lazy(() => import('./Footer'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -50,7 +53,9 @@ export default function Layout() {
         </div>
       )}
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
