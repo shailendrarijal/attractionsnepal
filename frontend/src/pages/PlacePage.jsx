@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
+import { imageUrl } from '../utils/imageUrl'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import { usePlace } from '../hooks/usePlaces'
@@ -138,7 +139,7 @@ export default function PlacePage() {
       {/* Hero */}
       <div className="relative h-72 sm:h-96 lg:h-[480px] bg-gray-900 overflow-hidden">
         <img
-          src={place.heroImage ?? PLACEHOLDER}
+          src={imageUrl(place.heroImage ?? PLACEHOLDER, { width: 1200, quality: 80 })}
           alt={place.name}
           fetchpriority="high"
           decoding="async"

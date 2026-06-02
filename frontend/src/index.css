@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
- * Font fallback with size-adjust — reduces CLS from Google Fonts swap.
- * Inter is close to Arial; Playfair Display is close to Georgia.
- * size-adjust nudges the fallback metrics to match the web font dimensions.
- */
-@font-face {
-  font-family: 'Inter';
-  src: local('Arial');
-  font-display: swap;
-  size-adjust: 107%;
-  ascent-override: 90%;
-  descent-override: 22%;
-  line-gap-override: 0%;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  src: local('Georgia');
-  font-display: swap;
-  size-adjust: 97%;
-  ascent-override: 88%;
-  descent-override: 26%;
-  line-gap-override: 0%;
-}
 
 @layer utilities {
   .scrollbar-hide {

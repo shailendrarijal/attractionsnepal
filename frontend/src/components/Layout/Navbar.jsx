@@ -46,11 +46,16 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="shrink-0">
-            <img
-              src="/an_logo.png"
-              alt="Attractions Nepal"
-              className="h-14 w-auto"
-            />
+            <picture>
+              <source srcSet="/an_logo.webp" type="image/webp" />
+              <img
+                src="/an_logo.png"
+                alt="Attractions Nepal"
+                width="112"
+                height="61"
+                className="h-14 w-auto"
+              />
+            </picture>
           </Link>
 
           {/* Desktop nav */}

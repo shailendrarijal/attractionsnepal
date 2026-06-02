@@ -80,7 +80,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1 lg:col-span-1">
             <Link to="/" className="inline-block mb-3">
-              <img src="/an_logo.png" alt="Attractions Nepal" className="h-14 w-auto" />
+              <picture>
+                <source srcSet="/an_logo.webp" type="image/webp" />
+                <img src="/an_logo.png" alt="Attractions Nepal" width="112" height="61" className="h-14 w-auto" />
+              </picture>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Your complete guide to Nepal's temples, treks, natural wonders, and hidden gems.

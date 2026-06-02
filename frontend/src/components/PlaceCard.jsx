@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
 import CategoryBadge from './CategoryBadge'
+import { imageUrl, imageSrcSet } from '../utils/imageUrl'
 
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'
+const PLACEHOLDER = 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=75&fm=webp&auto=compress'
 
 export default function PlaceCard({ place, priority = false }) {
+  const src = imageUrl(place.heroImage ?? PLACEHOLDER, { width: 800, quality: 75 })
+  const srcSet = imageSrcSet(place.heroImage ?? PLACEHOLDER, [400, 800])
+
   return (
     <Link
       to={`/places/${place.slug}`}
       className="group relative block aspect-[4/3] overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-shadow"
     >
-      {/* Background image */}
+      {/* Background image — sized and WebP via Supabase render API */}
       <img
-        src={place.heroImage ?? PLACEHOLDER}
+        src={src}
+        srcSet={srcSet}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         alt={place.name}
         loading={priority ? 'eager' : 'lazy'}
         fetchpriority={priority ? 'high' : 'auto'}
