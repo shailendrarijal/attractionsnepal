@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE      = import.meta.env.VITE_SITE_URL ?? 'https://attractionsnepal.com'
+// Always use www — non-www redirects to www so canonical must match the final URL
+const SITE      = (import.meta.env.VITE_SITE_URL ?? 'https://www.attractionsnepal.com')
+  .replace('https://attractionsnepal.com', 'https://www.attractionsnepal.com')
 const SITE_NAME = 'AttractionsNepal'
 
 // Default share image — shown when a page has no hero image

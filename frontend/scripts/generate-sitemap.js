@@ -53,6 +53,9 @@ console.log(`  Places: ${placeList.length}, Blogs: ${blogList.length}, Stories: 
 const staticPages = [
   '/itineraries',
   '/plan-my-trip',
+  '/about',
+  '/contact',
+  // SEO guide pages
   '/visit-nepal',
   '/nepal-trekking-guide',
   '/best-time-to-visit-nepal',
@@ -60,7 +63,15 @@ const staticPages = [
   '/nepal-travel-cost',
   '/kathmandu-to-pokhara',
   '/nepal-packing-list',
-  '/contact',
+  '/nepal-trekking-permits',
+  // Destination guides
+  '/things-to-do-in-kathmandu',
+  '/pokhara-travel-guide',
+  '/chitwan-national-park',
+  '/everest-base-camp-trek',
+  '/annapurna-circuit-trek',
+  '/lumbini-guide',
+  // Category pages
   '/category/temple',
   '/category/monastery',
   '/category/stupa',
