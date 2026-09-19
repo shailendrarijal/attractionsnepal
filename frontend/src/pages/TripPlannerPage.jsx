@@ -24,6 +24,18 @@ const ACTIVITIES = [
   { label: 'Relaxation',  value: 'RELAXATION', icon: '🧘', desc: 'Yoga, spa & lakeside calm' },
 ]
 
+// Same day buckets used on the itineraries listing page, so a quiz answer
+// of "5 days" matches itineraries the user would also find by browsing.
+const DAY_RANGES = [
+  { min: 1,  max: 3 },
+  { min: 4,  max: 6 },
+  { min: 7,  max: 10 },
+  { min: 11, max: undefined },
+]
+function getDayRange(days) {
+  return DAY_RANGES.find((r) => days >= r.min && (r.max === undefined || days <= r.max)) ?? DAY_RANGES[0]
+}
+
 const BUDGETS = [
   { label: 'Budget',    value: 'BUDGET',   icon: '💚', desc: 'Teahouses & local transport · ~$30–60/day', color: 'border-green-400 bg-green-50' },
   { label: 'Mid-range', value: 'MIDRANGE', icon: '💙', desc: 'Comfortable hotels & guided tours · ~$80–150/day', color: 'border-blue-400 bg-blue-50' },
@@ -147,17 +159,25 @@ function StepBudget({ selected, onSelect }) {
 // ─── Results ─────────────────────────────────────────────────────────────────
 
 function Results({ days, activities, budget, onReset }) {
-  // Build query — primary filter by days; secondary by first activity if any; budget if set
+  // Build query — match the same day-bucket + budget filters used on the
+  // itineraries listing page, and OR-match every selected activity.
+  const dayRange = days ? getDayRange(days) : null
   const params = { limit: '6', published: 'true' }
-  if (days) params.days = days
-  if (activities.length === 1) params.activity = activities[0]
+  if (dayRange) {
+    params.daysMin = dayRange.min
+    if (dayRange.max !== undefined) params.daysMax = dayRange.max
+  }
+  if (activities.length > 0) params.activity = activities.join(',')
   if (budget) params.budget = budget
 
   const { data, isLoading, error } = useItineraries(params)
 
   // If we got fewer than 3 results and had filters, broaden (just days)
   const fallbackParams = { limit: '6', published: 'true' }
-  if (days) fallbackParams.days = days
+  if (dayRange) {
+    fallbackParams.daysMin = dayRange.min
+    if (dayRange.max !== undefined) fallbackParams.daysMax = dayRange.max
+  }
   const fallback = useItineraries(
     data?.itineraries?.length < 3 ? fallbackParams : null
   )
@@ -240,6 +260,10 @@ export default function TripPlannerPage() {
   const [activities, setActivities] = useState([])
   const [budget, setBudget] = useState(undefined)  // undefined = not chosen yet
 
+  // Real, live itinerary count for the hero copy instead of a hardcoded claim.
+  const { data: totalData } = useItineraries({ limit: '1', published: 'true' })
+  const totalItineraries = totalData?.total
+
   function toggleActivity(val) {
     setActivities((prev) =>
       prev.includes(val) ? prev.filter((a) => a !== val) : [...prev, val]
@@ -278,7 +302,8 @@ export default function TripPlannerPage() {
         <p className="text-3xl mb-3">🗺️</p>
         <h1 className="font-display font-bold text-3xl sm:text-4xl text-white mb-2">Plan My Nepal Trip</h1>
         <p className="text-primary-200 text-base max-w-xl mx-auto">
-          3 quick questions. We match you to the perfect itinerary from our library of 50+ curated Nepal trips.
+          3 quick questions. We match you to the perfect itinerary from our library of
+          {totalItineraries ? ` ${totalItineraries}` : ''} curated Nepal trips.
         </p>
       </div>
 

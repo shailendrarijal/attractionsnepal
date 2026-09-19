@@ -35,7 +35,10 @@ router.get('/', async (req, res) => {
       if (daysMin) where.days.gte = Number(daysMin)
       if (daysMax) where.days.lte = Number(daysMax)
     }
-    if (activity)   where.activities = { has: activity }
+    if (activity) {
+      const values = activity.split(',').map((s) => s.trim()).filter(Boolean)
+      where.activities = values.length > 1 ? { hasSome: values } : { has: values[0] }
+    }
     if (budget)     where.budget     = budget
     if (difficulty) where.difficulty = difficulty
     if (province)   where.provinces  = { has: province }
@@ -129,6 +132,8 @@ router.post('/:slug/email', async (req, res) => {
     })
 
     if (!itinerary) return res.status(404).json({ error: 'Itinerary not found' })
+
+    const publishedCount = await prisma.itinerary.count({ where: { published: true } })
 
     // Group plans by day, pick selected or primary
     const dayGroups = {}
@@ -255,7 +260,7 @@ router.post('/:slug/email', async (req, res) => {
           <tr>
             <td style="padding:16px;">
               <p style="font-weight:700;color:#92400e;margin:0 0 8px;font-size:14px;">🗺️ Explore More</p>
-              <p style="font-size:13px;color:#555;margin:0;"><a href="https://attractionsnepal.com/itineraries" style="color:#003893;">Browse all 50+ itineraries</a> · <a href="https://attractionsnepal.com/places" style="color:#003893;">Discover places</a> · <a href="https://attractionsnepal.com/plan-my-trip" style="color:#003893;">Plan another trip</a></p>
+              <p style="font-size:13px;color:#555;margin:0;"><a href="https://attractionsnepal.com/itineraries" style="color:#003893;">Browse all ${publishedCount} itineraries</a> · <a href="https://attractionsnepal.com/places" style="color:#003893;">Discover places</a> · <a href="https://attractionsnepal.com/plan-my-trip" style="color:#003893;">Plan another trip</a></p>
             </td>
           </tr>
         </table>
