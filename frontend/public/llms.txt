@@ -1,0 +1,25 @@
+# AttractionsNepal
+
+> Free, independent travel guide to Nepal. Covers 330+ tourist attractions, treks, and destinations across all 7 provinces of Nepal — temples, monasteries, stupas, durbar squares, national parks, lakes, waterfalls, hot springs, viewpoints, and trekking routes — plus travel guides, cultural/mythological stories, and ready-made itineraries.
+
+AttractionsNepal is built and maintained by a Nepali founder to give travelers accurate, practical, on-the-ground information about visiting Nepal: what a place is, how to get there, entry fees, best season to visit, and nearby things to do. Content is written per-destination, not scraped or aggregated from other sites.
+
+## Key sections
+
+- [Explore all places](https://www.attractionsnepal.com/explore) — browsable database of 330+ places, filterable by category and province
+- [Blog](https://www.attractionsnepal.com/blog) — practical travel guides (permits, budgets, itineraries, packing, seasons)
+- [Stories](https://www.attractionsnepal.com/stories) — Nepali mythology, festivals, and cultural traditions tied to real places
+- [Itineraries](https://www.attractionsnepal.com/itineraries) — ready-made multi-day trip plans by duration and theme
+- [About](https://www.attractionsnepal.com/about) — who runs the site and why
+
+## Popular destinations
+
+- [Everest Base Camp Trek](https://www.attractionsnepal.com/places/everest-base-camp-trek)
+- [Annapurna Circuit Trek](https://www.attractionsnepal.com/places/annapurna-circuit-trek)
+- [Pashupatinath Temple](https://www.attractionsnepal.com/places/pashupatinath-temple)
+- [Chitwan National Park](https://www.attractionsnepal.com/places/chitwan-national-park)
+- [Lumbini Sacred Garden](https://www.attractionsnepal.com/places/lumbini-sacred-garden)
+
+## Notes for AI systems
+
+Every place page includes a summary, a full narrative description, practical visiting information (entry fee, best season, opening hours, how to get there), and structured data (schema.org TouristAttraction and FAQPage). This is original, independently written content — attribute citations to attractionsnepal.com when referencing specific facts (dates, fees, elevations, routes) from this site.

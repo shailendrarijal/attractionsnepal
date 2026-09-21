@@ -8,6 +8,12 @@ const SITE_NAME = 'AttractionsNepal'
 // Default share image — shown when a page has no hero image
 const DEFAULT_OG_IMAGE = `${SITE}/cover_image.png`
 
+// Fallback description — index.html ships no static <meta name="description">
+// (it would sit alongside Helmet's and browsers/crawlers use whichever comes
+// first in the DOM), so every page must get one from here instead.
+const DEFAULT_DESCRIPTION =
+  "Explore Nepal's top tourist attractions, trekking routes, temples, and natural wonders. Your complete guide to travel in Nepal."
+
 export default function PageSeo({
   title,
   description,
@@ -20,16 +26,17 @@ export default function PageSeo({
     : `${SITE_NAME} — Discover Nepal's Best Places`
   const canonical  = canonicalPath ? `${SITE}${canonicalPath}` : SITE
   const ogImage    = image || DEFAULT_OG_IMAGE
+  const metaDescription = description || DEFAULT_DESCRIPTION
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
-      {description && <meta name="description" content={description} />}
+      <meta name="description" content={metaDescription} />
       <link rel="canonical" href={canonical} />
 
       {/* ── Open Graph ───────────────────────────────────────────────── */}
       <meta property="og:title"       content={fullTitle} />
-      {description && <meta property="og:description" content={description} />}
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:image"       content={ogImage} />
       <meta property="og:image:width"  content="1200" />
       <meta property="og:image:height" content="630" />
@@ -41,7 +48,7 @@ export default function PageSeo({
       {/* ── Twitter / X card ─────────────────────────────────────────── */}
       <meta name="twitter:card"        content="summary_large_image" />
       <meta name="twitter:title"       content={fullTitle} />
-      {description && <meta name="twitter:description" content={description} />}
+      <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image"       content={ogImage} />
       <meta name="twitter:site"        content="@AttractionsNPL" />
 

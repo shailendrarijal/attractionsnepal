@@ -14,16 +14,23 @@ const allowedOrigins = [
     .map((s) => s.trim()),
   'https://attractionsnepal.com',
   'https://www.attractionsnepal.com',
+  // Local static server the frontend build spins up to prerender pages
+  // (scripts/prerender.js) — reads public data only, same as any visitor.
+  'http://localhost:4173',
 ]
 
 app.use(cors({ origin: allowedOrigins, credentials: true }))
 
-// General API rate limit: 300 req / 15 min
+// General API rate limit: 1200 req / 15 min per IP.
+// Raised from 300 — the frontend's build-time prerender crawl (one IP,
+// scripts/prerender.js) alone makes ~2 calls per page across 450+ pages,
+// which blew past the old ceiling partway through a build and left the
+// back half of the site's pages without real prerendered content.
 app.use(
   '/api',
   rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 300,
+    max: 1200,
     standardHeaders: true,
     legacyHeaders: false,
   })

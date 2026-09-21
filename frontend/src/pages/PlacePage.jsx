@@ -125,6 +125,16 @@ export default function PlacePage() {
     ],
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: placeFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <PageSeo
@@ -135,6 +145,7 @@ export default function PlacePage() {
       />
       <JsonLd data={placeJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={faqJsonLd} />
 
       {/* Hero */}
       <div className="relative h-72 sm:h-96 lg:h-[480px] bg-gray-900 overflow-hidden">

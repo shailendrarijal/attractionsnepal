@@ -62,7 +62,10 @@
       })();
     </script>
     <title>AttractionsNepal — Discover Nepal's Best Places</title>
-    <meta name="description" content="Explore Nepal's top tourist attractions, trekking routes, temples, and natural wonders. Your complete guide to travel in Nepal." />
+    <!-- No static meta description here — react-helmet-async (PageSeo.jsx)
+         always renders one per page. A static tag here would leave a
+         duplicate <meta name="description"> in the DOM alongside Helmet's,
+         since Helmet only manages tags it renders, not pre-existing ones. -->
   </head>
   <body>
     <div id="root"></div>

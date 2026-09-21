@@ -147,8 +147,9 @@ app.get('/places/:slug', async (req, res, next) => {
 
 app.use(express.static(DIST))
 
-// SPA fallback — all unknown paths return index.html so React Router works
-app.get('*', (_req, res) => {
+// SPA fallback — all unknown paths return index.html so React Router works.
+// Express 5 rejects bare '*' route patterns — use path-less middleware instead.
+app.use((_req, res) => {
   res.sendFile(resolve(DIST, 'index.html'))
 })
 
