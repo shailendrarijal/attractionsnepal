@@ -1,7 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { usePlaces } from '../hooks/usePlaces'
-import { useBlogs } from '../hooks/useBlogs'
+import { Link } from 'react-router-dom'
+import { usePlaces, usePlace } from '../hooks/usePlaces'
+import { useBlogs, useBlog } from '../hooks/useBlogs'
 import PlaceCard from '../components/PlaceCard'
 import BlogCard from '../components/BlogCard'
 import PageSeo from '../components/PageSeo'
@@ -50,17 +49,73 @@ const CATEGORIES = [
   { label: 'Amusement Parks',  slug: 'amusement-park',   icon: '🎡' },
 ]
 
-export default function HomePage() {
-  const [search, setSearch] = useState('')
-  const navigate = useNavigate()
+const STATS = [
+  { value: '330+', label: 'Attractions listed' },
+  { value: '50+',  label: 'Ready-made itineraries' },
+  { value: '7',    label: 'Provinces covered' },
+  { value: '50+',  label: 'Travel guides & stories' },
+]
 
+const PROVINCES = [
+  {
+    value: 'BAGMATI',
+    label: 'Bagmati',
+    icon: '🏛️',
+    blurb: 'The Kathmandu Valley — Durbar Squares, Pashupatinath, Boudhanath, and the beating cultural heart of Nepal.',
+  },
+  {
+    value: 'GANDAKI',
+    label: 'Gandaki',
+    icon: '🏔️',
+    blurb: "Pokhara's lakes and the Annapurna range — the country's trekking and adventure-sports capital.",
+  },
+  {
+    value: 'LUMBINI',
+    label: 'Lumbini',
+    icon: '☸️',
+    blurb: 'The birthplace of the Buddha, sacred gardens, ancient stupas, and the warm plains of the western Terai.',
+  },
+  {
+    value: 'KOSHI',
+    label: 'Koshi',
+    icon: '🍃',
+    blurb: 'Rolling tea gardens in Ilam, Himalayan viewpoints, and routes toward Kanchenjunga in the far east.',
+  },
+  {
+    value: 'MADHESH',
+    label: 'Madhesh',
+    icon: '🛕',
+    blurb: "Janakpur's Mithila temples and the fertile Terai plains along Nepal's southern border.",
+  },
+  {
+    value: 'KARNALI',
+    label: 'Karnali',
+    icon: '🏞️',
+    blurb: "Nepal's wildest, least-visited frontier — remote treks, Rara Lake, and untouched Himalayan valleys.",
+  },
+  {
+    value: 'SUDURPASHCHIM',
+    label: 'Sudurpashchim',
+    icon: '🌲',
+    blurb: 'The far west — Khaptad, Api Himal, and some of the country\'s most untouched wilderness.',
+  },
+]
+
+export default function HomePage() {
   const { data: featuredData, isLoading: featuredLoading } = usePlaces({ featured: 'true', limit: 6 })
   const { data: blogData, isLoading: blogLoading } = useBlogs({ limit: 3 })
 
-  function handleSearch(e) {
-    e.preventDefault()
-    if (search.trim()) navigate(`/explore?search=${encodeURIComponent(search.trim())}`)
-  }
+  // Silent warm-up: as soon as the featured places / blog posts resolve, fire
+  // a real place-detail and blog-detail request (the same hooks and cache
+  // keys PlacePage/BlogPage use) in the background. On the free Render plan
+  // both the API process and its DB connection pool go cold after 15 minutes
+  // idle — this warms the exact query shape a visitor is about to hit next,
+  // and if they click through to this specific place/post it's already
+  // cached. Nothing from these two hooks is rendered.
+  const warmPlaceSlug = featuredData?.places?.[0]?.slug
+  const warmBlogSlug = blogData?.blogs?.[0]?.slug
+  usePlace(warmPlaceSlug)
+  useBlog(warmBlogSlug)
 
   const websiteJsonLd = {
     '@context': 'https://schema.org',
@@ -83,9 +138,10 @@ export default function HomePage() {
       />
       <JsonLd data={websiteJsonLd} />
 
-      {/* Hero */}
+      {/* Hero — search lives in the header now, so this stays short and gets
+          real content in front of visitors faster. */}
       <section className="hero-gradient text-white">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-14 text-center">
           <p className="text-sm font-semibold tracking-[0.2em] uppercase text-green-300 mb-3">
             Explore. Discover. Experience.
           </p>
@@ -97,31 +153,29 @@ export default function HomePage() {
             From ancient temples to Himalayan peaks, explore every attraction Nepal has to offer.
           </p>
 
-          <form onSubmit={handleSearch} className="mt-8 flex max-w-xl mx-auto shadow-xl rounded-full overflow-hidden">
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search places, districts, or categories..."
-              className="flex-1 px-6 py-4 text-gray-900 text-base focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-nepal-gold hover:bg-yellow-500 px-6 py-4 font-semibold text-gray-900 transition-colors shrink-0"
-            >
-              Search
-            </button>
-          </form>
-
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link to="/explore" className="text-sm text-green-200 hover:text-white underline underline-offset-2">
-              🗺️ Browse the map
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link to="/explore" className="btn-primary bg-white text-primary-800 hover:bg-gray-100">
+              🗺️ Browse the Map
             </Link>
-            <span className="text-green-600">·</span>
-            <Link to="/blog" className="text-sm text-green-200 hover:text-white underline underline-offset-2">
-              📖 Read travel guides
+            <Link to="/plan-my-trip" className="btn-secondary bg-transparent border-white text-white hover:bg-primary-700">
+              ✨ Plan My Trip
+            </Link>
+            <Link to="/blog" className="btn-secondary bg-transparent border-white text-white hover:bg-primary-700">
+              📖 Read Travel Guides
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Stats bar */}
+      <section className="bg-primary-900 text-white py-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          {STATS.map((s) => (
+            <div key={s.label}>
+              <p className="font-display text-3xl sm:text-4xl font-bold text-green-300">{s.value}</p>
+              <p className="mt-1 text-xs sm:text-sm text-primary-100">{s.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -146,8 +200,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured places */}
+      {/* Explore by Province */}
       <section className="py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary-500 mb-1">
+              Seven Provinces, One Nepal
+            </p>
+            <h2 className="text-2xl font-display font-bold text-gray-900">Explore by Province</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {PROVINCES.map((p) => (
+              <Link
+                key={p.value}
+                to={`/explore?province=${p.value}`}
+                className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100 hover:shadow-md hover:ring-primary-200 transition-all"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{p.icon}</span>
+                  <h3 className="font-display font-bold text-gray-900">{p.label}</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{p.blurb}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured places */}
+      <section className="py-14 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-display font-bold text-gray-900">Featured Attractions</h2>
@@ -171,7 +252,7 @@ export default function HomePage() {
       <GuidePromo />
 
       {/* Blog section */}
-      <section className="py-14 bg-gray-50">
+      <section className="py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>

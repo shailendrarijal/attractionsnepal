@@ -60,6 +60,23 @@ app.get('/health', (_req, res) =>
   res.json({ status: 'ok', env: process.env.NODE_ENV })
 )
 
+// Separate from /health (which Render's own health checks poll) so a
+// DB hiccup here never makes Render think the whole service is down.
+// Fired by the frontend as early as possible on page load to warm both
+// the Node process and the Prisma/Supabase connection pool ahead of the
+// visitor's first real navigation — on the free plan both go cold after
+// 15 minutes of inactivity.
+app.get('/warmup', async (_req, res) => {
+  try {
+    const prisma = (await import('./lib/prisma.js')).default
+    await prisma.$queryRaw`SELECT 1`
+    res.json({ status: 'warm' })
+  } catch (err) {
+    console.error('[warmup] error:', err)
+    res.status(200).json({ status: 'warming' })
+  }
+})
+
 app.get('/sitemap.xml', async (_req, res) => {
   try {
     const prisma = (await import('./lib/prisma.js')).default

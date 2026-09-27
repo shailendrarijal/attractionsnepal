@@ -12,6 +12,18 @@
     <link rel="preconnect" href="https://attractionsnepal.onrender.com" crossorigin />
     <link rel="dns-prefetch" href="https://attractionsnepal.onrender.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <!--
+      Wake the free-tier backend the instant the HTML starts parsing — before
+      the JS bundle even downloads. Render's free plan spins the API process
+      AND its DB connection pool down after inactivity; a cold start can take
+      30-60s. /warmup (not /health, which Render's own health checks poll and
+      which skips the DB) runs a trivial query to warm both, giving the
+      server the earliest possible head start before a visitor even mounts
+      React — by the time they click into a place or blog page, it's warm.
+    -->
+    <script>
+      fetch('https://attractionsnepal.onrender.com/warmup').catch(function () {});
+    </script>
     <!-- Google Fonts — standard blocking load (non-blocking caused font override conflicts) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
